@@ -1,0 +1,1716 @@
+<!doctype html>
+<html lang="de-AT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Herzeln</title>
+<meta name="description" content="Herzeln – Regeln und Spielblock: Minus-Epoche, Plus-Epoche und Herzmandl-Ansetzen. Auf Deutsch, Mostviertlerisch, Südtirolerisch, Liechtensteinerisch und Englisch.">
+<meta name="theme-color" content="#5b1420">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23c42430' d='M12 21.3c-.3 0-.6-.1-.8-.3C8.3 18.7 2.4 14.3 2.4 8.9c0-3 2.4-5.4 5.3-5.4 1.8 0 3.3.9 4.3 2.4 1-1.5 2.5-2.4 4.3-2.4 2.9 0 5.3 2.4 5.3 5.4 0 5.4-5.9 9.8-8.8 12.1-.2.2-.5.3-.8.3z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f3ede3;--surface:#fffcf7;--surface-2:#f8f2e8;--surface-3:#eee5d6;
+  --ink:#231c17;--ink-2:#584e44;--muted:#857a6d;--line:#e4d9c7;--line-2:#d2c4ad;
+  --minus:#a8262f;--minus-ink:#8f1f28;--minus-soft:#f7e2de;
+  --plus:#2d6b3a;--plus-ink:#245a30;--plus-soft:#e1eedd;
+  --final:#9a6b12;--final-ink:#7d560c;--final-soft:#f6ebcf;
+  --on-accent:#fff;
+  --p1:#2a78d6;--p2:#eb6834;--p3:#1baf7a;--p4:#eda100;
+  --paper:#fffdf6;--paper-line:#d6c8ae;
+  --hero-1:#7a1a27;--hero-2:#2a0b10;
+  --shadow-sm:0 1px 2px rgba(45,28,12,.05),0 2px 10px rgba(45,28,12,.05);
+  --shadow:0 2px 6px rgba(45,28,12,.06),0 14px 34px rgba(45,28,12,.10);
+  --font-display:'Fraunces','Iowan Old Style','Palatino Linotype',Georgia,serif;
+  --font-ui:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --r:18px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#13100d;--surface:#1e1915;--surface-2:#26201b;--surface-3:#312921;
+    --ink:#f3ece2;--ink-2:#cdc1b1;--muted:#9c9182;--line:#352d25;--line-2:#4a3f33;
+    --minus:#ec7a83;--minus-ink:#f29aa1;--minus-soft:#3a1d20;
+    --plus:#7cc68a;--plus-ink:#9bd7a6;--plus-soft:#1b3121;
+    --final:#e2b24f;--final-ink:#ecc674;--final-soft:#382d15;
+    --on-accent:#16110d;
+    --p1:#3987e5;--p2:#d95926;--p3:#199e70;--p4:#c98500;
+    --paper:#f6efe1;--paper-line:#c9bba1;
+    --hero-1:#5a1220;--hero-2:#18070b;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.3);
+    --shadow:0 2px 6px rgba(0,0,0,.3),0 14px 34px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#13100d;--surface:#1e1915;--surface-2:#26201b;--surface-3:#312921;
+  --ink:#f3ece2;--ink-2:#cdc1b1;--muted:#9c9182;--line:#352d25;--line-2:#4a3f33;
+  --minus:#ec7a83;--minus-ink:#f29aa1;--minus-soft:#3a1d20;
+  --plus:#7cc68a;--plus-ink:#9bd7a6;--plus-soft:#1b3121;
+  --final:#e2b24f;--final-ink:#ecc674;--final-soft:#382d15;
+  --on-accent:#16110d;
+  --p1:#3987e5;--p2:#d95926;--p3:#199e70;--p4:#c98500;
+  --paper:#f6efe1;--paper-line:#c9bba1;
+  --hero-1:#5a1220;--hero-2:#18070b;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.3);
+  --shadow:0 2px 6px rgba(0,0,0,.3),0 14px 34px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font:16px/1.5 var(--font-ui);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed}
+:focus-visible{outline:2.5px solid var(--p1);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:16px 16px 72px}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;isolation:isolate;border-radius:26px;padding:22px 26px 26px;color:#fbf1e6;
+  background:radial-gradient(130% 150% at 0% 0%,var(--hero-1) 0%,var(--hero-2) 75%);box-shadow:var(--shadow)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M12 18.6s-5.6-3.6-5.6-7.6c0-2.1 1.5-3.5 3.2-3.5 1 0 1.9.5 2.4 1.3.5-.8 1.4-1.3 2.4-1.3 1.7 0 3.2 1.4 3.2 3.5 0 4-5.6 7.6-5.6 7.6z'/%3E%3C/svg%3E")}
+.hero::after{content:"";position:absolute;right:-120px;top:-140px;width:420px;height:420px;border-radius:50%;z-index:-1;
+  background:radial-gradient(circle,rgba(255,190,150,.18),transparent 65%)}
+.hero-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.eyebrow{font-size:12px;letter-spacing:.15em;text-transform:uppercase;font-weight:650;color:#f1cdbf}
+.hero-ctl{display:flex;gap:8px;align-items:center}
+.lang{position:relative;display:inline-flex;align-items:center}
+.lang svg{position:absolute;left:11px;width:16px;height:16px;pointer-events:none;opacity:.85}
+.lang select{appearance:none;-webkit-appearance:none;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.1);color:#fff;
+  border-radius:12px;padding:8px 32px 8px 34px;font-weight:650;font-size:14px;cursor:pointer;max-width:62vw;
+  background-image:linear-gradient(45deg,transparent 50%,#fff 50%),linear-gradient(135deg,#fff 50%,transparent 50%);
+  background-position:calc(100% - 17px) 55%,calc(100% - 12px) 55%;background-size:5px 5px;background-repeat:no-repeat}
+.lang select:hover{background-color:rgba(255,255,255,.16)}
+.lang select option,.lang select optgroup{color:#231c17;background:#fffcf7}
+.icon-btn{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:12px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2)}
+.icon-btn svg{width:18px;height:18px}
+.hero .icon-btn{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.1);color:#fff}
+.hero .icon-btn:hover{background:rgba(255,255,255,.16)}
+.hero-body{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center;margin-top:14px}
+.hero h1{font-family:var(--font-display);font-weight:800;font-size:clamp(48px,9vw,84px);line-height:.92;margin:4px 0 12px;letter-spacing:-.025em;font-variation-settings:"opsz" 144}
+.hero h1 .h{color:#ff8a8f}
+.hero p{margin:0;max-width:52ch;color:#efd8cc;font-size:17px}
+.facts{margin-top:14px;font-size:13px;color:#e2bfb1;letter-spacing:.02em}
+.hero-fan{position:relative;width:230px;height:170px;margin-right:6px}
+.bc{position:absolute;bottom:0;left:50%;width:98px;height:140px;margin-left:-49px;border-radius:11px;background:var(--paper);border:1px solid var(--paper-line);
+  box-shadow:0 14px 28px rgba(0,0,0,.38),inset 0 0 0 4px var(--paper),inset 0 0 0 5px #e7dbc4;display:grid;place-items:center;transform-origin:50% 120%;color:#9c1c27}
+.bc svg{width:50px;height:50px}
+.bc .cr{position:absolute;font:800 17px/1 var(--font-display);color:#9c1c27}
+.bc .tl{top:10px;left:11px}.bc .br{bottom:10px;right:11px;transform:rotate(180deg)}
+.bc .cap{position:absolute;bottom:16px;left:0;right:0;text-align:center;font:650 9px/1 var(--font-ui);letter-spacing:.1em;text-transform:uppercase;color:#8a6d55}
+.bc.c .br{display:none}
+.bc.l{transform:rotate(-16deg) translateX(-8px)}.bc.r{transform:rotate(16deg) translateX(8px)}.bc.c{transform:translateY(-10px)}
+.hero.compact{padding:14px 20px}
+.hero.compact .hero-body{margin-top:2px}
+.hero.compact h1{font-size:36px;margin:2px 0 0}
+.hero.compact p,.hero.compact .facts,.hero.compact .hero-fan{display:none}
+
+/* ---------- tabs ---------- */
+.tabs{position:sticky;top:0;z-index:20;display:flex;gap:8px;margin:0 -16px;padding:12px 16px 10px;background:linear-gradient(var(--bg) 78%,transparent)}
+.tab{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:13px;border:1px solid var(--line);background:var(--surface);font-weight:650;color:var(--ink-2);box-shadow:var(--shadow-sm)}
+.tab svg{width:18px;height:18px}
+.tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+.tab-spacer{flex:1}
+
+/* ---------- panels & controls ---------- */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow-sm);min-width:0}
+.ph{font-family:var(--font-display);font-weight:800;font-size:24px;line-height:1.15;margin:0 0 14px;letter-spacing:-.01em}
+.ph-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.ph-row .ph{margin-bottom:10px}
+.stack{display:grid;gap:16px}
+.field{margin-top:18px}
+.field:first-of-type{margin-top:0}
+.lbl{font-size:13px;font-weight:700;color:var(--ink-2);margin-bottom:8px;letter-spacing:.01em}
+.seg{display:inline-flex;flex-wrap:wrap;gap:3px;padding:3px;border-radius:13px;background:var(--surface-3);max-width:100%}
+.seg button{display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:0 14px;border:0;border-radius:10px;background:transparent;font-weight:600;font-size:14.5px;color:var(--ink-2);white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--pc,var(--muted));flex:none;box-shadow:0 0 0 2px var(--surface)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 18px;border-radius:13px;border:1px solid var(--line-2);background:var(--surface);font-weight:700;color:var(--ink)}
+.btn svg{width:18px;height:18px}
+.btn:hover:not(:disabled){background:var(--surface-2)}
+.btn-primary{background:var(--accent,var(--ink));border-color:var(--accent,var(--ink));color:var(--on-accent)}
+.btn-primary:hover:not(:disabled){background:var(--accent,var(--ink));filter:brightness(1.08)}
+.btn-primary:disabled{opacity:.42}
+.btn-lg{min-height:54px;font-size:17px;padding:0 26px}
+.btn-ghost{border-color:transparent;background:transparent;color:var(--ink-2)}
+.btn-ghost:hover:not(:disabled){background:var(--surface-2)}
+.btn-danger{color:var(--minus-ink)}
+.link{border:0;background:none;padding:4px 2px;color:var(--ink-2);font-weight:600;font-size:14px;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line-2)}
+.ep-minus{--accent:var(--minus);--accent-ink:var(--minus-ink);--accent-soft:var(--minus-soft)}
+.ep-plus{--accent:var(--plus);--accent-ink:var(--plus-ink);--accent-soft:var(--plus-soft)}
+.ep-final{--accent:var(--final);--accent-ink:var(--final-ink);--accent-soft:var(--final-soft)}
+
+/* ---------- playing cards ---------- */
+.pc{--cw:30px;position:relative;display:inline-grid;place-items:center;flex:none;width:var(--cw);height:calc(var(--cw)*1.42);border-radius:calc(var(--cw)*.16);
+  background:var(--paper);border:1px solid var(--paper-line);box-shadow:0 1px 2px rgba(0,0,0,.14);color:#2b2119}
+.pc b{position:absolute;top:calc(var(--cw)*.06);left:calc(var(--cw)*.1);font:800 calc(var(--cw)*.31)/1 var(--font-ui);letter-spacing:-.04em}
+.pc.red b{color:#a71d29}
+.pc svg{width:68%;height:auto;margin-top:30%}
+.pc.back{background:#7c1d29;border:2px solid var(--paper);box-shadow:0 1px 2px rgba(0,0,0,.2),inset 0 0 0 1px rgba(0,0,0,.25);
+  background-image:repeating-linear-gradient(45deg,rgba(255,225,200,.17) 0 1.5px,transparent 1.5px 5px),repeating-linear-gradient(-45deg,rgba(255,225,200,.17) 0 1.5px,transparent 1.5px 5px)}
+.fan{display:inline-flex;align-items:flex-end;flex:none;padding:4px 8px 2px 4px}
+.fan .pc{--cw:34px}
+.fan .pc:not(:first-child){margin-left:-21px}
+.fan .pc:nth-child(1):not(:only-child){transform:rotate(-10deg) translateY(2px)}
+.fan .pc:nth-child(3){transform:rotate(10deg) translateY(2px)}
+.fan.lg .pc{--cw:46px}
+.fan.lg .pc:not(:first-child){margin-left:-28px}
+.fan.sm .pc{--cw:22px}
+.fan.sm .pc:not(:first-child){margin-left:-14px}
+
+/* ---------- setup ---------- */
+.setup-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;align-items:start}
+.names{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.name-in{display:flex;align-items:center;gap:10px;padding:0 12px;border:1px solid var(--line-2);border-radius:12px;background:var(--surface);min-height:48px}
+.name-in:focus-within{border-color:var(--ink-2);box-shadow:0 0 0 3px var(--surface-3)}
+.name-in input{flex:1;min-width:0;border:0;background:transparent;outline:none;font-size:16px;font-weight:600;padding:10px 0}
+.name-in input::placeholder{color:var(--muted);font-weight:500}
+.house{margin-top:20px;border:1px solid var(--line);border-radius:14px;background:var(--surface-2)}
+.house>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:14px 16px;font-weight:700}
+.house>summary::-webkit-details-marker{display:none}
+.house>summary .hint{font-weight:500;color:var(--muted);font-size:14px}
+.house>summary .chev{margin-left:auto;transition:transform .2s}
+.house[open]>summary .chev{transform:rotate(180deg)}
+.house-body{padding:4px 16px 16px;display:grid;gap:4px}
+.hr-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.hr-row:first-child{border-top:0}
+.sw{display:flex;align-items:center;gap:10px;font-weight:650;cursor:pointer;min-width:0}
+.sw input{width:20px;height:20px;accent-color:var(--ink);flex:none}
+.sw .fan{padding:0}
+.hr-val{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2);flex-wrap:wrap;justify-content:flex-end}
+.num{width:76px;min-height:40px;border:1px solid var(--line-2);border-radius:10px;background:var(--surface);padding:0 10px;font-weight:700;font-variant-numeric:tabular-nums;text-align:right}
+.hr-sub{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+.hr-places{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+.hr-places label{white-space:nowrap;display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:14px;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px 4px 4px 10px}
+.hr-places .num{width:64px;min-height:34px}
+.dis{opacity:.45}
+.start-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+.start-row .sum{color:var(--ink-2);font-size:15px}
+.start-row .sum b{color:var(--ink)}
+.preview-tours{display:grid;gap:10px}
+.pt-ep{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:var(--accent-soft);color:var(--accent-ink);font-weight:700;font-size:14px}
+.pt-ep .sg{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-weight:800}
+.pt-list{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 6px}
+.pt-list span{display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:3px 10px 3px 4px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line)}
+.pt-list .fan{padding:0 2px 0 0}
+.warn-txt{color:var(--minus-ink);font-size:14px;font-weight:600}
+
+/* ---------- game ---------- */
+.prog{display:flex;gap:10px;margin-bottom:14px}
+.pg{flex:var(--len) 1 0;min-width:52px}
+.pg-l{display:flex;justify-content:space-between;gap:6px;font-size:11px;font-weight:750;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:6px;white-space:nowrap}
+.pg-l span:last-child{color:var(--muted);letter-spacing:0;font-weight:600}
+.pg-b{display:flex;gap:3px}
+.pip{flex:1;height:8px;border-radius:4px;background:var(--surface-3)}
+.pip.done{background:var(--accent)}
+.pip.cur{background:var(--accent-soft);box-shadow:inset 0 0 0 2px var(--accent)}
+.game-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:16px;align-items:start}
+.now{border-top:5px solid var(--accent);scroll-margin-top:72px}
+.now-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.ep-badge{display:inline-flex;align-items:center;gap:7px;padding:5px 12px 5px 6px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);font-size:12.5px;font-weight:750;letter-spacing:.03em}
+.ep-badge .sg{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-size:14px;font-weight:800;line-height:1}
+.deal-no{font-size:13px;color:var(--muted);font-weight:650;font-variant-numeric:tabular-nums}
+.deal-no.editing{color:var(--final-ink);background:var(--final-soft);padding:3px 10px;border-radius:999px}
+.now-head{display:flex;gap:14px;align-items:center;margin:14px 0 6px}
+.now h2{font-family:var(--font-display);font-size:clamp(30px,5vw,42px);font-weight:800;line-height:1.02;margin:0;letter-spacing:-.02em}
+.goal{color:var(--ink-2);margin:4px 0 0;font-size:16px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:5px 12px 5px 9px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);font-size:13.5px;color:var(--ink-2)}
+.chip b{color:var(--ink);font-weight:700}
+.chip .pc{--cw:16px}
+.chip .pc b{display:none}
+.wg{margin-top:18px}
+.wg-q{font-weight:700;margin-bottom:10px;font-size:15px}
+.status{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:14px;font-weight:600;color:var(--muted)}
+.status svg{width:16px;height:16px;flex:none}
+.status.ok{color:var(--plus-ink)}
+.status.err{color:var(--minus-ink)}
+.warns{margin-top:12px;display:grid;gap:6px}
+.warns div{display:flex;gap:8px;align-items:center;font-size:13.5px;color:var(--final-ink);background:var(--final-soft);padding:8px 12px;border-radius:10px}
+.warns svg{width:16px;height:16px;flex:none}
+/* tricks stepper */
+.trk{display:grid;gap:8px}
+.trk-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:10px;padding:6px 6px 6px 14px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}
+.who{display:flex;align-items:center;gap:9px;font-weight:650;min-width:0}
+.who .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.stp{display:flex;align-items:center;gap:2px}
+.stp button{width:44px;height:44px;border-radius:12px;border:1px solid var(--line-2);background:var(--surface);font-size:22px;font-weight:600;line-height:1;display:grid;place-items:center}
+.stp button:disabled{opacity:.35}
+.stp output{min-width:2.2ch;text-align:center;font:800 24px/1 var(--font-display);font-variant-numeric:tabular-nums}
+.mini{min-height:34px;padding:0 10px;border-radius:10px;border:1px dashed var(--line-2);background:transparent;font-size:13px;font-weight:700;color:var(--ink-2);white-space:nowrap}
+.mini:hover{background:var(--surface)}
+/* card matrix */
+.mx{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.mx-row{display:grid;grid-template-columns:minmax(0,1fr) repeat(var(--n),48px);gap:0 4px;align-items:center;padding:6px 10px;border-top:1px solid var(--line)}
+.mx-row:first-child{border-top:0}
+.mx-row.done{background:var(--surface-2)}
+.mx-head{background:var(--surface-2);padding-top:8px;padding-bottom:8px;position:sticky}
+.mx-h{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11.5px;font-weight:700;color:var(--ink-2);min-width:0}
+.mx-h .t{max-width:48px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mx-card{display:flex;align-items:center;gap:10px;min-width:0}
+.mx-card .pc{--cw:28px}
+.mx-t{display:flex;flex-direction:column;min-width:0;line-height:1.25}
+.mx-t .nm{font-weight:650;font-size:14.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mx-t .val{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.cell{justify-self:center;width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line-2);background:var(--surface);display:grid;place-items:center;color:#fff;transition:transform .12s}
+.cell:hover{border-color:var(--pc)}
+.cell:active{transform:scale(.92)}
+.cell[aria-pressed="true"]{background:var(--pc);border-color:var(--pc);box-shadow:0 0 0 3px var(--surface),0 0 0 4.5px var(--pc)}
+.cell svg{width:18px;height:18px}
+/* player picks */
+.picks{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.pick{position:relative;display:flex;align-items:center;gap:10px;min-height:56px;padding:8px 14px;border-radius:14px;border:1.5px solid var(--line-2);background:var(--surface);font-weight:650;text-align:left;min-width:0}
+.pick .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0}
+.pick .pv{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;font-weight:600}
+.pick[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+.pick.auto{border-style:dashed}
+.badge{display:grid;place-items:center;min-width:26px;height:26px;padding:0 6px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-size:13px;font-weight:800}
+.pick.auto .badge{background:var(--surface-3);color:var(--ink-2)}
+/* preview + actions */
+.preview{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;margin-top:18px;padding:10px 14px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);font-size:14px}
+.preview .pl{font-weight:700;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.07em}
+.preview span.pp{display:inline-flex;align-items:center;gap:6px}
+.preview b{font-variant-numeric:tabular-nums}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px}
+.actions .btn-primary{flex:1 1 240px}
+/* standings */
+.stand{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile{position:relative;padding:12px 14px 12px 16px;border-radius:15px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden;min-width:0}
+.tile::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--pc)}
+.tile .nm{display:flex;align-items:center;gap:6px;font-weight:650;font-size:14.5px;min-width:0;padding-right:28px}
+.tile .nm .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tile .sc{font:800 34px/1.05 var(--font-display);font-variant-numeric:tabular-nums;margin-top:4px;letter-spacing:-.02em}
+.tile .dl{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tile .rk{position:absolute;top:10px;right:12px;font-size:12px;color:var(--muted);font-weight:800}
+.tile.lead{background:var(--final-soft);border-color:color-mix(in srgb,var(--final) 35%,var(--line))}
+.tile.lead .rk{color:var(--final-ink)}
+.tag{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border-radius:999px;background:var(--surface-3);color:var(--ink-2)}
+.tag .pc{--cw:11px;border-width:1px}
+/* chart */
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-2);margin:-4px 0 10px}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:16px;height:3px;border-radius:2px;background:var(--pc)}
+.chart{position:relative;min-height:200px}
+.chart svg{display:block;overflow:visible}
+.chart text{font-family:var(--font-ui)}
+.chart .ax{fill:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}
+.chart .gl{stroke:var(--line);stroke-width:1}
+.chart .z{stroke:var(--line-2);stroke-width:1}
+.chart .bd-minus{fill:var(--minus-soft)}.chart .bd-plus{fill:var(--plus-soft)}.chart .bd-final{fill:var(--final-soft)}
+.chart .bl{font-size:10.5px;font-weight:750;letter-spacing:.08em;text-transform:uppercase}
+.chart .bl-minus{fill:var(--minus-ink)}.chart .bl-plus{fill:var(--plus-ink)}.chart .bl-final{fill:var(--final-ink)}
+.chart .ln{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.chart .ed{stroke:var(--surface);stroke-width:2}
+.chart .lbl{fill:var(--ink);font-size:12px;font-weight:650}
+.chart .lbv{fill:var(--ink-2);font-weight:500;font-variant-numeric:tabular-nums}
+.chart .ld{stroke:var(--line-2);stroke-width:1}
+.chart .xh{stroke:var(--ink-2);stroke-width:1;opacity:0}
+.chart .hd{opacity:0}
+.chart.hov .xh,.chart.hov .hd{opacity:1}
+.chart-empty{display:grid;place-items:center;min-height:200px;border:1.5px dashed var(--line-2);border-radius:14px;color:var(--muted);font-size:14px;text-align:center;padding:20px}
+.tip{position:absolute;top:0;left:0;pointer-events:none;background:var(--surface);border:1px solid var(--line-2);border-radius:12px;box-shadow:var(--shadow);padding:9px 12px;font-size:12.5px;min-width:168px;opacity:0;transition:opacity .12s;z-index:2}
+.chart.hov .tip{opacity:1}
+.tip .th{font-weight:700;margin-bottom:6px;color:var(--ink)}
+.tip .th small{display:block;color:var(--muted);font-weight:600;font-size:11.5px}
+.tip .tr{display:grid;grid-template-columns:auto 1fr auto auto;gap:7px;align-items:center;line-height:1.7;color:var(--ink-2)}
+.tip .tr b{color:var(--ink);font-variant-numeric:tabular-nums;text-align:right}
+.tip .tr em{font-style:normal;color:var(--muted);font-variant-numeric:tabular-nums;text-align:right;min-width:4ch}
+.tip .tr .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:110px}
+/* log */
+.log-wrap{overflow-x:auto;margin:0 -6px;padding:0 6px}
+.log{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+.log th,.log td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+.log th{font-size:12px;color:var(--ink-2);font-weight:700;vertical-align:bottom}
+.log th.pn{max-width:90px}
+.log th.pn span{display:inline-flex;align-items:center;gap:6px;max-width:100%}
+.log th.pn .t{overflow:hidden;text-overflow:ellipsis}
+.log .ix{color:var(--muted);text-align:left;width:28px;font-size:12px}
+.log .tn{text-align:left;width:100%}
+.log .tn span{display:inline-flex;align-items:center;gap:8px}
+.log .tn .fan{padding:0}
+.log tr.grp td{text-align:left;padding:14px 6px 6px;font-size:11.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--accent-ink);border-bottom:2px solid var(--accent)}
+.log tr.fut td{color:var(--muted);opacity:.55}
+.log tr.cur td{background:var(--accent-soft);opacity:1;color:var(--accent-ink);font-weight:650}
+.log tr.cur td:first-child{border-radius:8px 0 0 8px}.log tr.cur td:last-child{border-radius:0 8px 8px 0}
+.log tr.editing td{background:var(--final-soft)}
+.log tr.sub td{font-weight:700;color:var(--ink-2);background:var(--surface-2);font-size:13px}
+.log tfoot td{font-weight:800;font-size:15px;border-top:2px solid var(--ink);border-bottom:0;padding-top:10px}
+.log .neg{color:var(--minus-ink)}
+.log .zero{color:var(--muted)}
+.log .edb{width:32px;height:32px;border-radius:9px}
+.log .edb svg{width:15px;height:15px}
+.game-foot{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+/* finished */
+.result{position:relative;overflow:hidden;text-align:center;padding:30px 20px 24px;border-top:5px solid var(--final)}
+.result .trophy{display:inline-flex;margin-bottom:6px}
+.result .trophy .fan{padding:0}
+.result h2{font-family:var(--font-display);font-size:clamp(32px,6vw,52px);font-weight:800;line-height:1.05;margin:6px 0 4px;letter-spacing:-.02em}
+.result .sub{color:var(--muted);font-weight:650;letter-spacing:.1em;text-transform:uppercase;font-size:12px}
+.podium{list-style:none;margin:20px auto 18px;padding:0;max-width:440px;display:grid;gap:8px;text-align:left}
+.podium li{display:grid;grid-template-columns:34px auto minmax(0,1fr) auto;align-items:center;gap:10px;padding:10px 16px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}
+.podium li.win{background:var(--final-soft);border-color:color-mix(in srgb,var(--final) 40%,var(--line))}
+.podium .pr{font:800 20px/1 var(--font-display);color:var(--muted)}
+.podium li.win .pr{color:var(--final-ink)}
+.podium .pn{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.podium .pt{font:800 22px/1 var(--font-display);font-variant-numeric:tabular-nums}
+.result .actions{justify-content:center}
+.result .actions .btn-primary{flex:0 1 auto}
+.confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.confetti i{position:absolute;top:-24px;font-style:normal;animation:fall var(--d) cubic-bezier(.3,.1,.6,1) var(--w) forwards;opacity:0}
+@keyframes fall{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:0;transform:translateY(460px) rotate(var(--rot))}}
+/* history */
+.hist{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.hist li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;padding:10px 12px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);font-size:14px}
+.hist .hd{color:var(--muted);font-size:12.5px;font-variant-numeric:tabular-nums;grid-row:span 2;padding-top:2px}
+.hist .hw{font-weight:700;display:flex;align-items:center;gap:6px;min-width:0}
+.hist .hs{color:var(--ink-2);font-size:13px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+
+/* ---------- rules ---------- */
+.rules{display:grid;gap:16px}
+.rules p{margin:0 0 10px;color:var(--ink-2)}
+.rules p.lead{font-size:17.5px;color:var(--ink);max-width:70ch}
+.steps3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.step{position:relative;padding:16px;border-radius:16px;background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 22%,transparent)}
+.step .sn{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-weight:800;margin-bottom:10px}
+.step .st{font-family:var(--font-display);font-weight:800;font-size:20px;line-height:1.1;color:var(--accent-ink)}
+.step .ss{font-size:13px;font-weight:700;color:var(--accent-ink);opacity:.85;margin-bottom:8px}
+.step p{margin:0;color:var(--ink-2);font-size:15px}
+.suits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}
+.suit{display:flex;flex-direction:column;align-items:center;gap:2px;padding:14px 8px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line);text-align:center}
+.suit svg{width:38px;height:38px;margin-bottom:4px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.15))}
+.suit b{font-size:15px}
+.suit span{font-size:12.5px;color:var(--muted)}
+.strips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:6px 0 14px}
+.strip-box{padding:14px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line);min-width:0}
+.strip{display:flex;align-items:center;flex-wrap:wrap;gap:4px}
+.strip .pc{--cw:28px}
+.strip .gt{color:var(--muted);font-weight:700;font-size:13px}
+.note{padding:12px 14px;border-left:4px solid var(--final);background:var(--final-soft);border-radius:0 12px 12px 0;color:var(--ink);margin:0 0 10px}
+.small{font-size:14px}
+.rl{margin:0;padding-left:0;list-style:none;display:grid;gap:10px}
+.rl li{position:relative;padding-left:30px;color:var(--ink-2)}
+.rl li::before{content:"";position:absolute;left:6px;top:7px;width:10px;height:10px;border-radius:3px;transform:rotate(45deg);background:var(--minus)}
+.rl li b{color:var(--ink)}
+.tours-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;margin-top:12px}
+.tcard{padding:16px;border-radius:16px;background:var(--surface-2);border:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.tcard.off{opacity:.62}
+.tc-head{display:flex;align-items:center;gap:10px}
+.tc-head h3{margin:0;font-family:var(--font-display);font-size:20px;line-height:1.1}
+.tc-what{font-size:14px;color:var(--ink-2)}
+.tc-val{display:inline-flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--ink-2)}
+.tc-val b{background:var(--surface);border:1px solid var(--line-2);border-radius:8px;padding:2px 8px;color:var(--ink);font-variant-numeric:tabular-nums}
+.tc-tip{font-size:13.5px;color:var(--ink-2);padding-left:10px;border-left:3px solid var(--accent)}
+.tc-tip b{color:var(--accent-ink)}
+.final-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start;margin-top:8px}
+.ol{margin:0;padding:0;list-style:none;counter-reset:s;display:grid;gap:12px}
+.ol li{counter-increment:s;position:relative;padding-left:40px;color:var(--ink-2)}
+.ol li::before{content:counter(s);position:absolute;left:0;top:-1px;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--final-soft);color:var(--final-ink);font-weight:800;font-size:14px}
+.ol li b{color:var(--ink)}
+.board-fig{margin:0;padding:16px;border-radius:16px;background:radial-gradient(120% 120% at 50% 0%,#2f5a3e,#1c3a28);color:#e9f2e6;box-shadow:inset 0 2px 12px rgba(0,0,0,.35)}
+.board{--bw:34px;display:grid;grid-template-columns:24px repeat(8,var(--bw));gap:5px;justify-content:center;align-items:center}
+.board .bh{font-size:11px;font-weight:800;text-align:center;color:#b9d4bb}
+.board .bh.u{color:#ffe08a}
+.board .bs{display:grid;place-items:center}
+.board .bs svg{width:20px;height:20px}
+.board .pc{--cw:var(--bw)}
+.slot{width:var(--bw);height:calc(var(--bw)*1.42);border-radius:5px;border:1px dashed rgba(255,255,255,.14)}
+.slot.next{border:1.5px dashed #ffe08a;background:rgba(255,224,138,.12);display:grid;place-items:center;font-size:11px;font-weight:800;color:#ffe08a;animation:glow 2.4s ease-in-out infinite}
+@keyframes glow{50%{background:rgba(255,224,138,.26)}}
+.board-dir{display:flex;justify-content:space-between;font-size:11.5px;font-weight:700;color:#b9d4bb;margin:10px auto 0;max-width:330px;padding-left:28px}
+.board-fig figcaption{font-size:13px;color:#cfe0cf;margin-top:10px;line-height:1.45}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+dl.gl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 14px}
+dl.gl dt{font-weight:700;white-space:nowrap}
+dl.gl dd{margin:0;color:var(--ink-2)}
+.foot{margin-top:24px;font-size:12.5px;color:var(--muted);text-align:center}
+.foot a{color:inherit}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:var(--ink);color:var(--surface);padding:11px 18px;border-radius:999px;font-weight:650;font-size:14px;box-shadow:var(--shadow);opacity:0;transition:.25s;pointer-events:none;z-index:50}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:900px){
+  .game-grid,.setup-grid{grid-template-columns:minmax(0,1fr)}
+  .final-grid,.two{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:720px){
+  .steps3{grid-template-columns:minmax(0,1fr)}
+  .strips{grid-template-columns:minmax(0,1fr)}
+  .hero-body{grid-template-columns:minmax(0,1fr)}
+  .hero-fan{display:none}
+}
+@media (max-width:520px){
+  .wrap{padding:12px 12px 64px}
+  .tabs{margin:0 -12px;padding:10px 12px 8px}
+  .tab{padding:0 14px;flex:1;justify-content:center}
+  .tab-spacer{display:none}
+  .hero{padding:18px 18px 22px;border-radius:22px}
+  .panel{padding:16px;border-radius:16px}
+  .names{grid-template-columns:minmax(0,1fr)}
+  .suits{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mx-row{grid-template-columns:minmax(0,1fr) repeat(var(--n),42px);padding:6px 8px;gap:0 2px}
+  .mx-h .t{max-width:42px}
+  .cell{width:38px;height:38px}
+  .mx-card{gap:8px}
+  .mx-card .pc{--cw:24px}
+  .mx-t .nm{font-size:13.5px}
+  .board{--bw:29px;gap:4px;grid-template-columns:20px repeat(8,var(--bw))}
+  .stand .tile .sc{font-size:28px}
+  .trk-row{padding-left:10px;gap:6px}
+  .stp button{width:40px;height:40px}
+  .picks{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .lang select{padding-right:28px}
+  .prog{gap:6px}
+  .pg{min-width:0}
+  .pg.ep-final{min-width:50px}
+  .pg-l span:last-child{display:none}
+  .pg-l span:first-child{overflow:hidden;text-overflow:ellipsis}
+  .log{font-size:13px}
+  .log th,.log td{padding:7px 3px}
+  .log td.tn{white-space:normal;line-height:1.25}
+  .log .tn .fan{display:none}
+  .log th.pn span{flex-direction:column;align-items:flex-end;gap:3px}
+  .log th.pn .t{display:block;max-width:44px}
+  .log .edb{width:28px;height:28px}
+  .log tr.grp td{padding-left:3px}
+}
+@media (max-width:370px){
+  .board{--bw:25px}
+  .mx-row{grid-template-columns:minmax(0,1fr) repeat(var(--n),38px)}
+  .cell{width:34px;height:34px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+@media print{
+  .tabs,.hero-ctl,.game-foot,.actions,.icon-btn{display:none!important}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="hero"></div>
+  <div id="tabs"></div>
+  <main id="main"></main>
+  <div class="foot" id="foot"></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+'use strict';
+/* =========================================================
+   Herzeln – Regeln & Spielblock
+   ========================================================= */
+const STORE = 'herzeln.v1';
+const LANGS = ['de','mv','st','li','en'];
+const LANG_META = {
+  de:{name:'Deutsch', html:'de-AT', loc:'de-AT'},
+  mv:{name:'Mostviertlerisch', html:'de-AT', loc:'de-AT'},
+  st:{name:'Südtirolerisch', html:'de-IT', loc:'de-IT'},
+  li:{name:'Liechtensteinerisch', html:'de-LI', loc:'de-LI'},
+  en:{name:'English', html:'en', loc:'en-GB'}
+};
+const TRICKS = 8;
+const TOUR_IDS = ['stiche','herz','ober','herzkoenig','letzter','alles'];
+const SUITS = ['herz','schelle','laub','eichel'];
+const RANKS = {4:['A','10','K','O','U','9','8','7'], 3:['A','10','K','O','U','9']};
+const LAY = ['7','8','9','10','U','O','K','A'];
+const AUGEN = {A:11,'10':10,K:4,O:3,U:2,'9':1,'8':1,'7':1};
+const COMPS = {stiche:['tricks'],herz:['herz'],ober:['ober'],herzkoenig:['hk'],letzter:['last'],alles:['tricks','herz','ober','hk','last']};
+const MINUS = '−';
+
+/* ---------- strings: [de, mv (Mostviertel), st (Südtirol), li (Liechtenstein), en] ---------- */
+const pl = (one, many) => v => v.n === 1 ? one : many.replace('{n}', v.n);
+const ordEn = n => n + (n===1?'st':n===2?'nd':n===3?'rd':'th');
+const S = {
+  title:['Herzeln','Herzln','Herzln','Herzla','Herzeln'],
+  herzmandl:['Herzmandl','Herzmandl','Herzmandl','Herzmandli','Herzmandl'],
+  eyebrow:['Kartenspiel aus Österreich','A Kartnspü aus Östareich','A Kortnspiel aus Öschterreich','Es Kartaspiel us Öschtrich','An Austrian card game'],
+  tagline:[
+    'Zwei Epochen – einmal ist jeder Stich Gift, einmal Gold. Und zum Schluss wird das Herzmandl angesetzt.',
+    'Zwoa Epochn – amoi is jeder Stich a Gift, amoi a Goid. Und zum Schluss wird ’s Herzmandl angsetzt.',
+    'Zwoa Epochn – amol isch jeder Stich a Gift, amol Gold. Und zun Schluss weard ’s Herzmandl ungsetzt.',
+    'Zwei Epocha – eimol isch jeda Stich Gift, eimol Gold. Und zum Schluss wird ’s Herzmandli agsetzt.',
+    'Two epochs — once every trick is poison, once it’s gold. And to finish, the Herzmandl gets laid out.'],
+  facts:['3–4 Spieler · 32 Karten · 2 Epochen + Finale','3–4 Leit · 32 Kartn · 2 Epochn + Finale','3–4 Leit · 32 Kortn · 2 Epochn + Finale','3–4 Lüt · 32 Karta · 2 Epocha + Finale','3–4 players · 32 cards · 2 epochs + finale'],
+  langLabel:['Sprache','Sproch','Sproch','Sprooch','Language'],
+  dialects:['Dialekte','Dialekte','Dialekte','Dialekt','Dialects'],
+  themeLabel:['Farbschema','Farbn','Farbm','Farba','Theme'],
+  theme_auto:['automatisch','automatisch','automatisch','automatisch','auto'],
+  theme_light:['hell','hö','hell','hell','light'],
+  theme_dark:['dunkel','dunkl','tunkl','dunkel','dark'],
+  tab_play:['Spielblock','Aufschreibn','Aufschreibm','Ufschriiba','Scorepad'],
+  tab_rules:['Regeln','Regln','Regln','Regla','Rules'],
+  newGame:['Neue Partie','Neiche Partie','Neie Partie','Nöii Partie','New game'],
+  howMany:['Wie viele spielen?','Wia vü spün mit?','Wieviel spieln mit?','Wia vil spiela mit?','How many players?'],
+  nPlayers:['{n} Spieler','{n} Leit','{n} Leit','{n} Lüt','{n} players'],
+  namesLabel:['Wer spielt mit?','Wer spüt mit?','Wer spielt mit?','Wer spielt mit?','Who’s playing?'],
+  playerN:['Spieler {n}','Spüla {n}','Spieler {n}','Spieler {n}','Player {n}'],
+  firstDealer:['Wer gibt zuerst?','Wer gibt z’erst?','Wer gip zerscht?','Wer git zerscht?','Who deals first?'],
+  epochFirst:['Welche Epoche zuerst?','Wöche Epoch z’erst?','Welle Epoche zerscht?','Weli Epocha zerscht?','Which epoch first?'],
+  minusFirst:['Minus zuerst','Minus z’erst','Minus zerscht','Minus zerscht','Minus first'],
+  plusFirst:['Plus zuerst','Plus z’erst','Plus zerscht','Plus zerscht','Plus first'],
+  repeatLabel:['Wie oft wird jede Tour gespielt?','Wia oft wird a Tour gspüt?','Wie oft weard a Tour gspielt?','Wia oft wird jedi Tour gspielt?','How often is each tour played?'],
+  repeatOnce:['Einmal','Amoi','Amol','Eimol','Once'],
+  repeatEach:['{n}× – jeder gibt einmal','{n}× – a jeder gibt amoi','{n}× – a jeder gip amol','{n}× – jeda git eimol','{n}× – everyone deals once'],
+  houseRules:['Hausregeln','Hausregln','Hausregln','Husregla','House rules'],
+  houseHint:['Touren und Werte so, wie ihr’s spielt','Touren und Wert so, wia’s es spüts','Touren und Werte so, wia’s ös spielts','Toura und Wert so, wia ihr’s spielend','Tours and values the way your table plays'],
+  perTrick:['pro Stich','pro Stich','pro Stich','pro Stich','per trick'],
+  perHeart:['pro Herz','pro Herz','pro Herz','pro Herz','per heart'],
+  perOber:['pro Ober','pro Ober','pro Ober','pro Ober','per Ober'],
+  flatHearts:['Jedes Herz gleich','Jeds Herz gleich','Jeds Herz gleich','Jeds Herz gliich','Every heart equal'],
+  augenHearts:['Nach Augen','Noch Augn','Noch Augn','Noch Auga','By card points'],
+  augenList:['A 11 · 10 10 · K 4 · O 3 · U 2 · Rest 1','A 11 · 10 10 · K 4 · O 3 · U 2 · Rest 1','A 11 · 10 10 · K 4 · O 3 · U 2 · Rescht 1','A 11 · 10 10 · K 4 · O 3 · U 2 · Rescht 1','A 11 · 10 10 · K 4 · O 3 · U 2 · rest 1'],
+  allesHint:['Optional · zählt alles auf einmal, mit den Werten oben','Wennst mogst · zöd ois auf amoi, mit de Wert vo obn','Wenn’s welts · zählt olls auf amol, mit di Werte von obm','Wenn’r wend · zellt alls uf eimol, mit da Wert vo oba','Optional · counts everything at once, using the values above'],
+  finalScoring:['Wertung im Finale','Wertung im Finale','Wertung in Finale','Wertig im Finale','Finale scoring'],
+  byPlace:['Nach Platz','Noch Platz','Noch Plotz','Noch Platz','By place'],
+  byRest:['Restkarten','Restkartn','Restkortn','Restkarta','Cards left'],
+  place:['{n}. Platz','{n}. Platz','{n}. Plotz','{n}. Platz', v=>ordEn(v.n)+' place'],
+  perCardLeft:['pro Restkarte','pro Restkartn','pro Restkortn','pro Restkarta','per card left'],
+  resetRules:['Standardwerte','Zruck auf Standard','Zrugg auf Standard','Zrugg uf Standard','Reset to defaults'],
+  totalDeals:['<b>{n}</b> Spiele insgesamt','<b>{n}</b> Spü insgesamt','<b>{n}</b> Spiele insgsomt','<b>{n}</b> Spiel insgsamt','<b>{n}</b> deals in total'],
+  noTours:['Mindestens eine Tour muss dabei sein.','A Tour muass scho dabei sei.','A Tour muass schun dabei sein.','Eini Tour muass scho debii si.','Enable at least one tour.'],
+  start:['Los geht’s!','Pack ma’s!','Pock mr’s!','Los gohts!','Let’s go!'],
+  theRun:['So läuft die Partie','So rennt de Partie','So geat di Partie','So lauft d’Partie','How the game runs'],
+  dealOf:['Spiel {i} von {n}','Spü {i} vo {n}','Spiel {i} von {n}','Spiel {i} vo {n}','Deal {i} of {n}'],
+  editing:['Spiel {i} korrigieren','Spü {i} korrigiern','Spiel {i} korrigiern','Spiel {i} korrigiera','Fixing deal {i}'],
+  deals:['Gibt','Gibt','Gip','Git','Deals'],
+  leads:['Kommt raus','Kimmt aussa','Kimp ausser','Kunnt usa','Leads'],
+  herzmandlStarts:['Wer das Herzmandl hat, fängt an','Wer ’s Herzmandl hot, fangt o','Wer ’s Herzmandl hot, fongt un','Wer ’s Herzmandli hät, fangt a','Whoever holds the Herzmandl starts'],
+  record:['Eintragen','Eintrogn','Eintrogn','Itraga','Record'],
+  save:['Speichern','Speichan','Speichern','Speichera','Save'],
+  cancel:['Abbrechen','Loss ma’s','Loss mr’s','Lömmer’s','Cancel'],
+  undo:['Letztes Spiel zurücknehmen','Letzts Spü z’rucknehma','Letschts Spiel zruggnemmen','Letschts Spiel zruggneh','Undo last deal'],
+  thisTour:['Diese Tour','De Tour','Die Tour','Die Tour','This tour'],
+  tricksQ:['Wie viele Stiche hat jeder gemacht?','Wia vü Stich hot a jeder gmocht?','Wieviel Stich hot a jeder gmocht?','Wia vil Stich hät jeda gmacht?','How many tricks did each player take?'],
+  tricksLeft:[pl('Noch 1 Stich offen','Noch {n} Stiche offen'),'No {n} Stich offn','No {n} Stich offn','No {n} Stich offa',pl('1 trick left','{n} tricks left')],
+  tricksOk:['Passt – alle {n} Stiche verteilt','Passt – olle {n} Stich vateilt','Passt – olle {n} Stich verteilt','Passt – alli {n} Stich verteilt','All {n} tricks assigned'],
+  cardsQ:['Wer hat welche Karte heimgebracht?','Wer hot wöche Kartn hoambracht?','Wer hot welle Kortn hoambrocht?','Wer hät weli Karta heibrocht?','Who took which card?'],
+  cardsLeft:[pl('Noch 1 Karte ohne Besitzer','Noch {n} Karten ohne Besitzer'),'No {n} Kartn ohne Besitza','No {n} Kortn ohne Besitzer','No {n} Karta ohni Bsitzer',pl('1 card unassigned','{n} cards unassigned')],
+  cardsOk:['Passt – alle Karten zugeteilt','Passt – olle Kartn zuateilt','Passt – olle Kortn zuateilt','Passt – alli Karta zuateilt','All cards assigned'],
+  lastQ:['Wer hat den letzten Stich gemacht?','Wer hot an letztn Stich gmocht?','Wer hot in letschtn Stich gmocht?','Wer hät da letscht Stich gmacht?','Who took the last trick?'],
+  pickOne:['Bitte jemanden auswählen','Wer wor’s? Bitte auswöhln','Wer isch’s gwesn? Bitte auswähln','Wer isch’s gsi? Bitte uswähla','Pick a player'],
+  picked:['Passt','Passt','Passt','Passt','Got it'],
+  orderQ:['Tippe die Spieler in der Reihenfolge an, in der sie fertig wurden.','Tipp d’ Leit o, in da Reihnfoig, wia’s firti worn san.','Tipp di Leit un, in dr Reihenfolge, wia sie fertig worn sein.','Tipp d’Lüt a, in dr Reihafolg, wia sie fertig worda sind.','Tap players in the order they went out.'],
+  orderLeft:['Noch {n} offen','No {n} offn','No {n} offn','No {n} offa','{n} to go'],
+  orderOk:['Reihenfolge steht','D’ Reihnfoig steht','Di Reihenfolge steat','D’Reihafolg stoht','Order complete'],
+  orderReset:['Von vorn','Vo vurn','Von vorne','Vo vorna','Start over'],
+  restQ:['Wie viele Karten hatte jeder noch, als der Erste draußen war?','Wia vü Kartn hot a jeder no ghobt, wia da Erste draußn wor?','Wieviel Kortn hot a jeder no ghobt, wia dr Erschte draußn gwesn isch?','Wia vil Karta hät jeda no gha, wo dr Erscht dussa gsi isch?','How many cards did each player hold when the first went out?'],
+  restNeedZero:['Einer muss 0 haben – der war ja zuerst draußen.','Oana muass 0 hom – der wor jo z’erst draußn.','Oaner muass 0 hobm – der isch jo zerscht draußn gwesn.','Eina muass 0 ha – dä isch jo zerscht dussa gsi.','Someone must have 0 — they went out first.'],
+  restOneZero:['Nur einer kann zuerst draußen sein.','Z’erst draußn ko nur oana sei.','Zerscht draußn konn lei oaner sein.','Zerscht dussa ka nu eina si.','Only one player can go out first.'],
+  restOk:['Passt','Passt','Passt','Passt','Looks good'],
+  warnCards:['{name} hat Karten, aber keinen Stich?','{name} hot Kartn, oba koan Stich?','{name} hot Kortn, ober koan Stich?','{name} hät Karta, aber kai Stich?','{name} has cards but no tricks?'],
+  warnLast:['{name} hat den letzten Stich, aber keinen Stich gezählt?','{name} hot an letztn Stich, oba koan Stich zöd?','{name} hot in letschtn Stich, ober koan Stich zählt?','{name} hät da letscht Stich, aber kai Stich zellt?','{name} took the last trick but has no tricks counted?'],
+  standings:['Stand','Stand','Stond','Stand','Standings'],
+  dealerTag:['gibt','gibt','gip','git','deals'],
+  leaderTag:['vorn','vurn','vorn','vorna','ahead'],
+  lastDeal:['zuletzt','zletzt','zletscht','zletscht','last'],
+  chartTitle:['Punkteverlauf','Punkt-Verlauf','Punkte-Verlauf','Pünkt-Verlauf','Score over time'],
+  chartEmpty:['Nach dem ersten Spiel geht’s hier los.','Nochm erstn Spü geht’s do los.','Nochn erschtn Spiel geat’s do lous.','Nochem erschta Spiel gohts do los.','The chart starts after the first deal.'],
+  start0:['Start','Start','Start','Start','Start'],
+  log:['Spielverlauf','Wia’s grennt is','Wia’s gongen isch','Wia’s gloffa isch','Game log'],
+  colTour:['Tour','Tour','Tour','Tour','Tour'],
+  subtotal:['Zwischenstand','Zwischnstand','Zwischnstond','Zwüschastand','Subtotal'],
+  total:['Summe','Summe','Summe','Summa','Total'],
+  edit:['Bearbeiten','Ändern','Ändern','Ändera','Edit'],
+  abandon:['Partie abbrechen','Partie hinschmeißn','Partie hinschmeißn','Partie abbrecha','Abandon game'],
+  abandonQ:['Partie wirklich abbrechen? Der Spielstand geht verloren.','De Partie wirklich hinschmeißn? Da Spielstand is dann weg.','Di Partie wirklich hinschmeißn? Dr Spielstond isch nor weck.','Partie würkli abbrecha? Dr Spielstand isch denn weg.','Really abandon this game? The scores will be lost.'],
+  winner:['{name} gewinnt!','{name} hot gwunna!','{name} hot gwunnen!','{name} hät gwunna!','{name} wins!'],
+  tie:['Gleichstand: {names}','Gleich auf: {names}','Gleichstond: {names}','Gliichstand: {names}','Tie: {names}'],
+  gameOver:['Partie aus','Aus is’!','Aus isch!','Fertig isch!','Game over'],
+  share:['Ergebnis teilen','Ergebnis herzoagn','Ergebnis zoagn','Ergebnis teila','Share result'],
+  copied:['In die Zwischenablage kopiert','Kopiert!','Kopiert!','Kopiert!','Copied to clipboard'],
+  copyFail:['Kopieren hat nicht geklappt','Kopiern hot ned highaut','Kopiern hot nit highaut','Kopiera hät nid klappt','Couldn’t copy'],
+  rematch:['Revanche','Revanche!','Revanche!','Revanche!','Rematch'],
+  history:['Frühere Partien','Vorige Partien','Friahere Partien','Früaneri Partia','Previous games'],
+  clearHistory:['Liste leeren','Liste ausramma','Liste ausramen','Lischta leera','Clear list'],
+  clearHistoryQ:['Alle früheren Partien löschen?','Olle vorign Partien löschn?','Olle friaheren Partien löschn?','Alli früanera Partia lösche?','Delete all previous games?'],
+  ep_minus:['Minus-Epoche','Minus-Epoch','Minus-Epoche','Minus-Epocha','Minus epoch'],
+  ep_plus:['Plus-Epoche','Plus-Epoch','Plus-Epoche','Plus-Epocha','Plus epoch'],
+  ep_final:['Finale','Finale','Finale','Finale','Finale'],
+  eps_minus:['Weniger ist mehr','Weniga is mehra','Weniger isch mehr','Weniger isch meh','Less is more'],
+  eps_plus:['Mehr ist mehr','Je mehra, desto bessa','Je mehr, desto besser','Je meh, desto besser','More is more'],
+  eps_final:['Herzmandl-Ansetzen','Herzmandl ansetzn','Herzmandl unsetzn','Herzmandli asetza','Herzmandl layout'],
+  t_stiche:['Stiche','Stich','Stich','Stich','Tricks'],
+  t_herz:['Herz','Herz','Herz','Herz','Hearts'],
+  t_ober:['Ober','Ober','Ober','Ober','Obers'],
+  t_herzkoenig:['Herzkönig','Herzkini','Herzkini','Herzküng','King of Hearts'],
+  t_letzter:['Letzter Stich','Da Letzte','Dr Letschte','Dr Letscht','Last trick'],
+  t_alles:['Alles zusammen','Ois z’samm','Olls zomm','Alls zäma','Everything'],
+  t_finale:['Herzmandl-Ansetzen','Herzmandl ansetzn','Herzmandl unsetzn','Herzmandli asetza','Herzmandl layout'],
+  g_minus_stiche:['Jeder Stich kostet {v}. Mach so wenige wie möglich!','Jeder Stich kost {v}. Schau, dass d’ so weng wia’s geht mochst!','Jeder Stich koscht {v}. Schaug, dass’d so wianig wia meglich mochsch!','Jeda Stich koschtet {v}. Lueg, dass’d so wenig wia möglich machsch!','Every trick costs {v}. Take as few as you can!'],
+  g_plus_stiche:['Jeder Stich bringt {v}. Hol dir so viele wie möglich!','Jeder Stich bringt {v}. Hol da so vü wia’s geht!','Jeder Stich bringt {v}. Hol dr so viel wia’s geat!','Jeda Stich bringt {v}. Hol dr so vil wia’s goht!','Every trick earns {v}. Grab as many as you can!'],
+  g_minus_herz:['Jedes Herz in deinen Stichen kostet {v}.','A jeds Herz in deine Stich kost {v}.','A jeds Herz in deine Stich koscht {v}.','Jeds Herz in dina Stich koschtet {v}.','Every heart in your tricks costs {v}.'],
+  g_plus_herz:['Jedes Herz in deinen Stichen bringt {v}.','A jeds Herz in deine Stich bringt {v}.','A jeds Herz in deine Stich bringt {v}.','Jeds Herz in dina Stich bringt {v}.','Every heart in your tricks earns {v}.'],
+  g_minus_herzA:['Herz kostet nach Augen: Ass 11, Zehner 10, König 4, Ober 3, Unter 2, der Rest je 1.','Herz kost noch Augn: Ass 11, Zehna 10, Kini 4, Ober 3, Unta 2, da Rest jeweils 1.','Herz koscht noch Augn: Sau 11, Zehner 10, Kini 4, Ober 3, Unter 2, dr Rescht je 1.','Herz koschtet noch Auga: Ass 11, Zähni 10, Küng 4, Ober 3, Under 2, dr Rescht je 1.','Hearts cost their card points: Ace 11, Ten 10, King 4, Ober 3, Unter 2, the rest 1 each.'],
+  g_plus_herzA:['Herz bringt nach Augen: Ass 11, Zehner 10, König 4, Ober 3, Unter 2, der Rest je 1.','Herz bringt noch Augn: Ass 11, Zehna 10, Kini 4, Ober 3, Unta 2, da Rest jeweils 1.','Herz bringt noch Augn: Sau 11, Zehner 10, Kini 4, Ober 3, Unter 2, dr Rescht je 1.','Herz bringt noch Auga: Ass 11, Zähni 10, Küng 4, Ober 3, Under 2, dr Rescht je 1.','Hearts earn their card points: Ace 11, Ten 10, King 4, Ober 3, Unter 2, the rest 1 each.'],
+  g_minus_ober:['Jeder Ober in deinen Stichen kostet {v}.','Jeder Ober in deine Stich kost {v}.','Jeder Ober in deine Stich koscht {v}.','Jeda Ober in dina Stich koschtet {v}.','Every Ober in your tricks costs {v}.'],
+  g_plus_ober:['Jeder Ober in deinen Stichen bringt {v}.','Jeder Ober in deine Stich bringt {v}.','Jeder Ober in deine Stich bringt {v}.','Jeda Ober in dina Stich bringt {v}.','Every Ober in your tricks earns {v}.'],
+  g_minus_herzkoenig:['Wer den Herzkönig heimbringt, zahlt {v}.','Wer an Herzkini hoambringt, zoit {v}.','Wer in Herzkini hoambringt, zohlt {v}.','Wer da Herzküng heibringt, zahlt {v}.','Whoever takes the King of Hearts pays {v}.'],
+  g_plus_herzkoenig:['Wer den Herzkönig heimbringt, kriegt {v}.','Wer an Herzkini hoambringt, kriagt {v}.','Wer in Herzkini hoambringt, kriagt {v}.','Wer da Herzküng heibringt, überkunnt {v}.','Whoever takes the King of Hearts gets {v}.'],
+  g_minus_letzter:['Nur der letzte Stich zählt – er kostet {v}.','Nur da letzte Stich zöd – der kost {v}.','Lei dr letschte Stich zählt – der koscht {v}.','Nu dr letscht Stich zellt – dä koschtet {v}.','Only the last trick counts — it costs {v}.'],
+  g_plus_letzter:['Nur der letzte Stich zählt – er bringt {v}.','Nur da letzte Stich zöd – der bringt {v}.','Lei dr letschte Stich zählt – der bringt {v}.','Nu dr letscht Stich zellt – dä bringt {v}.','Only the last trick counts — it earns {v}.'],
+  g_minus_alles:['Alles zählt auf einmal – Stiche, Herz, Ober, Herzkönig und der Letzte. Alles kostet.','Ois zöd auf amoi – Stich, Herz, Ober, Herzkini und da Letzte. Ois kost wos.','Olls zählt auf amol – Stich, Herz, Ober, Herzkini und dr Letschte. Olls koscht.','Alls zellt uf eimol – Stich, Herz, Ober, Herzküng und dr Letscht. Alls koschtet.','Everything counts at once — tricks, hearts, Obers, King of Hearts and the last trick. All of it costs.'],
+  g_plus_alles:['Alles zählt auf einmal – Stiche, Herz, Ober, Herzkönig und der Letzte. Alles bringt Punkte.','Ois zöd auf amoi – Stich, Herz, Ober, Herzkini und da Letzte. Ois bringt Punkt.','Olls zählt auf amol – Stich, Herz, Ober, Herzkini und dr Letschte. Olls bringt Punkte.','Alls zellt uf eimol – Stich, Herz, Ober, Herzküng und dr Letscht. Alls bringt Pünkt.','Everything counts at once — tricks, hearts, Obers, King of Hearts and the last trick. All of it pays.'],
+  g_final_order:['Wer zuerst alle Karten angelegt hat, gewinnt. Wertung nach Platz: {v}.','Wer z’erst olle Kartn anglegt hot, gwinnt. Wertung noch Platz: {v}.','Wer zerscht olle Kortn ungleg hot, gwinnt. Wertung noch Plotz: {v}.','Wer zerscht alli Karta aglait hät, gwinnt. Wertig noch Platz: {v}.','First to lay out all cards wins. Scored by place: {v}.'],
+  g_final_rest:['Wer zuerst alle Karten angelegt hat, gewinnt. Alle anderen zahlen {v} pro Karte, die sie noch in der Hand haben.','Wer z’erst olle Kartn anglegt hot, gwinnt. De andern zoin {v} pro Kartn, de’s no in da Hand hom.','Wer zerscht olle Kortn ungleg hot, gwinnt. Di ondern zohln {v} pro Kortn, de sie no in dr Hond hobm.','Wer zerscht alli Karta aglait hät, gwinnt. Alli andera zahlend {v} pro Karta, wo sie no in dr Hand hend.','First to lay out all cards wins. Everyone else pays {v} per card still in hand.'],
+  w_stiche:['Jeder Stich zählt.','Jeder Stich zöd.','Jeder Stich zählt.','Jeda Stich zellt.','Every trick counts.'],
+  w_herz:['Jede Herz-Karte in deinen Stichen.','Jede Herz-Kartn in deine Stich.','Jede Herz-Kortn in deine Stich.','Jedi Herz-Karta in dina Stich.','Every heart in your tricks.'],
+  w_ober:['Jeder Ober in deinen Stichen.','Jeder Ober in deine Stich.','Jeder Ober in deine Stich.','Jeda Ober in dina Stich.','Every Ober in your tricks.'],
+  w_herzkoenig:['Nur der Herzkönig zählt.','Nur da Herzkini zöd.','Lei dr Herzkini zählt.','Nu dr Herzküng zellt.','Only the King of Hearts counts.'],
+  w_letzter:['Nur der letzte Stich zählt.','Nur da letzte Stich zöd.','Lei dr letschte Stich zählt.','Nu dr letscht Stich zellt.','Only the last trick counts.'],
+  w_alles:['Alles auf einmal: Stiche, Herz, Ober, Herzkönig und letzter Stich.','Ois auf amoi: Stich, Herz, Ober, Herzkini und da Letzte.','Olls auf amol: Stich, Herz, Ober, Herzkini und dr Letschte.','Alls uf eimol: Stich, Herz, Ober, Herzküng und dr Letscht.','All at once: tricks, hearts, Obers, King of Hearts and the last trick.'],
+  tm_stiche:['Bist du in einer Farbe frei, schmier Sau und Zehner ab.','Bist in ana Farb frei, schmier dei Sau und an Zehna o.','Bisch in a Farb frei, schmier dei Sau und in Zehner o.','Bisch in ra Farb frei, schmier dis Ass und da Zähni ab.','Once you’re void in a suit, dump your Aces and Tens.'],
+  tp_stiche:['Lange Farben ausspielen – die letzten Karten einer Farbe holen oft die Stiche.','Lange Farbn ausspün – de letztn Kartn vo ana Farb hoin oft de Stich.','Longe Farbm ausspieln – di letschtn Kortn von a Farb holn oft di Stich.','Langi Farba usspiela – d’letschta Karta vo ra Farb holend oft d’Stich.','Lead your long suits — the last cards of a suit often win.'],
+  tm_herz:['Herz nicht selber ausspielen, außer die kleinen. Bist du frei, schmier hohe Herz ab.','Herz ned söba ausspün, außer de kloan. Bist frei, schmier de hohn Herz o.','Herz nit sel ausspieln, außer di kloan. Bisch frei, schmier di hochn Herz o.','Herz nid sälber usspiela, ussert d’kleina. Bisch frei, schmier d’hocha Herz ab.','Don’t lead hearts unless they’re low. When void, dump your high hearts.'],
+  tp_herz:['Mit hohen Herz stechen und Herz ausspielen, wenn die anderen keines mehr haben.','Mit de hohn Herz stechn, und Herz ausspün, wenn de andern koans mehr hom.','Mit di hochn Herz stechn, und Herz ausspieln, wenn di ondern koans mehr hobm.','Mit da hocha Herz steche, und Herz usspiela, wenn d’andera keis meh hend.','Win tricks with high hearts and lead them once the others run out.'],
+  tm_ober:['Ein Ober ist in Gefahr, solange Sau und Zehner seiner Farbe draußen sind – schmier ihn früh ab.','A Ober is in Gfoahr, solang Sau und Zehna vo seina Farb no draußn san – schmier eam boid o.','A Ober isch in Gfohr, solong Sau und Zehner von seiner Farb no draußn sein – schmier ihn bold o.','En Ober isch in Gfohr, solang Ass und Zähni vo sinra Farb no dussa sind – schmier na bald ab.','An Ober is in danger while its suit’s Ace and Ten are still out — dump it early.'],
+  tp_ober:['Spar dir Sau und Zehner für Stiche auf, in denen ein Ober liegt.','Hoit da Sau und Zehna für de Stich auf, wo a Ober drin liegt.','Spor dr Sau und Zehner fir di Stich au, wo a Ober drin liegt.','Spar dr Ass und Zähni für d’Stich uf, wo en Ober drin lit.','Save Aces and Tens for tricks with an Ober in them.'],
+  tm_herzkoenig:['Herz-Sau oder Herz-Zehner? Dann spiel Herz an und jag den König raus.','Host d’ Herz-Sau oder an Herz-Zehna? Dann spü Herz o und jog an Kini aussa.','Hosch di Herz-Sau oder in Herz-Zehner? Nor spiel Herz un und jog in Kini ausser.','Häsch ’s Herz-Ass oder da Herz-Zähni? Denn spiel Herz a und jag da Küng usa.','Holding the Ace or Ten of hearts? Lead hearts and hunt the king down.'],
+  tp_herzkoenig:['Herz-Sau und Herz-Zehner aufheben – damit fängst du den König.','Herz-Sau und Herz-Zehna aufhebn – mit de fangst an Kini.','Herz-Sau und Herz-Zehner aufhebm – mit de fongsch in Kini.','Herz-Ass und Herz-Zähni ufheba – dermit fangsch da Küng.','Keep the Ace and Ten of hearts — they’re how you catch the king.'],
+  tm_letzter:['Für den Schluss nur kleine Karten aufheben.','Fürn Schluss nur kloane Kartn aufhebn.','Fir’n Schluss lei kloane Kortn aufhebm.','Für da Schluss nu kleini Karta ufheba.','Save only small cards for the end.'],
+  tp_letzter:['Eine Sau oder eine lange Farbe bis zum Schluss aufheben.','A Sau oder a lange Farb bis zum Schluss aufhebn.','A Sau oder a longe Farb bis zun Schluss aufhebm.','Es Ass oder e langi Farb bis zum Schluss ufheba.','Save an Ace or a long suit for the very end.'],
+  tm_alles:['Zuerst den Herzkönig loswerden, dann die Ober, dann die Stiche.','Z’erst an Herzkini loswern, dann de Ober, dann de Stich.','Zerscht in Herzkini loswern, nor di Ober, nor di Stich.','Zerscht da Herzküng loswerda, denn d’Ober, denn d’Stich.','Ditch the King of Hearts first, then the Obers, then the tricks.'],
+  tp_alles:['Stiche machen ist die halbe Miete – der Rest kommt mit.','Stich mochn is de hoibe Miete – da Rest kimmt mit.','Stich mochn isch di holbe Miete – dr Rescht kimp mit.','Stich macha isch di halb Miete – dr Rescht kunnt mit.','Win tricks and the rest tends to follow.'],
+  r_about:['Worum geht’s?','Um wos geht’s?','Um wos geat’s?','Um was gohts?','What’s it about?'],
+  r_cards:['Karten & Rangfolge','Kartn & Rangfoig','Kortn & Rongfolge','Karta & Rangfolg','Cards & ranking'],
+  r_play:['Geben & Stechen','Gebn & Stechn','Gebm & Stechn','Gee & Steche','Dealing & tricks'],
+  r_tours:['Die Touren','De Touren','Di Touren','D’Toura','The tours'],
+  r_final:['Finale: Herzmandl-Ansetzen','Finale: Herzmandl ansetzn','Finale: Herzmandl unsetzn','Finale: Herzmandli asetza','Finale: Herzmandl layout'],
+  r_tips:['Tipps & Schmäh','Tipps & Schmäh','Tipps & Gaudi','Tipps & Gspäss','Tips & tricks'],
+  r_gloss:['Kleines Wörterbuch','Kloans Wörterbuach','Kloans Wörterbuach','Kleis Wörterbuach','Glossary'],
+  r_house:['Hausregeln','Hausregln','Hausregln','Husregla','House rules'],
+  rankTrick:['Im Stich – von hoch nach nieder','Im Stich – vo hoch noch nieda','In Stich – von hoch noch nieder','Im Stich – vo hoch noch nieder','In tricks — high to low'],
+  rankLay:['Beim Ansetzen – der Reihe nach','Beim Ansetzn – da Reih noch','Beim Unsetzn – dr Reih noch','Bim Asetza – dr Reihe noch','In the layout — in sequence'],
+  boardCaption:[
+    'Mitten im Finale: Die Unter bilden die Mittelspalte. Nach rechts geht’s hinauf (O, K, A), nach links hinunter (10, 9, 8, 7). Die leuchtenden Plätze sind die Karten, die als Nächstes gelegt werden dürfen.',
+    'Mittn im Finale: De Unta san de Mittlspoitn. Noch rechts geht’s auffi (O, K, A), noch links obi (10, 9, 8, 7). De leichtadn Plätz san de Kartn, de ma ois Nächsts legn derf.',
+    'Mittn in Finale: Di Unter sein di Mittlspolte. Noch rechts geat’s aui (O, K, A), noch links oi (10, 9, 8, 7). Di leichtendn Plätz sein di Kortn, de man als Nächschtes legn derf.',
+    'Mitta im Finale: D’Under bildend d’Mittlspalta. Noch rechts gohts ufa (O, K, A), noch links aba (10, 9, 8, 7). D’lüüchtenda Plätz sind d’Karta, wo ma als Nögschts lega darf.',
+    'Mid-finale: the Unters form the middle column. Rightwards goes up (O, K, A), leftwards goes down (10, 9, 8, 7). The glowing slots are the cards that may be played next.'],
+  up:['aufwärts','auffi','aui','ufa','up'],
+  down:['abwärts','obi','oi','aba','down'],
+  scoringNow:['Wertung laut euren Hausregeln:','Wertung noch eire Hausregln:','Wertung noch enkre Hausregln:','Wertig noch eura Husregla:','Scoring under your house rules:'],
+  tipMinus:['Minus:','Minus:','Minus:','Minus:','Minus:'],
+  tipPlus:['Plus:','Plus:','Plus:','Plus:','Plus:'],
+  off:['bei euch aus','bei eich aus','bei enk aus','bi eu us','off at your table'],
+  inTotal:['zusammen {n} pro Spiel','z’samm {n} pro Spü','zomm {n} pro Spiel','zäma {n} pro Spiel','{n} per deal in total'],
+  finalOrderTxt:['Weitergespielt wird, bis alle Plätze feststehen: {list}.','G’spüt wird weida, bis olle Plätz fest san: {list}.','Gspielt weard weiter, bis olle Plätz fescht sein: {list}.','Gspielt wird wiiter, bis alli Plätz fescht sind: {list}.','Play on until every place is decided: {list}.'],
+  finalRestTxt:['Schluss ist, sobald der Erste draußen ist. Jeder andere zahlt {v} pro Karte, die er noch hält.','Aus is, sobald da Erste draußn is. De andern zoin {v} pro Kartn, de’s no in da Hand hom.','Aus isch, sobald dr Erschte draußn isch. Di ondern zohln {v} pro Kortn, de sie no in dr Hond hobm.','Fertig isch, sobald dr Erscht dussa isch. Alli andera zahlend {v} pro Karta, wo sie no in dr Hand hend.','It ends as soon as the first player is out. Everyone else pays {v} per card still in hand.'],
+  toPad:['Zum Spielblock','Zum Aufschreibn','Zun Aufschreibm','Zum Ufschriiba','Open the scorepad'],
+  footer:['Touren und Werte angelehnt an die Piatnik-Regeln, Epochen und Herzmandl-Finale nach Hausbrauch. Der Spielblock speichert alles nur auf diesem Gerät.','Touren und Wert ongelehnt an de Piatnik-Regln, Epochn und Herzmandl-Finale wia’s bei uns da Brauch is. Da Block speichat ois nur auf dem Gerät.','Touren und Werte ungelehnt an di Piatnik-Regln, Epochn und Herzmandl-Finale noch Hausbrauch. Dr Block speichert olls lei auf den Gerät.','Toura und Wert agleint a d’Piatnik-Regla, Epocha und Herzmandli-Finale noch Husbruuch. Dr Block speichert alls nu uf dem Grät.','Tours and values follow the Piatnik rules; the two epochs and the Herzmandl finale are house custom. The scorepad stores everything on this device only.']
+};
+const SUITN = {
+  de:{herz:'Herz',schelle:'Schelle',laub:'Laub',eichel:'Eichel'},
+  mv:{herz:'Herz',schelle:'Schelln',laub:'Laab',eichel:'Eichl'},
+  st:{herz:'Herz',schelle:'Schell',laub:'Laab',eichel:'Oachl'},
+  li:{herz:'Herz',schelle:'Schella',laub:'Laub',eichel:'Eichla'},
+  en:{herz:'Hearts',schelle:'Bells',laub:'Leaves',eichel:'Acorns'}
+};
+const RANKN = {
+  de:{A:'Ass',K:'König',O:'Ober',U:'Unter','10':'Zehner','9':'Neuner','8':'Achter','7':'Siebener'},
+  mv:{A:'Ass',K:'Kini',O:'Ober',U:'Unta','10':'Zehna','9':'Neina','8':'Achta','7':'Simma'},
+  st:{A:'Sau',K:'Kini',O:'Ober',U:'Unter','10':'Zehner','9':'Neiner','8':'Achter','7':'Siebner'},
+  li:{A:'Ass',K:'Küng',O:'Ober',U:'Under','10':'Zähni','9':'Nüni','8':'Achti','7':'Sibni'},
+  en:{A:'Ace',K:'King',O:'Ober',U:'Unter','10':'Ten','9':'Nine','8':'Eight','7':'Seven'}
+};
+
+/* ---------- long-form rules per language ---------- */
+const RULES = {
+de:{
+  about:'Herzeln ist ein Stichspiel für drei oder vier Leute, bei dem jede Tour eine andere Aufgabe hat. Eine Partie besteht aus zwei Epochen mit denselben Touren – nur das Vorzeichen dreht sich um. Zum Schluss wird das Herzmandl angesetzt. Wer am Ende die meisten Punkte hat, gewinnt.',
+  step_minus:'Alles, was du in deinen Stichen heimbringst, kostet Punkte. Wer am wenigsten erwischt, lacht.',
+  step_plus:'Dieselben Touren, nur umgedreht: Jetzt bringt genau das Punkte, was vorher weh getan hat.',
+  step_final:'Grünmandl-Ansetzen, aber mit dem Herzmandl: Wer zuerst alle Karten angelegt hat, gewinnt das Finale.',
+  cards:'Gespielt wird mit 32 doppeldeutschen Karten: vier Farben mit je Ass (Sau), König, Ober, Unter, Zehner, Neuner, Achter und Siebener. Jeder bekommt 8 Karten.',
+  suitAlt:{herz:'Rot',schelle:'Schellen',laub:'Grün',eichel:'Eicheln'},
+  mandl:'Der Unter heißt auch <b>„Mandl“</b>. Das <b>Herzmandl</b> ist der Herz-Unter – die wichtigste Karte im Finale.',
+  three:'Zu dritt fliegen Siebener und Achter raus: 24 Karten, jeder kriegt wieder 8.',
+  play:[
+    'Gegeben wird im Uhrzeigersinn, jedes Spiel gibt der Nächste. Wer links vom Geber sitzt, <b>kommt raus</b>.',
+    '<b>Farbe muss bedient werden.</b> Wer die ausgespielte Farbe nicht hat, darf irgendeine Karte abwerfen – am liebsten eine teure („abschmieren“).',
+    'Es gibt <b>keinen Trumpf</b> und keinen Stichzwang: Du musst nicht überstechen.',
+    'Den Stich macht die höchste Karte der ausgespielten Farbe. Wer sticht, kommt als Nächstes raus.',
+    'Abgerechnet wird nach jedem Spiel – das erledigt der Spielblock hier für euch.'],
+  toursIntro:'In jeder Epoche kommt jede Tour dran. Die Werte sind eure aktuellen Hausregeln – in der Minus-Epoche zählen sie minus, in der Plus-Epoche plus.',
+  finalIntro:'Zum Schluss wird Grünmandl-Ansetzen gespielt – bei uns aber mit dem <b>Herzmandl</b>. Jetzt gibt’s keine Stiche mehr, es geht nur ums Loswerden.',
+  finalSteps:[
+    'Alle Karten werden ausgeteilt. Wer das <b>Herzmandl</b> (Herz-Unter) hat, legt es in die Mitte und fängt an.',
+    'Dann reihum im Uhrzeigersinn: Leg <b>eine</b> Karte an – die nächsthöhere oder nächstniedrigere derselben Farbe. Vom Unter aufwärts: Ober, König, Ass. Abwärts: Zehner, Neuner, Achter, Siebener.',
+    'Statt anzulegen darfst du auch einen <b>anderen Unter</b> zur Unter-Spalte legen – damit ist eine neue Farbe eröffnet.',
+    '<b>Wer legen kann, muss legen.</b> Wer nicht kann, klopft und setzt aus.',
+    'Wer zuerst alle Karten los ist, hat das Finale gewonnen.'],
+  tips:[
+    'Im Finale: Halte Karten zurück, die den anderen den Weg versperren – etwa einen Zehner, wenn du selbst keine Neuner brauchst.',
+    'Viele Karten einer Farbe? Dann willst du ihren Unter möglichst früh am Tisch.',
+    'Merk dir, welche Herz schon gefallen sind – das entscheidet die Herzkönig-Tour.',
+    'In der Minus-Epoche ist eine kurze Farbe Gold wert: Bist du frei, darfst du abschmieren.',
+    'Und das Wichtigste: Wer jammert, gibt.'],
+  gloss:[['Mandl','Der Unter. Das Herzmandl ist der Herz-Unter.'],['Sau','Das Ass.'],['Tour','Ein Spiel mit einer bestimmten Aufgabe, z. B. „Herz“.'],['Epoche','Alle Touren einmal durch – einmal Minus, einmal Plus.'],['Partie','Beide Epochen plus Finale.'],['Rauskommen','Die erste Karte eines Stichs ausspielen.'],['Bedienen','Die ausgespielte Farbe zugeben.'],['Frei sein','Keine Karte mehr von einer Farbe haben.'],['Abschmieren','Eine teure Karte auf einen fremden Stich werfen.'],['Klopfen','Beim Ansetzen passen, weil man nicht legen kann.']],
+  house:'Herzeln wird in jedem Ort ein bissl anders gespielt. Werte, Touren, die Reihenfolge der Epochen und die Wertung im Finale stellt ihr beim Anlegen einer neuen Partie unter <b>„Hausregeln“</b> ein.'
+},
+mv:{
+  about:'Herzln is a Stichspü für drei oder vier Leit, und jede Tour hot a andere Aufgob. A Partie hot zwoa Epochn mit de gleichn Touren – nur ’s Vorzeichn draht si um. Zum Schluss wird ’s Herzmandl angsetzt. Wer am End de meistn Punkt hot, hot gwunna.',
+  step_minus:'Ois, wos d’ in deine Stich hoambringst, kost Punkt. Wer am wenigstn dawischt, locht.',
+  step_plus:'De gleichn Touren, nur umdraht: Iatz bringt genau des Punkt, wos vorher weh do hot.',
+  step_final:'Grünmandl ansetzn, oba mit’m Herzmandl: Wer z’erst olle Kartn anglegt hot, gwinnt ’s Finale.',
+  cards:'G’spüt wird mit 32 doppeldeitschn Kartn: via Farbn mit jeweils Ass (Sau), Kini, Ober, Unta, Zehna, Neina, Achta und Simma. A jeder kriagt 8 Kartn.',
+  suitAlt:{herz:'Rot',schelle:'Schelln',laub:'Grün',eichel:'Eichln'},
+  mandl:'Da Unta hoaßt a <b>„Mandl“</b>. ’s <b>Herzmandl</b> is da Herz-Unta – de wichtigste Kartn im Finale.',
+  three:'Z’dritt fliagn de Simma und Achta aussi: 24 Kartn, a jeder kriagt wieder 8.',
+  play:[
+    'Gebn wird im Uhrzeigersinn, jeds Spü gibt da Nächste. Wer links vom Geber sitzt, <b>kimmt aussa</b>.',
+    '<b>Farb muass bedient wern.</b> Wer de Farb ned hot, derf irgendwos obwerfn – am liabstn wos Teirs („obschmiern“).',
+    'Es gibt <b>koan Trumpf</b> und koan Stichzwang: Du muasst ned übastechn.',
+    'Den Stich mocht de höchste Kartn vo da ausgspütn Farb. Wer sticht, kimmt ois Nächsta aussa.',
+    'Obgrechnet wird noch jedm Spü – des mocht da Block do für eich.'],
+  toursIntro:'In jeda Epoch kimmt a jede Tour dran. De Wert san eire Hausregln – in da Minus-Epoch zöd’s minus, in da Plus-Epoch plus.',
+  finalIntro:'Zum Schluss wird Grünmandl ansetzn gspüt – bei uns oba mit’m <b>Herzmandl</b>. Iatz gibt’s koane Stich mehr, es geht nur ums Loswern.',
+  finalSteps:[
+    'Olle Kartn wern ausgebn. Wer ’s <b>Herzmandl</b> (Herz-Unta) hot, legt’s in d’ Mittn und fangt o.',
+    'Dann reihum im Uhrzeigersinn: Leg <b>oa</b> Kartn o – de nächsthöhere oder nächstniedrigere vo da gleichn Farb. Vom Unta auffi: Ober, Kini, Ass. Obi: Zehna, Neina, Achta, Simma.',
+    'Stott dass d’ olegst, derfst a an <b>andern Unta</b> zu de Unta dazualegn – domit is a neiche Farb offn.',
+    '<b>Wer legn ko, muass legn.</b> Wer ned ko, klopft und setzt aus.',
+    'Wer z’erst olle Kartn los is, hot ’s Finale gwunna.'],
+  tips:[
+    'Im Finale: Hoit Kartn z’ruck, de de andern in Weg versperrn – z. B. an Zehna, wennst söba koane Neina brauchst.',
+    'Vü Kartn vo ana Farb? Dann wüst ihrn Unta so boid wia’s geht am Tisch hom.',
+    'Merk da, wöche Herz scho gfoin san – des entscheidt de Herzkini-Tour.',
+    'In da Minus-Epoch is a kurze Farb Goid wert: Bist frei, derfst obschmiern.',
+    'Und ’s Wichtigste: Wer jammert, gibt.'],
+  gloss:[['Mandl','Da Unta. ’s Herzmandl is da Herz-Unta.'],['Sau','’s Ass.'],['Tour','A Spü mit ana bestimmtn Aufgob, z. B. „Herz“.'],['Epoch','Olle Touren amoi durch – amoi Minus, amoi Plus.'],['Partie','Beide Epochn und ’s Finale.'],['Aussakemma','De erste Kartn vo an Stich ausspün.'],['Bedienen','De ausgspüte Farb zuagebn.'],['Frei sei','Koa Kartn mehr vo ana Farb hom.'],['Obschmiern','A teire Kartn auf an fremdn Stich schmeißn.'],['Klopfn','Beim Ansetzn passn, weil’st ned legn konnst.']],
+  house:'Herzln spüt a jeds Dorf a bissl anders. Wert, Touren, de Reihnfoig vo de Epochn und de Wertung im Finale stöt’s bei ana neichn Partie unter <b>„Hausregln“</b> ei.'
+},
+st:{
+  about:'Herzln isch a Stichspiel fir drei oder vier Leit, und a jede Tour hot an ondere Aufgob. A Partie hot zwoa Epochn mit di gleichn Touren – lei ’s Vorzeichn draht si um. Zun Schluss weard ’s Herzmandl ungsetzt. Wer am End di meischtn Punkte hot, hot gwunnen.',
+  step_minus:'Olls, wos’d in deine Stich hoambringsch, koscht Punkte. Wer am wianigschtn dawischt, locht.',
+  step_plus:'Di gleichn Touren, lei umgedraht: Iatz bringt genau des Punkte, wos vorher weh to hot.',
+  step_final:'Grünmandl-Unsetzn, ober mit’n Herzmandl: Wer zerscht olle Kortn ungleg hot, gwinnt ’s Finale.',
+  cards:'Gspielt weard mit 32 doppeldeitschn Kortn: vier Farbm mit jeweils Sau, Kini, Ober, Unter, Zehner, Neiner, Achter und Siebner. A jeder kriagt 8 Kortn.',
+  suitAlt:{herz:'Rot',schelle:'Schelln',laub:'Grian',eichel:'Oachln'},
+  mandl:'Dr Unter hoaßt a <b>„Mandl“</b>. ’s <b>Herzmandl</b> isch dr Herz-Unter – di wichtigschte Kortn in Finale.',
+  three:'Za dritt fliagn di Siebner und Achter ausser: 24 Kortn, a jeder kriagt wieder 8.',
+  play:[
+    'Gebm weard in Uhrzeigersinn, a jeds Spiel gip dr Nächschte. Wer links von Geber hockt, <b>kimp ausser</b>.',
+    '<b>Farb muass zuagebm wern.</b> Wer di Farb nit hot, derf irgendwos owerfn – am liabschtn wos Teirs („oschmiern“).',
+    'Es gip <b>koan Trumpf</b> und koan Stichzwong: Du muasch nit überstechn.',
+    'In Stich mocht di heachschte Kortn von dr ausgspieltn Farb. Wer sticht, kimp als Nächschter ausser.',
+    'Ogrechnet weard noch an jedn Spiel – des mocht dr Block do fir enk.'],
+  toursIntro:'In a jeder Epoche kimp a jede Tour drun. Di Werte sein enkre Hausregln – in dr Minus-Epoche zähln sie minus, in dr Plus-Epoche plus.',
+  finalIntro:'Zun Schluss weard Grünmandl-Unsetzn gspielt – bei ins ober mit’n <b>Herzmandl</b>. Iatz gip’s koane Stich mehr, es geat lei ums Loswern.',
+  finalSteps:[
+    'Olle Kortn wern ausgebm. Wer ’s <b>Herzmandl</b> (Herz-Unter) hot, legt’s in di Mitt und fongt un.',
+    'Nor reihum in Uhrzeigersinn: Leg <b>oa</b> Kortn un – di nächschthechere oder nächschtniedrigere von dr gleichn Farb. Von Unter aui: Ober, Kini, Sau. Oi: Zehner, Neiner, Achter, Siebner.',
+    'Statt unlegn derfsch a an <b>ondern Unter</b> zu di Unter dazualegn – domit isch a neie Farb offn.',
+    '<b>Wer legn konn, muass legn.</b> Wer nit konn, klopft und setzt aus.',
+    'Wer zerscht olle Kortn los isch, hot ’s Finale gwunnen.'],
+  tips:[
+    'In Finale: Hold Kortn zrugg, de di ondern in Weg versperrn – z. B. an Zehner, wenn’d sel koane Neiner brauchsch.',
+    'Viel Kortn von a Farb? Nor willsch ihrn Unter so bold wia meglich am Tisch hobm.',
+    'Merk dr, welle Herz schun gfolln sein – des entscheidet di Herzkini-Tour.',
+    'In dr Minus-Epoche isch a kurze Farb Gold wert: Bisch frei, derfsch oschmiern.',
+    'Und ’s Wichtigschte: Wer jammert, gip.'],
+  gloss:[['Mandl','Dr Unter. ’s Herzmandl isch dr Herz-Unter.'],['Sau','’s Ass.'],['Tour','A Spiel mit a bstimmtn Aufgob, z. B. „Herz“.'],['Epoche','Olle Touren amol durch – amol Minus, amol Plus.'],['Partie','Beide Epochn und ’s Finale.'],['Ausserkemmen','Di erschte Kortn von an Stich ausspieln.'],['Zuagebm','Di ausgspielte Farb dazualegn.'],['Frei sein','Koa Kortn mehr von a Farb hobm.'],['Oschmiern','A teire Kortn auf an fremdn Stich schmeißn.'],['Klopfn','Beim Unsetzn passn, weil’d nit legn konnsch.']],
+  house:'Herzln weard in jedn Dorf a bissl ondersch gspielt. Werte, Touren, di Reihenfolge von di Epochn und di Wertung in Finale stellt’s bei a neien Partie unter <b>„Hausregln“</b> ein.'
+},
+li:{
+  about:'Herzla isch es Stichspiel für drei oder vier Lüt, und jedi Tour hät e anderi Ufgab. E Partie hät zwei Epocha mit da gliicha Toura – nu ’s Vorzeicha dreiht si um. Zum Schluss wird ’s Herzmandli agsetzt. Wer am End am meischta Pünkt hät, hät gwunna.',
+  step_minus:'Alls, wo’d in dina Stich heibringsch, koschtet Pünkt. Wer am wenigschta verwütscht, lacht.',
+  step_plus:'Di gliicha Toura, nu umdreiht: Jetz bringt grad das Pünkt, wo vorher weh to hät.',
+  step_final:'Grünmandl-Asetza, aber mit em Herzmandli: Wer zerscht alli Karta aglait hät, gwinnt ’s Finale.',
+  cards:'Gspielt wird mit 32 doppeldütscha Karta: vier Farba mit jewils Ass (Sau), Küng, Ober, Under, Zähni, Nüni, Achti und Sibni. Jeda überkunnt 8 Karta.',
+  suitAlt:{herz:'Rot',schelle:'Schella',laub:'Grüa',eichel:'Eichla'},
+  mandl:'Dr Under heisst au <b>„Mandli“</b>. ’s <b>Herzmandli</b> isch dr Herz-Under – di wichtigscht Karta im Finale.',
+  three:'Z’dritt kömmend d’Sibni und d’Achti usa: 24 Karta, jeda überkunnt wieder 8.',
+  play:[
+    'Gee wird im Uhrzeigersinn, jedes Spiel git dr Nögscht. Wer links vom Geber hockt, <b>kunnt usa</b>.',
+    '<b>Farb muass bedient wera.</b> Wer d’Farb nid hät, darf irgendöppis abwerfa – am liabschta öppis Tüürs („abschmiera“).',
+    'Es git <b>kai Trumpf</b> und kai Stichzwang: Du muasch nid überstecha.',
+    'Da Stich macht di höchscht Karta vo dr usgspielta Farb. Wer sticht, kunnt als Nögschta usa.',
+    'Abgrechnet wird noch jedem Spiel – das macht dr Block do für eu.'],
+  toursIntro:'In jedera Epocha kunnt jedi Tour dra. D’Wert sind eura Husregla – in dr Minus-Epocha zellend sie minus, in dr Plus-Epocha plus.',
+  finalIntro:'Zum Schluss wird Grünmandl-Asetza gspielt – bi üs aber mit em <b>Herzmandli</b>. Jetz gits kai Stich meh, es goht nu ums Loswerda.',
+  finalSteps:[
+    'Alli Karta werdend usteilt. Wer ’s <b>Herzmandli</b> (Herz-Under) hät, leit’s in d’Mitti und fangt a.',
+    'Denn reihum im Uhrzeigersinn: Leg <b>ei</b> Karta a – di nögschthöcher oder nögschtnieder vo dr gliicha Farb. Vom Under ufa: Ober, Küng, Ass. Aba: Zähni, Nüni, Achti, Sibni.',
+    'Statt aleega darfsch au en <b>andera Under</b> zu da Under dazuelega – dermit isch e nöii Farb offa.',
+    '<b>Wer lega ka, muass lega.</b> Wer nid ka, klopft und setzt us.',
+    'Wer zerscht alli Karta los isch, hät ’s Finale gwunna.'],
+  tips:[
+    'Im Finale: Heb Karta zrugg, wo da andera da Weg versperrend – z. B. en Zähni, wenn’d sälber kai Nüni bruchsch.',
+    'Vil Karta vo ra Farb? Denn wotsch ihra Under möglichscht bald uf em Tisch ha.',
+    'Merk dr, weli Herz scho gfalla sind – das entscheidet d’Herzküng-Tour.',
+    'In dr Minus-Epocha isch e kurzi Farb Gold wert: Bisch frei, darfsch abschmiera.',
+    'Und ’s Wichtigscht: Wer jammeret, git.'],
+  gloss:[['Mandli','Dr Under. ’s Herzmandli isch dr Herz-Under.'],['Sau','’s Ass.'],['Tour','Es Spiel mit ra bstimmta Ufgab, z. B. „Herz“.'],['Epocha','Alli Toura eimol dura – eimol Minus, eimol Plus.'],['Partie','Beidi Epocha und ’s Finale.'],['Usspiela','Di erscht Karta vo ma Stich lega.'],['Bediena','D’usgspielti Farb zuegee.'],['Frei si','Kai Karta meh vo ra Farb ha.'],['Abschmiera','E tüüri Karta uf en frömda Stich schmeissa.'],['Klopfa','Bim Asetza passa, will’d nid lega kasch.']],
+  house:'Herzla wird in jedem Dorf a bitz anders gspielt. Wert, Toura, d’Reihafolg vo da Epocha und d’Wertig im Finale stellend’r bi ra nöia Partie under <b>„Husregla“</b> i.'
+},
+en:{
+  about:'Herzeln is a trick-taking game for three or four where every tour has its own task. A game (Partie) has two epochs with the same tours — only the sign flips. To finish, the Herzmandl gets laid out. Most points at the end wins.',
+  step_minus:'Everything you take home in your tricks costs points. Whoever catches the least, laughs.',
+  step_plus:'Same tours, flipped: now exactly what hurt before pays out.',
+  step_final:'Grünmandl-Ansetzen, but with the Herzmandl: first to lay out all cards wins the finale.',
+  cards:'Herzeln uses 32 German-suited cards: four suits, each with Ace (Sau), King, Ober, Unter, Ten, Nine, Eight and Seven. Everyone gets 8 cards. The Ober is roughly a Queen, the Unter roughly a Jack.',
+  suitAlt:{herz:'≈ Hearts',schelle:'≈ Diamonds',laub:'≈ Spades',eichel:'≈ Clubs'},
+  mandl:'The Unter is also called <b>“Mandl”</b> (little man). The <b>Herzmandl</b> is the Unter of Hearts — the key card of the finale.',
+  three:'With three players, remove the Sevens and Eights: 24 cards, still 8 each.',
+  play:[
+    'Deal clockwise; the deal passes on after every hand. The player left of the dealer <b>leads</b>.',
+    '<b>Follow suit.</b> If you can’t, play anything — ideally something costly (“abschmieren”).',
+    '<b>No trumps</b>, and no obligation to win: you never have to beat the cards on the table.',
+    'The highest card of the suit led wins the trick. The winner leads next.',
+    'Score after every hand — this scorepad does the maths for you.'],
+  toursIntro:'Every tour is played in each epoch. Values shown are your current house rules — negative in the minus epoch, positive in the plus epoch.',
+  finalIntro:'The finale is Grünmandl-Ansetzen — but played with the <b>Herzmandl</b>. No more tricks: it’s all about getting rid of your cards.',
+  finalSteps:[
+    'Deal out all cards. Whoever holds the <b>Herzmandl</b> (Unter of Hearts) puts it in the middle and starts.',
+    'Then clockwise: attach <b>one</b> card — the next higher or next lower card of the same suit. Up from the Unter: Ober, King, Ace. Down: Ten, Nine, Eight, Seven.',
+    'Instead you may place <b>another Unter</b> in the Unter column — that opens a new suit.',
+    '<b>If you can play, you must.</b> If you can’t, knock and pass.',
+    'First to get rid of all cards wins the finale.'],
+  tips:[
+    'In the finale, hold back cards that block others — say a Ten when you don’t need the Nines yourself.',
+    'Long in a suit? You want its Unter on the table early.',
+    'Track which hearts have fallen — it decides the King of Hearts tour.',
+    'In the minus epoch a short suit is gold: once you’re void, you get to dump.',
+    'And most importantly: whoever whinges, deals.'],
+  gloss:[['Mandl','The Unter (“little man”). Herzmandl = Unter of Hearts.'],['Sau','The Ace (literally “sow”).'],['Tour','One deal with a specific task, e.g. “Hearts”.'],['Epoch','All tours played once — once minus, once plus.'],['Partie','The whole game: both epochs plus the finale.'],['Rauskommen','To lead the first card of a trick.'],['Bedienen','To follow suit.'],['Frei','Void in a suit.'],['Abschmieren','Dumping a costly card on someone else’s trick.'],['Klopfen','Knocking: passing in the layout because you can’t play.']],
+  house:'Every village plays Herzeln a little differently. Values, tours, the order of the epochs and the finale scoring can all be set under <b>“House rules”</b> when starting a new game.'
+}};
+
+/* ---------- suit art (German suits) ---------- */
+const SUIT = {
+  herz:'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#c42430" d="M12 21.3c-.3 0-.6-.1-.8-.3C8.3 18.7 2.4 14.3 2.4 8.9c0-3 2.4-5.4 5.3-5.4 1.8 0 3.3.9 4.3 2.4 1-1.5 2.5-2.4 4.3-2.4 2.9 0 5.3 2.4 5.3 5.4 0 5.4-5.9 9.8-8.8 12.1-.2.2-.5.3-.8.3z"/><path fill="#fff" opacity=".28" d="M6.2 6.8c1-.9 2.6-.8 3.4.2-.9-.2-2 .1-2.6.9-.4.5-.6 1.2-.6 1.8-.6-.9-.9-2.1-.2-2.9z"/></svg>',
+  schelle:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.3" r="1.8" fill="#8a5a14"/><circle cx="12" cy="13.3" r="7.9" fill="#e7aa2f"/><path fill="#c42430" d="M4.8 10.2h14.4l.7 2.6H4.1z"/><ellipse cx="8.8" cy="8.4" rx="2" ry="1.1" fill="#fff" opacity=".5" transform="rotate(-28 8.8 8.4)"/><path d="M8.7 17h6.6" stroke="#5b3a0c" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="15.3" r="1.1" fill="#5b3a0c"/></svg>',
+  laub:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19.4V23" stroke="#2c6a2f" stroke-width="1.7" stroke-linecap="round"/><path fill="#3f8f41" d="M12 1.8c4.2 2.8 7.4 6.6 7.4 10.8 0 4-3.1 6.8-7.4 7.6-4.3-.8-7.4-3.6-7.4-7.6 0-4.2 3.2-8 7.4-10.8z"/><path d="M12 5v14.2M12 9.6 9 7.4m3 2.2 3-2.2M12 13.6 8.3 11m3.7 2.6 3.7-2.6" stroke="#25602a" stroke-width="1.1" stroke-linecap="round" fill="none"/></svg>',
+  eichel:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.2 4.6c.1-1.5.9-2.5 2.5-2.9" stroke="#5a3a1a" stroke-width="1.5" fill="none" stroke-linecap="round"/><path fill="#d79c3d" d="M6.7 11.6h10.6c0 5.1-2.4 9.1-5.3 10.4-2.9-1.3-5.3-5.3-5.3-10.4z"/><ellipse cx="9.8" cy="15.2" rx="1" ry="2.2" fill="#fff" opacity=".35"/><path fill="#6b4423" d="M5.3 12c0-4.4 3-7.6 6.7-7.6s6.7 3.2 6.7 7.6c0 .6-.5 1-1.1 1H6.4c-.6 0-1.1-.4-1.1-1z"/><path d="M6.4 10.3h11.2M7.6 7.6h8.8M9.3 5.6 8 12.9M12 4.5v8.4M14.7 5.6l1.3 7.3" stroke="#8d6038" stroke-width=".7" fill="none"/></svg>'
+};
+const IC = {
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  ok:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.3l3 3 6-6"/></svg>',
+  todo:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9.5" stroke-dasharray="3 3"/></svg>',
+  err:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v6M12 16.5v.5"/></svg>',
+  warn:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 2.5 20h19z"/><path d="M12 10v4.5M12 17.2v.3"/></svg>',
+  pencil:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>',
+  undo:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>',
+  share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>',
+  refresh:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
+  pad:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 8.5h6M9 12h6M9 15.5h3.5"/></svg>',
+  book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg>',
+  globe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></svg>',
+  sun:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg>',
+  moon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>',
+  auto:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg>',
+  chev:'<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>'
+};
+
+/* ---------- state ---------- */
+const DEFAULT_SETUP = () => ({
+  n:4, names:['','','',''], startDealer:0, epochFirst:'minus', repeat:'once',
+  tours:{stiche:{on:true,v:10}, herz:{on:true,v:10,mode:'flat'}, ober:{on:true,v:20}, herzkoenig:{on:true,v:40}, letzter:{on:true,v:40}, alles:{on:false}},
+  final:{mode:'order', order:{3:[20,0,-20], 4:[30,10,-10,-30]}, rest:10}
+});
+function detectLang(){
+  const l = (navigator.language || 'de').toLowerCase();
+  if(l.startsWith('en')) return 'en';
+  if(l === 'de-li') return 'li';
+  if(l === 'de-it') return 'st';
+  return 'de';
+}
+function merge(base, extra){
+  if(!extra || typeof extra !== 'object' || Array.isArray(base)) return extra !== undefined ? extra : base;
+  const out = {...base};
+  for(const k of Object.keys(extra)) out[k] = (base && typeof base[k] === 'object' && base[k] !== null && !Array.isArray(base[k])) ? merge(base[k], extra[k]) : extra[k];
+  return out;
+}
+function load(){
+  try{
+    const raw = localStorage.getItem(STORE);
+    if(!raw) return null;
+    const s = JSON.parse(raw);
+    if(!LANGS.includes(s.lang)) s.lang = detectLang();
+    s.setup = merge(DEFAULT_SETUP(), s.setup || {});
+    if(!Array.isArray(s.history)) s.history = [];
+    if(s.game && (!Array.isArray(s.game.schedule) || !Array.isArray(s.game.results))) s.game = null;
+    if(s.game && !s.game.drafts) s.game.drafts = {};
+    return s;
+  }catch(e){ return null; }
+}
+let state = load() || {lang:detectLang(), tab:'play', theme:'auto', setup:DEFAULT_SETUP(), game:null, history:[]};
+const ui = {editIdx:null, houseOpen:false, celebrate:null, scrollNow:false};
+function save(){ try{ localStorage.setItem(STORE, JSON.stringify(state)); }catch(e){} }
+
+/* ---------- helpers ---------- */
+const range = n => Array.from({length:n}, (_, i) => i);
+const clone = o => JSON.parse(JSON.stringify(o));
+const sum = a => a.reduce((x, y) => x + (y || 0), 0);
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const num = v => { v = Number(v); return Number.isFinite(v) ? Math.round(v) : 0; };
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = v => v > 0 ? '+' + v : v < 0 ? MINUS + Math.abs(v) : '0';
+const langIdx = () => Math.max(0, LANGS.indexOf(state.lang));
+function t(k, v = {}){
+  const e = S[k];
+  if(!e) return k;
+  let s = e[langIdx()];
+  if(s == null) s = e[0];
+  if(typeof s === 'function') return s(v);
+  return String(s).replace(/\{(\w+)\}/g, (_, x) => v[x] != null ? v[x] : '');
+}
+const pc = i => `--pc:var(--p${i + 1})`;
+function pn(i, g = state.game){
+  const nm = g ? g.names[i] : state.setup.names[i];
+  return nm && nm.trim() ? nm.trim() : t('playerN', {n:i + 1});
+}
+function cardName(c){
+  const s = SUITN[state.lang][c.s], r = RANKN[state.lang][c.r];
+  return state.lang === 'en' ? `${r} of ${s}` : `${s}-${r}`;
+}
+const cid = c => c.s + c.r;
+function setCards(set, n){
+  if(set === 'herz') return RANKS[n].map(r => ({s:'herz', r}));
+  if(set === 'ober') return SUITS.map(s => ({s, r:'O'}));
+  if(set === 'hk') return [{s:'herz', r:'K'}];
+  return [];
+}
+function tourCards(id, n){
+  const m = new Map();
+  for(const c of COMPS[id] || []){
+    for(const card of setCards(c, n)){
+      const k = cid(card);
+      if(!m.has(k)) m.set(k, {...card, sets:[]});
+      m.get(k).sets.push(c);
+    }
+  }
+  return [...m.values()];
+}
+function cardValue(set, c, cfg){
+  if(set === 'herz') return cfg.tours.herz.mode === 'augen' ? AUGEN[c.r] : num(cfg.tours.herz.v);
+  if(set === 'ober') return num(cfg.tours.ober.v);
+  if(set === 'hk') return num(cfg.tours.herzkoenig.v);
+  return 0;
+}
+/* a normalized view of the rules in force (running game, else setup) */
+function cfgView(){
+  if(state.game){ const g = state.game; return {n:g.n, tours:g.cfg.tours, final:g.cfg.final, epochFirst:g.cfg.epochFirst}; }
+  const s = state.setup;
+  return {n:s.n, tours:s.tours, final:{mode:s.final.mode, order:s.final.order[s.n].map(num), rest:num(s.final.rest)}, epochFirst:s.epochFirst};
+}
+function buildSchedule(cfg, n){
+  const eps = cfg.epochFirst === 'plus' ? ['plus','minus'] : ['minus','plus'];
+  const ids = TOUR_IDS.filter(id => cfg.tours[id].on);
+  const rep = cfg.repeat === 'each' ? n : 1;
+  const out = [];
+  for(const ep of eps) for(const id of ids) for(let r = 0; r < rep; r++) out.push({ep, id});
+  out.push({ep:'final', id:'finale'});
+  return out;
+}
+function fullOrder(order, n){
+  const o = order.slice();
+  if(o.length === n - 1) o.push(range(n).find(p => !o.includes(p)));
+  return o;
+}
+function emptyDraft(n){ return {tricks:Array(n).fill(0), cards:{}, last:null, order:[], rest:Array(n).fill(0)}; }
+function draftKey(g){ return ui.editIdx != null ? 'e' + ui.editIdx : 'n' + g.results.length; }
+function curDraft(){
+  const g = state.game, k = draftKey(g);
+  if(!g.drafts[k]) g.drafts[k] = ui.editIdx != null ? clone(g.results[ui.editIdx]) : emptyDraft(g.n);
+  return g.drafts[k];
+}
+function scoreDeal(g, idx, d){
+  const it = g.schedule[idx], n = g.n, cfg = g.cfg, pts = Array(n).fill(0);
+  if(!d) return pts;
+  if(it.ep === 'final'){
+    if(cfg.final.mode === 'rest') for(let i = 0; i < n; i++) pts[i] = -num(cfg.final.rest) * (d.rest[i] || 0);
+    else fullOrder(d.order, n).forEach((p, k) => { if(p != null) pts[p] = num(cfg.final.order[k]); });
+    return pts.map(x => x || 0);
+  }
+  const sg = it.ep === 'minus' ? -1 : 1;
+  for(const c of COMPS[it.id]){
+    if(c === 'tricks') for(let i = 0; i < n; i++) pts[i] += sg * num(cfg.tours.stiche.v) * (d.tricks[i] || 0);
+    else if(c === 'last'){ if(d.last != null) pts[d.last] += sg * num(cfg.tours.letzter.v); }
+    else for(const card of setCards(c, n)){ const p = d.cards[cid(card)]; if(p != null) pts[p] += sg * cardValue(c, card, cfg); }
+  }
+  return pts.map(x => x || 0);
+}
+function totals(g, upto = g.results.length){
+  const tot = Array(g.n).fill(0);
+  for(let k = 0; k < upto; k++) scoreDeal(g, k, g.results[k]).forEach((x, i) => tot[i] += x);
+  return tot;
+}
+function ranksOf(tot){ return tot.map(v => 1 + tot.filter(w => w > v).length); }
+const finished = g => g && g.results.length >= g.schedule.length;
+
+/* validation: one entry per widget */
+function check(g, idx, d){
+  const it = g.schedule[idx], n = g.n, out = {};
+  if(it.ep === 'final'){
+    if(g.cfg.final.mode === 'rest'){
+      const zeros = d.rest.filter(x => x === 0).length;
+      out.rest = zeros === 1 ? {s:'ok', m:t('restOk')} : zeros === 0 ? {s:'err', m:t('restNeedZero')} : {s:'err', m:t('restOneZero')};
+    } else {
+      const left = Math.max(0, n - 1 - d.order.length);
+      out.order = left === 0 ? {s:'ok', m:t('orderOk')} : {s:'todo', m:t('orderLeft', {n:left + 1})};
+    }
+  } else {
+    const comps = COMPS[it.id];
+    if(comps.includes('tricks')){
+      const s = sum(d.tricks);
+      out.tricks = s === TRICKS ? {s:'ok', m:t('tricksOk', {n:TRICKS})} : s < TRICKS ? {s:'todo', m:t('tricksLeft', {n:TRICKS - s})} : {s:'err', m:fmt(s - TRICKS)};
+    }
+    const cards = tourCards(it.id, n);
+    if(cards.length){
+      const miss = cards.filter(c => d.cards[cid(c)] == null).length;
+      out.cards = miss ? {s:'todo', m:t('cardsLeft', {n:miss})} : {s:'ok', m:t('cardsOk')};
+    }
+    if(comps.includes('last')) out.last = d.last != null ? {s:'ok', m:t('picked')} : {s:'todo', m:t('pickOne')};
+  }
+  const ok = Object.values(out).every(x => x.s === 'ok');
+  const warns = [];
+  if(it.id === 'alles' && out.tricks && out.tricks.s === 'ok'){
+    const owners = new Set(Object.values(d.cards));
+    for(const p of owners) if(!d.tricks[p]) warns.push(t('warnCards', {name:esc(pn(p, g))}));
+    if(d.last != null && !d.tricks[d.last]) warns.push(t('warnLast', {name:esc(pn(d.last, g))}));
+  }
+  return {ok, out, warns};
+}
+
+/* ---------- small renderers ---------- */
+function miniCard(c, cls = ''){ return `<span class="pc ${c.s === 'herz' ? 'red' : ''} ${cls}" aria-hidden="true"><b>${c.r}</b>${SUIT[c.s]}</span>`; }
+const back = () => '<span class="pc back" aria-hidden="true"></span>';
+function tourIcon(id, size = ''){
+  const F = (...cs) => `<span class="fan ${size}" aria-hidden="true">${cs.join('')}</span>`;
+  const C = (s, r) => miniCard({s, r});
+  switch(id){
+    case 'stiche': return F(back(), back(), back());
+    case 'herz': return F(C('herz','9'), C('herz','10'), C('herz','A'));
+    case 'ober': return F(C('eichel','O'), C('laub','O'), C('schelle','O'));
+    case 'herzkoenig': return F(C('herz','K'));
+    case 'letzter': return F(back(), back(), C('eichel','A'));
+    case 'alles': return F(C('herz','K'), C('laub','O'), back());
+    default: return F(C('herz','U'));
+  }
+}
+const epSign = ep => ep === 'minus' ? MINUS : ep === 'plus' ? '+' : '♥';
+function seg(act, opts, label = ''){
+  return `<div class="seg" role="group"${label ? ` aria-label="${esc(label)}"` : ''}>${opts.map(o =>
+    `<button type="button" id="${act}-${o.v}" data-act="${act}" data-v="${o.v}" aria-pressed="${!!o.on}">${o.dot != null ? `<span class="dot" style="${pc(o.dot)}"></span>` : ''}${o.label}</button>`).join('')}</div>`;
+}
+function statusLine(st){
+  if(!st) return '';
+  const ic = st.s === 'ok' ? IC.ok : st.s === 'err' ? IC.err : IC.todo;
+  return `<div class="status ${st.s}" role="status">${ic}<span>${st.m}</span></div>`;
+}
+function goalText(cfg, it){
+  if(it.ep === 'final'){
+    if(cfg.final.mode === 'rest') return t('g_final_rest', {v:num(cfg.final.rest)});
+    return t('g_final_order', {v:cfg.final.order.map((v, k) => `${k + 1}. ${fmt(num(v))}`).join(' · ')});
+  }
+  const id = it.id, T = cfg.tours;
+  if(id === 'herz' && T.herz.mode === 'augen') return t(`g_${it.ep}_herzA`);
+  const v = {stiche:T.stiche.v, herz:T.herz.v, ober:T.ober.v, herzkoenig:T.herzkoenig.v, letzter:T.letzter.v}[id];
+  return t(`g_${it.ep}_${id}`, {v:num(v)});
+}
+
+/* ---------- hero, tabs ---------- */
+function bigCard(r, pos, cap = ''){
+  return `<div class="bc ${pos}"><span class="cr tl">${r}</span>${SUIT.herz}${cap ? `<span class="cap">${cap}</span>` : ''}<span class="cr br">${r}</span></div>`;
+}
+function heroHTML(){
+  const compact = state.tab === 'play' && !!state.game;
+  const themeIc = {auto:IC.auto, light:IC.sun, dark:IC.moon}[state.theme] || IC.auto;
+  const opt = l => `<option value="${l}"${state.lang === l ? ' selected' : ''}>${LANG_META[l].name}</option>`;
+  const title = t('title');
+  return `<header class="hero${compact ? ' compact' : ''}">
+    <div class="hero-top">
+      <div class="eyebrow">${t('eyebrow')}</div>
+      <div class="hero-ctl">
+        <label class="lang">${IC.globe}<span class="vh">${t('langLabel')}</span>
+          <select id="lang-select" data-change="lang">${opt('de')}<optgroup label="${t('dialects')}">${opt('mv')}${opt('st')}${opt('li')}</optgroup>${opt('en')}</select>
+        </label>
+        <button class="icon-btn" id="theme-btn" data-act="theme" title="${t('themeLabel')}: ${t('theme_' + state.theme)}" aria-label="${t('themeLabel')}: ${t('theme_' + state.theme)}">${themeIc}</button>
+      </div>
+    </div>
+    <div class="hero-body">
+      <div>
+        <h1><span class="h">${title.slice(0, 4)}</span>${title.slice(4)}</h1>
+        <p>${t('tagline')}</p>
+        <div class="facts">${t('facts')}</div>
+      </div>
+      <div class="hero-fan" aria-hidden="true">${bigCard('K','l')}${bigCard('A','r')}${bigCard('U','c', t('herzmandl'))}</div>
+    </div>
+  </header>`;
+}
+function tabsHTML(){
+  const tb = (k, ic) => `<button class="tab" role="tab" id="tab-${k}" data-act="tab" data-v="${k}" aria-selected="${state.tab === k}">${ic}${t('tab_' + k)}</button>`;
+  return `<nav class="tabs" role="tablist">${tb('play', IC.pad)}${tb('rules', IC.book)}<span class="tab-spacer"></span></nav>`;
+}
+
+/* ---------- setup ---------- */
+function setupHTML(){
+  const st = state.setup, n = st.n;
+  const active = TOUR_IDS.filter(id => st.tours[id].on);
+  const sched = buildSchedule(st, n);
+  const T = st.tours;
+  const numIn = (id, path, v, extra = '') => `<input class="num" type="number" inputmode="numeric" id="${id}" data-bind="${path}" value="${esc(v)}" step="1" ${extra}>`;
+  const tourRow = id => {
+    const on = T[id].on;
+    let val = '';
+    if(id === 'stiche') val = `${numIn('v-stiche','tours.stiche.v',T.stiche.v)}<span>${t('perTrick')}</span>`;
+    if(id === 'herz') val = T.herz.mode === 'flat' ? `${numIn('v-herz','tours.herz.v',T.herz.v)}<span>${t('perHeart')}</span>` : `<span>${t('augenList')}</span>`;
+    if(id === 'ober') val = `${numIn('v-ober','tours.ober.v',T.ober.v)}<span>${t('perOber')}</span>`;
+    if(id === 'herzkoenig') val = numIn('v-hk','tours.herzkoenig.v',T.herzkoenig.v);
+    if(id === 'letzter') val = numIn('v-letzter','tours.letzter.v',T.letzter.v);
+    const sub = id === 'herz' ? `<div class="hr-sub">${seg('setHerzMode', [{v:'flat', label:t('flatHearts'), on:T.herz.mode === 'flat'}, {v:'augen', label:t('augenHearts'), on:T.herz.mode === 'augen'}])}</div>`
+      : id === 'alles' ? `<div class="hr-sub">${t('allesHint')}</div>` : '';
+    return `<div class="hr-row">
+      <label class="sw${on ? '' : ' dis'}"><input type="checkbox" id="on-${id}" data-bind="tours.${id}.on" ${on ? 'checked' : ''}>${tourIcon(id, 'sm')}<span>${t('t_' + id)}</span></label>
+      <div class="hr-val${on ? '' : ' dis'}">${val}</div>${sub}</div>`;
+  };
+  const F = st.final;
+  const finalRow = `<div class="hr-row"><div class="sw">${tourIcon('finale','sm')}<span>${t('finalScoring')}</span></div><span></span>
+    <div class="hr-sub">${seg('setFinalMode', [{v:'order', label:t('byPlace'), on:F.mode === 'order'}, {v:'rest', label:t('byRest'), on:F.mode === 'rest'}])}</div>
+    ${F.mode === 'order'
+      ? `<div class="hr-places">${range(n).map(k => `<label for="fo-${k}">${t('place', {n:k + 1})}${numIn('fo-' + k, `final.order.${n}.${k}`, F.order[n][k])}</label>`).join('')}</div>`
+      : `<div class="hr-sub">${numIn('f-rest','final.rest',F.rest)}<span>${t('perCardLeft')}</span></div>`}
+  </div>`;
+  const preview = ['minus','plus'];
+  if(st.epochFirst === 'plus') preview.reverse();
+  return `<div class="setup-grid">
+  <section class="panel">
+    <h2 class="ph">${t('newGame')}</h2>
+    <div class="field"><div class="lbl">${t('howMany')}</div>${seg('setN', [3, 4].map(k => ({v:k, label:t('nPlayers', {n:k}), on:n === k})))}</div>
+    <div class="field"><div class="lbl">${t('namesLabel')}</div>
+      <div class="names">${range(n).map(i => `<label class="name-in" style="${pc(i)}"><span class="dot"></span><span class="vh">${esc(t('playerN', {n:i + 1}))}</span><input id="name-${i}" data-bind="names.${i}" value="${esc(st.names[i] || '')}" placeholder="${esc(t('playerN', {n:i + 1}))}" maxlength="18" autocomplete="off" autocapitalize="words" enterkeyhint="${i < n - 1 ? 'next' : 'done'}"></label>`).join('')}</div></div>
+    <div class="field"><div class="lbl">${t('firstDealer')}</div>${seg('setDealer', range(n).map(i => ({v:i, label:`<span data-nl="${i}">${esc(pn(i, null))}</span>`, on:st.startDealer === i, dot:i})))}</div>
+    <div class="field"><div class="lbl">${t('epochFirst')}</div>${seg('setEpoch', [{v:'minus', label:t('minusFirst'), on:st.epochFirst === 'minus'}, {v:'plus', label:t('plusFirst'), on:st.epochFirst === 'plus'}])}</div>
+    <div class="field"><div class="lbl">${t('repeatLabel')}</div>${seg('setRepeat', [{v:'once', label:t('repeatOnce'), on:st.repeat !== 'each'}, {v:'each', label:t('repeatEach', {n}), on:st.repeat === 'each'}])}</div>
+    <details class="house" id="house"${ui.houseOpen ? ' open' : ''}>
+      <summary><span>${t('houseRules')}</span><span class="hint">${t('houseHint')}</span><span class="chev">${IC.chev}</span></summary>
+      <div class="house-body">${TOUR_IDS.map(tourRow).join('')}${finalRow}
+        <div style="text-align:right;padding-top:6px"><button class="link" data-act="resetRules">${t('resetRules')}</button></div>
+      </div>
+    </details>
+    <div class="start-row">
+      <div class="sum">${active.length ? t('totalDeals', {n:sched.length}) : `<span class="warn-txt">${t('noTours')}</span>`}</div>
+      <button class="btn btn-primary btn-lg" id="start-btn" data-act="start"${active.length ? '' : ' disabled'}>${t('start')}</button>
+    </div>
+  </section>
+  <aside class="stack">
+    <section class="panel">
+      <h2 class="ph">${t('theRun')}</h2>
+      <div class="preview-tours">
+        ${preview.map(ep => `<div class="ep-${ep}"><div class="pt-ep"><span class="sg">${epSign(ep)}</span>${t('ep_' + ep)} · ${t('eps_' + ep)}</div>
+          <div class="pt-list">${active.map(id => `<span>${tourIcon(id, 'sm')}${t('t_' + id)}${st.repeat === 'each' ? ` ×${n}` : ''}</span>`).join('')}</div></div>`).join('')}
+        <div class="ep-final"><div class="pt-ep"><span class="sg">♥</span>${t('ep_final')} · ${t('eps_final')}</div></div>
+      </div>
+    </section>
+    ${historyHTML()}
+  </aside>
+  </div>`;
+}
+function historyHTML(){
+  if(!state.history.length) return '';
+  const loc = LANG_META[state.lang].loc;
+  return `<section class="panel"><div class="ph-row"><h2 class="ph">${t('history')}</h2><button class="link" data-act="clearHistory">${t('clearHistory')}</button></div>
+    <ul class="hist">${state.history.slice(0, 12).map(h => {
+      const best = Math.max(...h.totals);
+      const win = h.names.filter((_, i) => h.totals[i] === best).map(esc).join(' & ');
+      let d = '';
+      try{ d = new Date(h.date).toLocaleDateString(loc, {day:'numeric', month:'short', year:'2-digit'}); }catch(e){ d = new Date(h.date).toLocaleDateString(); }
+      const order = range(h.names.length).sort((a, b) => h.totals[b] - h.totals[a]);
+      return `<li><span class="hd">${d}</span><span class="hw">${miniCard({s:'herz', r:'U'})}${win}</span><span class="hs">${order.map(i => `${esc(h.names[i])} ${fmt(h.totals[i])}`).join(' · ')}</span></li>`;
+    }).join('')}</ul></section>`;
+}
+
+/* ---------- game ---------- */
+function progressHTML(g){
+  const groups = [];
+  g.schedule.forEach((it, i) => {
+    const last = groups[groups.length - 1];
+    if(last && last.ep === it.ep) last.items.push(i); else groups.push({ep:it.ep, items:[i]});
+  });
+  const done = g.results.length, cur = ui.editIdx != null ? ui.editIdx : done;
+  return `<div class="prog" aria-hidden="true">${groups.map(gr => {
+    const d = gr.items.filter(i => i < done).length;
+    return `<div class="pg ep-${gr.ep}" style="--len:${gr.items.length}"><div class="pg-l"><span>${gr.ep === 'final' ? t('ep_final') : t('ep_' + gr.ep)}</span><span>${d}/${gr.items.length}</span></div>
+      <div class="pg-b">${gr.items.map(i => `<span class="pip${i === cur ? ' cur' : i < done ? ' done' : ''}"></span>`).join('')}</div></div>`;
+  }).join('')}</div>`;
+}
+function nowHTML(g){
+  const editing = ui.editIdx != null;
+  const idx = editing ? ui.editIdx : g.results.length;
+  const it = g.schedule[idx], n = g.n, d = curDraft();
+  const dealer = (g.startDealer + idx) % n, leader = (dealer + 1) % n;
+  const chk = check(g, idx, d), pts = scoreDeal(g, idx, d);
+  const sg = it.ep === 'minus' ? -1 : 1;
+  let w = '';
+  if(it.ep === 'final'){
+    w += g.cfg.final.mode === 'rest' ? restWidget(g, d, chk.out.rest) : orderWidget(g, d, chk.out.order);
+  } else {
+    const comps = COMPS[it.id];
+    if(comps.includes('tricks')) w += tricksWidget(g, d, chk.out.tricks);
+    if(chk.out.cards) w += cardsWidget(g, it, d, sg, chk.out.cards);
+    if(comps.includes('last')) w += lastWidget(g, d, sg, chk.out.last);
+  }
+  const meta = `<span class="chip"><span class="dot" style="${pc(dealer)}"></span>${t('deals')}: <b>${esc(pn(dealer))}</b></span>` +
+    (it.ep === 'final' ? `<span class="chip">${miniCard({s:'herz', r:'U'})}${t('herzmandlStarts')}</span>`
+      : `<span class="chip"><span class="dot" style="${pc(leader)}"></span>${t('leads')}: <b>${esc(pn(leader))}</b></span>`);
+  return `<section class="panel now ep-${it.ep}" id="now" aria-labelledby="now-title">
+    <div class="now-top"><span class="ep-badge"><span class="sg">${epSign(it.ep)}</span>${t('ep_' + it.ep)} · ${t('eps_' + it.ep)}</span>
+      <span class="deal-no${editing ? ' editing' : ''}">${editing ? t('editing', {i:idx + 1}) : t('dealOf', {i:idx + 1, n:g.schedule.length})}</span></div>
+    <div class="now-head">${tourIcon(it.id, 'lg')}<div><h2 id="now-title">${t('t_' + it.id)}</h2><p class="goal">${goalText(g.cfg, it)}</p></div></div>
+    <div class="meta">${meta}</div>
+    ${w}
+    ${chk.warns.length ? `<div class="warns">${chk.warns.map(x => `<div>${IC.warn}<span>${x}</span></div>`).join('')}</div>` : ''}
+    <div class="preview"><span class="pl">${t('thisTour')}</span>${range(n).map(i => `<span class="pp"><span class="dot" style="${pc(i)}"></span>${esc(pn(i))} <b>${fmt(pts[i])}</b></span>`).join('')}</div>
+    <div class="actions">
+      ${editing
+        ? `<button class="btn btn-primary btn-lg" id="save-btn" data-act="record"${chk.ok ? '' : ' disabled'}>${IC.check}${t('save')}</button><button class="btn" data-act="cancelEdit">${t('cancel')}</button>`
+        : `<button class="btn btn-primary btn-lg" id="record-btn" data-act="record"${chk.ok ? '' : ' disabled'}>${IC.check}${t('record')}</button>${g.results.length ? `<button class="btn btn-ghost" data-act="undo">${IC.undo}${t('undo')}</button>` : ''}`}
+    </div>
+  </section>`;
+}
+function tricksWidget(g, d, st){
+  const left = TRICKS - sum(d.tricks);
+  return `<div class="wg"><div class="wg-q">${t('tricksQ')}</div><div class="trk">${range(g.n).map(i => `
+    <div class="trk-row" style="${pc(i)}"><span class="who"><span class="dot"></span><span class="t">${esc(pn(i))}</span></span>
+      ${left > 0 ? `<button class="mini" id="tr-r-${i}" data-act="trickRest" data-p="${i}" aria-label="+${left} → ${esc(pn(i))}">+${left}</button>` : '<span></span>'}
+      <div class="stp"><button id="tr-m-${i}" data-act="trick" data-p="${i}" data-d="-1"${d.tricks[i] <= 0 ? ' disabled' : ''} aria-label="${esc(pn(i))} −1">−</button><output aria-live="polite">${d.tricks[i]}</output><button id="tr-p-${i}" data-act="trick" data-p="${i}" data-d="1"${left <= 0 ? ' disabled' : ''} aria-label="${esc(pn(i))} +1">+</button></div>
+    </div>`).join('')}</div>${statusLine(st)}</div>`;
+}
+function cardsWidget(g, it, d, sg, st){
+  const n = g.n, cards = tourCards(it.id, n);
+  const head = `<div class="mx-row mx-head" style="--n:${n}"><span></span>${range(n).map(p => `<span class="mx-h" style="${pc(p)}"><span class="dot"></span><span class="t">${esc(pn(p))}</span></span>`).join('')}</div>`;
+  const rows = cards.map(c => {
+    const v = sum(c.sets.map(s => cardValue(s, c, g.cfg)));
+    const owner = d.cards[cid(c)], nm = cardName(c);
+    return `<div class="mx-row${owner != null ? ' done' : ''}" style="--n:${n}" role="radiogroup" aria-label="${esc(nm)}">
+      <span class="mx-card">${miniCard(c)}<span class="mx-t"><span class="nm">${nm}</span><span class="val">${fmt(sg * v)}</span></span></span>
+      ${range(n).map(p => `<button class="cell" id="c-${cid(c)}-${p}" style="${pc(p)}" data-act="card" data-c="${cid(c)}" data-p="${p}" role="radio" aria-checked="${owner === p}" aria-pressed="${owner === p}" aria-label="${esc(nm)}: ${esc(pn(p))}">${owner === p ? IC.check : ''}</button>`).join('')}
+    </div>`;
+  }).join('');
+  return `<div class="wg"><div class="wg-q">${t('cardsQ')}</div><div class="mx">${head}${rows}</div>${statusLine(st)}</div>`;
+}
+function lastWidget(g, d, sg, st){
+  const v = sg * num(g.cfg.tours.letzter.v);
+  return `<div class="wg"><div class="wg-q">${t('lastQ')}</div><div class="picks">${range(g.n).map(p => `
+    <button class="pick" id="last-${p}" data-act="last" data-p="${p}" aria-pressed="${d.last === p}"><span class="dot" style="${pc(p)}"></span><span class="t">${esc(pn(p))}</span><span class="pv">${d.last === p ? fmt(v) : ''}</span></button>`).join('')}</div>${statusLine(st)}</div>`;
+}
+function orderWidget(g, d, st){
+  const n = g.n, o = d.order, full = o.length >= n - 1, fo = fullOrder(o, n);
+  return `<div class="wg"><div class="wg-q">${t('orderQ')}</div><div class="picks">${range(n).map(p => {
+    const k = o.indexOf(p), auto = k < 0 && full, place = k >= 0 ? k : auto ? fo.indexOf(p) : -1;
+    return `<button class="pick${auto ? ' auto' : ''}" id="ord-${p}" data-act="order" data-p="${p}" aria-pressed="${k >= 0 || auto}">
+      ${place >= 0 ? `<span class="badge">${place + 1}.</span>` : `<span class="dot" style="${pc(p)}"></span>`}<span class="t">${esc(pn(p))}</span><span class="pv">${place >= 0 ? fmt(num(g.cfg.final.order[place])) : ''}</span></button>`;
+  }).join('')}</div>${statusLine(st)}${o.length ? `<div style="margin-top:6px"><button class="link" data-act="orderReset">${t('orderReset')}</button></div>` : ''}</div>`;
+}
+function restWidget(g, d, st){
+  return `<div class="wg"><div class="wg-q">${t('restQ')}</div><div class="trk">${range(g.n).map(i => `
+    <div class="trk-row" style="${pc(i)}"><span class="who"><span class="dot"></span><span class="t">${esc(pn(i))}</span></span><span class="pv" style="font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums">${fmt(-num(g.cfg.final.rest) * d.rest[i])}</span>
+      <div class="stp"><button id="rs-m-${i}" data-act="rest" data-p="${i}" data-d="-1"${d.rest[i] <= 0 ? ' disabled' : ''} aria-label="${esc(pn(i))} −1">−</button><output>${d.rest[i]}</output><button id="rs-p-${i}" data-act="rest" data-p="${i}" data-d="1"${d.rest[i] >= TRICKS ? ' disabled' : ''} aria-label="${esc(pn(i))} +1">+</button></div>
+    </div>`).join('')}</div>${statusLine(st)}</div>`;
+}
+function standingsHTML(g){
+  const tot = totals(g), rk = ranksOf(tot), done = g.results.length;
+  const last = done ? scoreDeal(g, done - 1, g.results[done - 1]) : null;
+  const dealer = !finished(g) ? (g.startDealer + (ui.editIdx != null ? ui.editIdx : done)) % g.n : -1;
+  const best = Math.max(...tot), anyPts = tot.some(x => x !== 0);
+  return `<section class="panel"><h2 class="ph">${t('standings')}</h2><div class="stand">${range(g.n).map(i => `
+    <div class="tile${anyPts && tot[i] === best ? ' lead' : ''}" style="${pc(i)}">
+      <span class="rk">${rk[i]}.</span>
+      <div class="nm"><span class="t">${esc(pn(i))}</span></div>
+      <div class="sc">${fmt(tot[i])}</div>
+      <div class="dl">${last ? `<span>${t('lastDeal')} ${fmt(last[i])}</span>` : ''}${i === dealer ? `<span class="tag">${back()}${t('dealerTag')}</span>` : ''}</div>
+    </div>`).join('')}</div></section>`;
+}
+function chartPanelHTML(g){
+  return `<section class="panel"><h2 class="ph">${t('chartTitle')}</h2>
+    <div class="legend">${range(g.n).map(i => `<span style="${pc(i)}"><i></i>${esc(pn(i))}</span>`).join('')}</div>
+    <div class="chart" id="chart"></div></section>`;
+}
+function logHTML(g){
+  const n = g.n, done = g.results.length, fin = finished(g);
+  const cum = Array(n).fill(0);
+  let rows = '';
+  const cell = v => `<td class="${v < 0 ? 'neg' : v === 0 ? 'zero' : ''}">${fmt(v)}</td>`;
+  g.schedule.forEach((it, i) => {
+    if(i === 0 || g.schedule[i - 1].ep !== it.ep) rows += `<tr class="grp ep-${it.ep}"><td colspan="${n + 3}">${epSign(it.ep)} ${t('ep_' + it.ep)}</td></tr>`;
+    const isDone = i < done, isCur = !fin && i === done && ui.editIdx == null;
+    let cells;
+    if(isDone){ const p = scoreDeal(g, i, g.results[i]); p.forEach((x, k) => cum[k] += x); cells = p.map(cell).join(''); }
+    else cells = range(n).map(() => '<td>·</td>').join('');
+    rows += `<tr class="ep-${it.ep}${isDone ? '' : ' fut'}${isCur ? ' cur' : ''}${ui.editIdx === i ? ' editing' : ''}"><td class="ix">${i + 1}</td><td class="tn"><span>${tourIcon(it.id, 'sm')}${t('t_' + it.id)}</span></td>${cells}
+      <td>${isDone ? `<button class="icon-btn edb" id="ed-${i}" data-act="edit" data-i="${i}" aria-label="${t('edit')}: ${i + 1}. ${t('t_' + it.id)}" title="${t('edit')}">${IC.pencil}</button>` : ''}</td></tr>`;
+    const groupEnd = i === g.schedule.length - 1 || g.schedule[i + 1].ep !== it.ep;
+    if(groupEnd && isDone && i < g.schedule.length - 1) rows += `<tr class="sub"><td></td><td class="tn">${t('subtotal')}</td>${cum.map(v => `<td>${fmt(v)}</td>`).join('')}<td></td></tr>`;
+  });
+  const tot = totals(g);
+  return `<section class="panel"><h2 class="ph">${t('log')}</h2><div class="log-wrap"><table class="log">
+    <thead><tr><th class="ix">#</th><th class="tn">${t('colTour')}</th>${range(n).map(i => `<th class="pn"><span><span class="dot" style="${pc(i)}"></span><span class="t">${esc(pn(i))}</span></span></th>`).join('')}<th></th></tr></thead>
+    <tbody>${rows}</tbody>
+    <tfoot><tr><td></td><td class="tn" style="text-align:left">${t('total')}</td>${tot.map(v => `<td class="${v < 0 ? 'neg' : ''}">${fmt(v)}</td>`).join('')}<td></td></tr></tfoot>
+  </table></div></section>`;
+}
+function seeded(seed){ let s = 0; for(const ch of seed) s = (s * 31 + ch.charCodeAt(0)) >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+function finishedHTML(g){
+  const tot = totals(g), rk = ranksOf(tot), n = g.n;
+  const order = range(n).sort((a, b) => tot[b] - tot[a] || a - b);
+  const best = tot[order[0]], winners = order.filter(i => tot[i] === best);
+  const head = winners.length > 1 ? t('tie', {names:winners.map(i => esc(pn(i))).join(' & ')}) : t('winner', {name:esc(pn(winners[0]))});
+  let conf = '';
+  if(ui.celebrate === g.id){
+    const r = seeded(g.id);
+    conf = `<div class="confetti" aria-hidden="true">${range(26).map(() => `<i style="left:${(r() * 100).toFixed(1)}%;--d:${(2.2 + r() * 1.6).toFixed(2)}s;--w:${(r() * .9).toFixed(2)}s;--rot:${Math.round(r() * 540 - 270)}deg;font-size:${Math.round(14 + r() * 16)}px;color:${r() > .25 ? '#c42430' : '#e2b24f'}">♥</i>`).join('')}</div>`;
+  }
+  return `<section class="panel result" id="result">${conf}
+    <div class="trophy">${tourIcon('finale', 'lg')}</div>
+    <div class="sub">${t('gameOver')}</div>
+    <h2>${head}</h2>
+    <ol class="podium">${order.map(i => `<li class="${tot[i] === best ? 'win' : ''}" style="${pc(i)}"><span class="pr">${rk[i]}.</span><span class="dot"></span><span class="pn">${esc(pn(i))}</span><span class="pt">${fmt(tot[i])}</span></li>`).join('')}</ol>
+    <div class="actions">
+      <button class="btn btn-primary btn-lg" style="--accent:var(--final)" data-act="rematch">${IC.refresh}${t('rematch')}</button>
+      <button class="btn btn-lg" data-act="share">${IC.share}${t('share')}</button>
+      <button class="btn btn-lg btn-ghost" data-act="newGame">${IC.plus}${t('newGame')}</button>
+    </div>
+  </section>`;
+}
+function playHTML(){
+  const g = state.game;
+  if(!g) return setupHTML();
+  if(finished(g) && ui.editIdx == null){
+    return `<div class="stack">${finishedHTML(g)}<div class="game-grid">${chartPanelHTML(g)}${standingsHTML(g)}</div>${logHTML(g)}</div>`;
+  }
+  return `<div class="stack">
+    ${progressHTML(g)}
+    <div class="game-grid">${nowHTML(g)}<div class="stack">${standingsHTML(g)}${chartPanelHTML(g)}</div></div>
+    ${logHTML(g)}
+    <div class="game-foot"><button class="btn btn-ghost btn-danger" data-act="abandon">${t('abandon')}</button></div>
+  </div>`;
+}
+
+/* ---------- rules ---------- */
+function valueText(id, cfg){
+  const T = cfg.tours, n = cfg.n, nh = RANKS[n].length, b = x => `<b>${x}</b>`;
+  const tot = x => `<span>${t('inTotal', {n:x})}</span>`;
+  const herzTot = T.herz.mode === 'augen' ? sum(RANKS[n].map(r => AUGEN[r])) : nh * num(T.herz.v);
+  switch(id){
+    case 'stiche': return `${b('±' + num(T.stiche.v))}<span>${t('perTrick')}</span>${tot(TRICKS * num(T.stiche.v))}`;
+    case 'herz': return T.herz.mode === 'augen' ? `${b(t('augenHearts'))}<span>${t('augenList')}</span>${tot(herzTot)}` : `${b('±' + num(T.herz.v))}<span>${t('perHeart')}</span>${tot(herzTot)}`;
+    case 'ober': return `${b('±' + num(T.ober.v))}<span>${t('perOber')}</span>${tot(4 * num(T.ober.v))}`;
+    case 'herzkoenig': return b('±' + num(T.herzkoenig.v));
+    case 'letzter': return b('±' + num(T.letzter.v));
+    case 'alles': return tot(TRICKS * num(T.stiche.v) + herzTot + 4 * num(T.ober.v) + num(T.herzkoenig.v) + num(T.letzter.v));
+  }
+  return '';
+}
+function finalScoringText(cfg){
+  if(cfg.final.mode === 'rest') return t('finalRestTxt', {v:num(cfg.final.rest)});
+  return t('finalOrderTxt', {list:cfg.final.order.map((v, k) => `${k + 1}. ${fmt(num(v))}`).join(' · ')});
+}
+function boardHTML(){
+  const rows = [['eichel', [], ['U']], ['laub', ['10','U','O'], ['9','K']], ['herz', ['9','10','U','O','K'], ['8','A']], ['schelle', ['U'], ['10','O']]];
+  let h = `<span></span>${LAY.map(r => `<span class="bh${r === 'U' ? ' u' : ''}">${r}</span>`).join('')}`;
+  for(const [s, placed, next] of rows){
+    h += `<span class="bs" title="${SUITN[state.lang][s]}">${SUIT[s]}</span>`;
+    h += LAY.map(r => placed.includes(r) ? miniCard({s, r}) : next.includes(r) ? `<span class="slot next">${r}</span>` : '<span class="slot"></span>').join('');
+  }
+  return `<div class="board" role="img" aria-label="${esc(t('boardCaption'))}">${h}</div>
+    <div class="board-dir"><span>← ${t('down')}</span><span>${t('up')} →</span></div>`;
+}
+function rulesHTML(){
+  const R = RULES[state.lang], cfg = cfgView();
+  const order = cfg.epochFirst === 'plus' ? ['plus','minus','final'] : ['minus','plus','final'];
+  const tcard = id => {
+    const on = cfg.tours[id].on;
+    return `<article class="tcard${on ? '' : ' off'}"><div class="tc-head">${tourIcon(id)}<div><h3>${t('t_' + id)}</h3><div class="tc-what">${t('w_' + id)}</div></div></div>
+      <div class="tc-val">${valueText(id, cfg)}${on ? '' : `<span class="tag">${t('off')}</span>`}</div>
+      <div class="tc-tip ep-minus"><b>${t('tipMinus')}</b> ${t('tm_' + id)}</div>
+      <div class="tc-tip ep-plus"><b>${t('tipPlus')}</b> ${t('tp_' + id)}</div></article>`;
+  };
+  return `<div class="rules">
+    <section class="panel"><h2 class="ph">${t('r_about')}</h2><p class="lead">${R.about}</p>
+      <div class="steps3">${order.map((ep, k) => `<div class="step ep-${ep}"><div class="sn">${k + 1}</div><div class="st">${t('ep_' + ep)}</div><div class="ss">${t('eps_' + ep)}</div><p>${R['step_' + ep]}</p></div>`).join('')}</div>
+    </section>
+    <section class="panel"><h2 class="ph">${t('r_cards')}</h2><p>${R.cards}</p>
+      <div class="suits">${SUITS.map(s => `<div class="suit">${SUIT[s]}<b>${SUITN[state.lang][s]}</b><span>${R.suitAlt[s]}</span></div>`).join('')}</div>
+      <div class="strips">
+        <div class="strip-box"><div class="lbl">${t('rankTrick')}</div><div class="strip">${RANKS[4].map(r => miniCard({s:'herz', r})).join('<span class="gt">›</span>')}</div></div>
+        <div class="strip-box"><div class="lbl">${t('rankLay')}</div><div class="strip">${LAY.map(r => miniCard({s:'laub', r})).join('<span class="gt">–</span>')}</div></div>
+      </div>
+      <p class="note">${R.mandl}</p><p class="small">${R.three}</p>
+    </section>
+    <section class="panel"><h2 class="ph">${t('r_play')}</h2><ul class="rl">${R.play.map(x => `<li>${x}</li>`).join('')}</ul></section>
+    <section class="panel"><h2 class="ph">${t('r_tours')}</h2><p>${R.toursIntro}</p><div class="tours-grid">${TOUR_IDS.map(tcard).join('')}</div></section>
+    <section class="panel ep-final"><h2 class="ph">${t('r_final')}</h2><p>${R.finalIntro}</p>
+      <div class="final-grid"><ol class="ol">${R.finalSteps.map(x => `<li>${x}</li>`).join('')}</ol>
+        <figure class="board-fig">${boardHTML()}<figcaption>${t('boardCaption')}</figcaption></figure></div>
+      <p class="note" style="margin-top:16px"><b>${t('scoringNow')}</b> ${finalScoringText(cfg)}</p>
+    </section>
+    <section class="two">
+      <div class="panel"><h2 class="ph">${t('r_tips')}</h2><ul class="rl">${R.tips.map(x => `<li>${x}</li>`).join('')}</ul></div>
+      <div class="panel"><h2 class="ph">${t('r_gloss')}</h2><dl class="gl">${R.gloss.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl></div>
+    </section>
+    <section class="panel"><h2 class="ph">${t('r_house')}</h2><p>${R.house}</p><button class="btn" data-act="tab" data-v="play">${IC.pad}${t('toPad')}</button></section>
+  </div>`;
+}
+
+/* ---------- chart ---------- */
+let measureCtx = null;
+function textW(s, font = '650 12px system-ui'){
+  try{ measureCtx = measureCtx || document.createElement('canvas').getContext('2d'); measureCtx.font = font; return measureCtx.measureText(s).width; }
+  catch(e){ return s.length * 7; }
+}
+function niceTicks(lo, hi, count){
+  const span = hi - lo || 1, raw = span / count, mag = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / mag;
+  const step = (f > 5 ? 10 : f > 2 ? 5 : f > 1 ? 2 : 1) * mag;
+  const a = Math.floor(lo / step) * step, b = Math.ceil(hi / step) * step, ticks = [];
+  for(let v = a; v <= b + step / 2; v += step) ticks.push(Math.round(v));
+  return {ticks, lo:a, hi:b};
+}
+let chartRO = null, chartW = 0;
+function drawChart(){
+  const host = document.getElementById('chart'), g = state.game;
+  if(!host || !g) return;
+  if(chartRO){ chartRO.disconnect(); }
+  if(window.ResizeObserver){
+    chartRO = new ResizeObserver(() => { if(Math.abs(host.clientWidth - chartW) > 4) drawChart(); });
+    chartRO.observe(host);
+  }
+  const n = g.n, done = g.results.length, N = g.schedule.length;
+  chartW = host.clientWidth;
+  if(!done){ host.innerHTML = `<div class="chart-empty">${t('chartEmpty')}</div>`; return; }
+  const W = Math.max(260, host.clientWidth), H = Math.round(clamp(W * .55, 210, 300));
+  const cum = range(n).map(() => [0]);
+  const deltas = [];
+  for(let k = 0; k < done; k++){ const p = scoreDeal(g, k, g.results[k]); deltas.push(p); for(let i = 0; i < n; i++) cum[i].push(cum[i][k] + p[i]); }
+  const all = cum.flat();
+  let lo = Math.min(0, ...all), hi = Math.max(0, ...all);
+  if(hi - lo < 20){ hi += 10; lo -= 10; }
+  const tk = niceTicks(lo, hi, 4);
+  const lab = range(n).map(i => ({name:pn(i), val:fmt(cum[i][done])}));
+  const labW = Math.max(...lab.map(l => textW(l.name) + textW(l.val, '500 12px system-ui') + 6));
+  const mL = Math.max(30, textW(fmt(tk.lo), '11px system-ui') + 12), mT = 24, mB = 8, mR = Math.min(150, labW + 22);
+  const pw = W - mL - mR, ph = H - mT - mB;
+  const X = k => mL + k / N * pw, Y = v => mT + (tk.hi - v) / (tk.hi - tk.lo) * ph;
+  let s = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t('chartTitle'))}">`;
+  // epoch bands
+  const groups = [];
+  g.schedule.forEach((it, i) => { const l = groups[groups.length - 1]; if(l && l.ep === it.ep) l.end = i + 1; else groups.push({ep:it.ep, start:i, end:i + 1}); });
+  for(const gr of groups){
+    const x0 = X(gr.start), x1 = X(gr.end), bw = x1 - x0;
+    s += `<rect class="bd-${gr.ep}" x="${x0}" y="${mT}" width="${Math.max(0, bw - 2)}" height="${ph}" rx="6" opacity=".55"/>`;
+    const full = t('ep_' + gr.ep), short = gr.ep === 'final' ? '♥' : epSign(gr.ep);
+    const lbl = textW(full.toUpperCase(), '750 10.5px system-ui') * 1.1 + 8 < bw ? full : short;
+    s += `<text class="bl bl-${gr.ep}" x="${x0 + 6}" y="${mT - 8}">${esc(lbl)}</text>`;
+  }
+  // grid
+  for(const v of tk.ticks){
+    const y = Y(v);
+    s += `<line class="${v === 0 ? 'z' : 'gl'}" x1="${mL}" x2="${mL + pw}" y1="${y}" y2="${y}"/><text class="ax" x="${mL - 8}" y="${y}" text-anchor="end" dominant-baseline="middle">${fmt(v)}</text>`;
+  }
+  // lines
+  for(let i = 0; i < n; i++){
+    const d = cum[i].map((v, k) => `${k ? 'L' : 'M'}${X(k).toFixed(1)},${Y(v).toFixed(1)}`).join('');
+    s += `<path class="ln" style="stroke:var(--p${i + 1})" d="${d}"/>`;
+  }
+  // end dots + labels with simple collision avoidance & leader lines
+  const ends = range(n).map(i => ({i, y:Y(cum[i][done])})).sort((a, b) => a.y - b.y);
+  const gap = 15;
+  ends.forEach((e, j) => { e.ly = j ? Math.max(e.y, ends[j - 1].ly + gap) : e.y; });
+  const over = ends[ends.length - 1].ly - (H - 6);
+  if(over > 0){ ends.forEach(e => e.ly -= over); for(let j = ends.length - 2; j >= 0; j--) ends[j].ly = Math.min(ends[j].ly, ends[j + 1].ly - gap); }
+  const xe = X(done);
+  for(const e of ends){
+    if(Math.abs(e.ly - e.y) > 1.5) s += `<path class="ld" d="M${xe + 5},${e.y} L${xe + 11},${e.ly}" fill="none"/>`;
+    s += `<circle class="ed" cx="${xe}" cy="${e.y}" r="4.5" style="fill:var(--p${e.i + 1})"/>`;
+    s += `<text class="lbl" x="${xe + 13}" y="${e.ly}" dominant-baseline="middle">${esc(lab[e.i].name)}<tspan class="lbv" dx="6">${lab[e.i].val}</tspan></text>`;
+  }
+  // hover layer
+  s += `<line class="xh" id="xh" x1="0" x2="0" y1="${mT}" y2="${mT + ph}"/>`;
+  for(let i = 0; i < n; i++) s += `<circle class="hd ed" id="hd-${i}" r="4.5" cx="-20" cy="-20" style="fill:var(--p${i + 1})"/>`;
+  s += `<rect id="hit" x="${mL}" y="${mT}" width="${pw}" height="${ph}" fill="transparent" style="cursor:crosshair;touch-action:pan-y"/>`;
+  s += '</svg><div class="tip" id="tip"></div>';
+  host.innerHTML = s;
+  const hit = host.querySelector('#hit'), tip = host.querySelector('#tip'), xh = host.querySelector('#xh');
+  const show = ev => {
+    const rect = host.getBoundingClientRect();
+    const px = ev.clientX - rect.left;
+    const k = clamp(Math.round((px - mL) / pw * N), 1, done);
+    const x = X(k);
+    xh.setAttribute('x1', x); xh.setAttribute('x2', x);
+    for(let i = 0; i < n; i++){ const c = host.querySelector('#hd-' + i); c.setAttribute('cx', x); c.setAttribute('cy', Y(cum[i][k])); }
+    const it = g.schedule[k - 1];
+    const ord = range(n).sort((a, b) => cum[b][k] - cum[a][k]);
+    tip.innerHTML = `<div class="th">${k}. ${t('t_' + it.id)}<small>${t('ep_' + it.ep)}</small></div>` +
+      ord.map(i => `<div class="tr"><span class="dot" style="${pc(i)}"></span><span class="t">${esc(pn(i))}</span><b>${fmt(cum[i][k])}</b><em>${fmt(deltas[k - 1][i])}</em></div>`).join('');
+    const tw = tip.offsetWidth || 180;
+    let left = x + 14;
+    if(left + tw > W) left = Math.max(0, x - tw - 14);
+    tip.style.transform = `translate(${left}px, ${mT}px)`;
+    host.classList.add('hov');
+  };
+  hit.addEventListener('pointermove', show);
+  hit.addEventListener('pointerdown', show);
+  hit.addEventListener('pointerleave', ev => { if(ev.pointerType !== 'touch') host.classList.remove('hov'); });
+}
+
+/* ---------- render ---------- */
+const last = {hero:'', tabs:'', main:'', foot:''};
+function put(id, html){
+  if(last[id] === html) return false;
+  last[id] = html;
+  document.getElementById(id).innerHTML = html;
+  return true;
+}
+function applyTheme(){
+  const r = document.documentElement;
+  if(state.theme === 'auto') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', state.theme);
+  r.lang = LANG_META[state.lang].html;
+  document.title = `${t('title')} · ${t('tab_' + state.tab)}`;
+}
+function render(){
+  const a = document.activeElement, aid = a && a.id;
+  applyTheme();
+  put('hero', heroHTML());
+  put('tabs', tabsHTML());
+  const changed = put('main', state.tab === 'rules' ? rulesHTML() : playHTML());
+  put('foot', esc(t('footer')));
+  if(changed) drawChart();
+  if(aid && document.activeElement !== a){
+    const el = document.getElementById(aid);
+    if(el && !el.disabled) el.focus({preventScroll:true});
+  }
+  if(ui.scrollNow){
+    ui.scrollNow = false;
+    const target = document.getElementById('now') || document.getElementById('result') || document.getElementById('main');
+    if(target){ const top = target.getBoundingClientRect().top; if(top < 0 || top > window.innerHeight * .6) target.scrollIntoView({behavior:'smooth', block:'start'}); }
+  }
+}
+
+/* ---------- actions ---------- */
+function startGame(prev){
+  let n, names, cfg, startDealer;
+  if(prev){
+    n = prev.n; names = prev.names.slice(); cfg = clone(prev.cfg); startDealer = (prev.startDealer + 1) % n;
+  } else {
+    const st = state.setup;
+    n = st.n; names = st.names.slice(0, n).map(s => (s || '').trim()); startDealer = st.startDealer % n;
+    cfg = {epochFirst:st.epochFirst, repeat:st.repeat, tours:clone(st.tours), final:{mode:st.final.mode, order:st.final.order[n].map(num), rest:num(st.final.rest)}};
+    for(const id of TOUR_IDS){ if('v' in cfg.tours[id]) cfg.tours[id].v = num(cfg.tours[id].v); }
+  }
+  state.game = {id:Date.now().toString(36) + Math.random().toString(36).slice(2, 6), created:Date.now(), n, names, cfg, startDealer, schedule:buildSchedule(cfg, n), results:[], drafts:{}};
+  ui.editIdx = null; ui.celebrate = null; state.tab = 'play'; ui.scrollNow = true;
+}
+function upsertHistory(g){
+  const entry = {id:g.id, date:g.created, names:range(g.n).map(i => pn(i, g)), totals:totals(g)};
+  const k = state.history.findIndex(h => h.id === g.id);
+  if(k >= 0) state.history[k] = entry; else state.history.unshift(entry);
+  state.history = state.history.slice(0, 30);
+}
+function toast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(toast.tm); toast.tm = setTimeout(() => el.classList.remove('show'), 2200);
+}
+async function shareResult(){
+  const g = state.game, tot = totals(g), rk = ranksOf(tot);
+  const order = range(g.n).sort((a, b) => tot[b] - tot[a]);
+  let date = '';
+  try{ date = new Date(g.created).toLocaleDateString(LANG_META[state.lang].loc); }catch(e){}
+  const text = [`♥ ${t('title')} · ${date}`, ...order.map(i => `${rk[i]}. ${pn(i)}  ${fmt(tot[i])}`)].join('\n');
+  if(navigator.share){
+    try{ await navigator.share({text}); return; }catch(e){ if(e && e.name === 'AbortError') return; }
+  }
+  try{ await navigator.clipboard.writeText(text); toast(t('copied')); }
+  catch(e){ toast(t('copyFail')); }
+}
+const ACT = {
+  theme(){ state.theme = {auto:'light', light:'dark', dark:'auto'}[state.theme] || 'auto'; },
+  tab(el){ state.tab = el.dataset.v; const tabs = document.getElementById('tabs'); if(tabs.getBoundingClientRect().top < 0) setTimeout(() => tabs.scrollIntoView({block:'start'}), 0); },
+  setN(el){ const n = +el.dataset.v; state.setup.n = n; if(state.setup.startDealer >= n) state.setup.startDealer = 0; },
+  setDealer(el){ state.setup.startDealer = +el.dataset.v; },
+  setEpoch(el){ state.setup.epochFirst = el.dataset.v; },
+  setRepeat(el){ state.setup.repeat = el.dataset.v; },
+  setHerzMode(el){ state.setup.tours.herz.mode = el.dataset.v; },
+  setFinalMode(el){ state.setup.final.mode = el.dataset.v; },
+  resetRules(){ const d = DEFAULT_SETUP(); Object.assign(state.setup, {tours:d.tours, final:d.final, epochFirst:d.epochFirst, repeat:d.repeat}); },
+  start(){ startGame(); },
+  trick(el){ const d = curDraft(), p = +el.dataset.p, left = TRICKS - sum(d.tricks), dv = +el.dataset.d; if(dv > 0 && left <= 0) return false; d.tricks[p] = clamp(d.tricks[p] + dv, 0, TRICKS); },
+  trickRest(el){ const d = curDraft(), p = +el.dataset.p; d.tricks[p] += Math.max(0, TRICKS - sum(d.tricks)); },
+  card(el){ const d = curDraft(), c = el.dataset.c, p = +el.dataset.p; if(d.cards[c] === p) delete d.cards[c]; else d.cards[c] = p; },
+  last(el){ const d = curDraft(), p = +el.dataset.p; d.last = d.last === p ? null : p; },
+  order(el){ const d = curDraft(), p = +el.dataset.p, k = d.order.indexOf(p); if(k >= 0) d.order.splice(k, 1); else if(d.order.length < state.game.n - 1) d.order.push(p); else return false; },
+  orderReset(){ curDraft().order = []; },
+  rest(el){ const d = curDraft(), p = +el.dataset.p; d.rest[p] = clamp(d.rest[p] + (+el.dataset.d), 0, TRICKS); },
+  record(){
+    const g = state.game, idx = ui.editIdx != null ? ui.editIdx : g.results.length, d = curDraft();
+    if(!check(g, idx, d).ok) return false;
+    const data = clone(d);
+    if(g.schedule[idx].ep === 'final') data.order = fullOrder(data.order, g.n);
+    const key = draftKey(g);
+    if(ui.editIdx != null){ g.results[idx] = data; ui.editIdx = null; } else g.results.push(data);
+    delete g.drafts[key];
+    if(finished(g)){ upsertHistory(g); if(idx === g.schedule.length - 1 && key[0] === 'n') ui.celebrate = g.id; }
+    ui.scrollNow = true;
+  },
+  undo(){ const g = state.game; if(!g.results.length) return false; const d = g.results.pop(); g.drafts = {['n' + g.results.length]:d}; ui.editIdx = null; ui.scrollNow = true; },
+  edit(el){ const i = +el.dataset.i, g = state.game; if(ui.editIdx === i){ ui.editIdx = null; delete g.drafts['e' + i]; } else { if(ui.editIdx != null) delete g.drafts['e' + ui.editIdx]; ui.editIdx = i; delete g.drafts['e' + i]; } ui.scrollNow = true; },
+  cancelEdit(){ const g = state.game; delete g.drafts['e' + ui.editIdx]; ui.editIdx = null; if(finished(g)) ui.scrollNow = true; },
+  abandon(){ if(!confirm(t('abandonQ'))) return false; state.game = null; ui.editIdx = null; },
+  share(){ shareResult(); return false; },
+  rematch(){ startGame(state.game); },
+  newGame(){ state.game = null; ui.editIdx = null; ui.celebrate = null; ui.scrollNow = true; },
+  clearHistory(){ if(!confirm(t('clearHistoryQ'))) return false; state.history = []; }
+};
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]');
+  if(!el || el.disabled) return;
+  const fn = ACT[el.dataset.act];
+  if(!fn) return;
+  if(fn(el) === false) return;
+  save(); render();
+});
+function setPath(obj, path, v){
+  const ks = path.split('.');
+  let o = obj;
+  for(let i = 0; i < ks.length - 1; i++){ if(o[ks[i]] == null) o[ks[i]] = {}; o = o[ks[i]]; }
+  o[ks[ks.length - 1]] = v;
+}
+document.addEventListener('input', e => {
+  const el = e.target, b = el.dataset && el.dataset.bind;
+  if(!b) return;
+  const v = el.type === 'checkbox' ? el.checked : el.type === 'number' ? (el.value === '' ? '' : Number(el.value)) : el.value;
+  setPath(state.setup, b, v);
+  save();
+  if(b.startsWith('names.')){
+    const i = b.split('.')[1];
+    document.querySelectorAll(`[data-nl="${i}"]`).forEach(x => x.textContent = pn(+i, null));
+  }
+});
+document.addEventListener('change', e => {
+  const el = e.target;
+  if(el.dataset && el.dataset.change === 'lang'){ state.lang = el.value; save(); render(); return; }
+  if(el.type === 'checkbox' && el.dataset.bind){ render(); }
+});
+document.addEventListener('toggle', e => { if(e.target.id === 'house') ui.houseOpen = e.target.open; }, true);
+document.addEventListener('keydown', e => {
+  const el = e.target;
+  if(e.key === 'Enter' && el.id && el.id.startsWith('name-')){
+    e.preventDefault();
+    const nx = document.getElementById('name-' + (+el.id.slice(5) + 1));
+    if(nx) nx.focus(); else el.blur();
+  }
+});
+window.addEventListener('storage', e => { if(e.key === STORE){ const s = load(); if(s){ state = s; render(); } } });
+if(window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => { last.main = ''; render(); });
+
+render();
+</script>
+</body>
+</html>

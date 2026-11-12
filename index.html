@@ -1,1 +1,130 @@
-russisch_schnapsen.html
+<!doctype html>
+<html lang="de-AT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kartentisch</title>
+<meta name="description" content="Regeln und Spielblöcke für österreichische Kartenspiele: Herzeln und Russisch Schnapsen.">
+<meta name="theme-color" content="#5b1420">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23c42430' d='M12 21.3c-.3 0-.6-.1-.8-.3C8.3 18.7 2.4 14.3 2.4 8.9c0-3 2.4-5.4 5.3-5.4 1.8 0 3.3.9 4.3 2.4 1-1.5 2.5-2.4 4.3-2.4 2.9 0 5.3 2.4 5.3 5.4 0 5.4-5.9 9.8-8.8 12.1-.2.2-.5.3-.8.3z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f3ede3;--surface:#fffcf7;--surface-2:#f8f2e8;--ink:#231c17;--ink-2:#584e44;--muted:#857a6d;--line:#e4d9c7;--line-2:#d2c4ad;
+  --accent:#a8262f;--accent-soft:#f7e2de;--gold:#9a6b12;--gold-soft:#f6ebcf;
+  --paper:#fffdf6;--paper-line:#d6c8ae;--hero-1:#7a1a27;--hero-2:#2a0b10;
+  --shadow-sm:0 1px 2px rgba(45,28,12,.05),0 2px 10px rgba(45,28,12,.05);
+  --shadow:0 2px 6px rgba(45,28,12,.06),0 14px 34px rgba(45,28,12,.10);
+  --font-display:'Fraunces','Iowan Old Style','Palatino Linotype',Georgia,serif;
+  --font-ui:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#13100d;--surface:#1e1915;--surface-2:#26201b;--ink:#f3ece2;--ink-2:#cdc1b1;--muted:#9c9182;--line:#352d25;--line-2:#4a3f33;
+    --accent:#ec7a83;--accent-soft:#3a1d20;--gold:#e2b24f;--gold-soft:#382d15;
+    --paper:#f6efe1;--paper-line:#c9bba1;--hero-1:#5a1220;--hero-2:#18070b;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.3);--shadow:0 2px 6px rgba(0,0,0,.3),0 14px 34px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#13100d;--surface:#1e1915;--surface-2:#26201b;--ink:#f3ece2;--ink-2:#cdc1b1;--muted:#9c9182;--line:#352d25;--line-2:#4a3f33;
+  --accent:#ec7a83;--accent-soft:#3a1d20;--gold:#e2b24f;--gold-soft:#382d15;
+  --paper:#f6efe1;--paper-line:#c9bba1;--hero-1:#5a1220;--hero-2:#18070b;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.3);--shadow:0 2px 6px rgba(0,0,0,.3),0 14px 34px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font:16px/1.5 var(--font-ui);-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto;padding:16px 16px 56px}
+.hero{position:relative;overflow:hidden;isolation:isolate;border-radius:26px;padding:30px 28px 34px;color:#fbf1e6;
+  background:radial-gradient(130% 150% at 0% 0%,var(--hero-1) 0%,var(--hero-2) 75%);box-shadow:var(--shadow)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M12 18.6s-5.6-3.6-5.6-7.6c0-2.1 1.5-3.5 3.2-3.5 1 0 1.9.5 2.4 1.3.5-.8 1.4-1.3 2.4-1.3 1.7 0 3.2 1.4 3.2 3.5 0 4-5.6 7.6-5.6 7.6z'/%3E%3C/svg%3E")}
+.eyebrow{font-size:12px;letter-spacing:.15em;text-transform:uppercase;font-weight:650;color:#f1cdbf}
+h1{font-family:var(--font-display);font-weight:800;font-size:clamp(46px,9vw,80px);line-height:.95;margin:8px 0 12px;letter-spacing:-.025em}
+.hero p{margin:0;max-width:46ch;color:#efd8cc;font-size:17px}
+.suits{display:flex;gap:10px;margin-top:20px}
+.suits svg{width:30px;height:30px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35))}
+.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}
+.game{position:relative;display:flex;flex-direction:column;gap:14px;padding:22px;border-radius:20px;background:var(--surface);border:1px solid var(--line);
+  box-shadow:var(--shadow-sm);color:inherit;text-decoration:none;transition:transform .18s,box-shadow .18s,border-color .18s;min-width:0}
+.game:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--line-2)}
+.game:focus-visible{outline:2.5px solid #2a78d6;outline-offset:3px}
+.game.feat{border-top:5px solid var(--accent)}
+.fan{display:flex;align-items:flex-end;height:78px;padding-left:4px}
+.pc{--cw:52px;position:relative;display:inline-grid;place-items:center;flex:none;width:var(--cw);height:calc(var(--cw)*1.42);border-radius:8px;
+  background:var(--paper);border:1px solid var(--paper-line);box-shadow:0 3px 8px rgba(0,0,0,.16);color:#2b2119}
+.pc b{position:absolute;top:4px;left:6px;font:800 15px/1 var(--font-display)}
+.pc.red b{color:#a71d29}
+.pc svg{width:62%;margin-top:26%}
+.pc:not(:first-child){margin-left:-30px}
+.pc:nth-child(1){transform:rotate(-10deg) translateY(3px)}
+.pc:nth-child(3){transform:rotate(10deg) translateY(3px)}
+.game:hover .pc:nth-child(1){transform:rotate(-15deg) translate(-4px,3px)}
+.game:hover .pc:nth-child(3){transform:rotate(15deg) translate(4px,3px)}
+.pc{transition:transform .2s}
+.badge{position:absolute;top:18px;right:18px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.game h2{font-family:var(--font-display);font-weight:800;font-size:30px;line-height:1.05;margin:0;letter-spacing:-.015em}
+.game p{margin:0;color:var(--ink-2)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.tags span{font-size:12.5px;padding:3px 10px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2)}
+.go{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--ink)}
+.go svg{width:18px;height:18px;transition:transform .18s}
+.game:hover .go svg{transform:translateX(3px)}
+.foot{margin-top:26px;text-align:center;font-size:12.5px;color:var(--muted)}
+@media (max-width:680px){
+  .games{grid-template-columns:minmax(0,1fr)}
+  .hero{padding:24px 20px 28px;border-radius:22px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Österreichische Kartenspiele</div>
+    <h1>Kartentisch</h1>
+    <p>Regeln zum Nachschlagen und Spielblöcke zum Mitschreiben – damit am Tisch niemand mehr streiten muss. Fast niemand.</p>
+    <div class="suits" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path fill="#e0525d" d="M12 21.3c-.3 0-.6-.1-.8-.3C8.3 18.7 2.4 14.3 2.4 8.9c0-3 2.4-5.4 5.3-5.4 1.8 0 3.3.9 4.3 2.4 1-1.5 2.5-2.4 4.3-2.4 2.9 0 5.3 2.4 5.3 5.4 0 5.4-5.9 9.8-8.8 12.1-.2.2-.5.3-.8.3z"/></svg>
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="4.3" r="1.8" fill="#c7962e"/><circle cx="12" cy="13.3" r="7.9" fill="#e7aa2f"/><path fill="#c42430" d="M4.8 10.2h14.4l.7 2.6H4.1z"/><path d="M8.7 17h6.6" stroke="#5b3a0c" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="15.3" r="1.1" fill="#5b3a0c"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 19.4V23" stroke="#5aa85c" stroke-width="1.7" stroke-linecap="round"/><path fill="#3f8f41" d="M12 1.8c4.2 2.8 7.4 6.6 7.4 10.8 0 4-3.1 6.8-7.4 7.6-4.3-.8-7.4-3.6-7.4-7.6 0-4.2 3.2-8 7.4-10.8z"/><path d="M12 5v14.2M12 9.6 9 7.4m3 2.2 3-2.2M12 13.6 8.3 11m3.7 2.6 3.7-2.6" stroke="#25602a" stroke-width="1.1" stroke-linecap="round" fill="none"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12.2 4.6c.1-1.5.9-2.5 2.5-2.9" stroke="#c49a6c" stroke-width="1.5" fill="none" stroke-linecap="round"/><path fill="#d79c3d" d="M6.7 11.6h10.6c0 5.1-2.4 9.1-5.3 10.4-2.9-1.3-5.3-5.3-5.3-10.4z"/><path fill="#8a5a2f" d="M5.3 12c0-4.4 3-7.6 6.7-7.6s6.7 3.2 6.7 7.6c0 .6-.5 1-1.1 1H6.4c-.6 0-1.1-.4-1.1-1z"/></svg>
+    </div>
+  </header>
+
+  <main class="games">
+    <a class="game feat" href="herzeln.html">
+      <span class="badge">Neu</span>
+      <div class="fan" aria-hidden="true">
+        <span class="pc red"><b>K</b><svg viewBox="0 0 24 24"><path fill="#c42430" d="M12 21.3c-.3 0-.6-.1-.8-.3C8.3 18.7 2.4 14.3 2.4 8.9c0-3 2.4-5.4 5.3-5.4 1.8 0 3.3.9 4.3 2.4 1-1.5 2.5-2.4 4.3-2.4 2.9 0 5.3 2.4 5.3 5.4 0 5.4-5.9 9.8-8.8 12.1-.2.2-.5.3-.8.3z"/></svg></span>
+        <span class="pc red"><b>U</b><svg viewBox="0 0 24 24"><path fill="#c42430" d="M12 21.3c-.3 0-.6-.1-.8-.3C8.3 18.7 2.4 14.3 2.4 8.9c0-3 2.4-5.4 5.3-5.4 1.8 0 3.3.9 4.3 2.4 1-1.5 2.5-2.4 4.3-2.4 2.9 0 5.3 2.4 5.3 5.4 0 5.4-5.9 9.8-8.8 12.1-.2.2-.5.3-.8.3z"/></svg></span>
+        <span class="pc red"><b>A</b><svg viewBox="0 0 24 24"><path fill="#c42430" d="M12 21.3c-.3 0-.6-.1-.8-.3C8.3 18.7 2.4 14.3 2.4 8.9c0-3 2.4-5.4 5.3-5.4 1.8 0 3.3.9 4.3 2.4 1-1.5 2.5-2.4 4.3-2.4 2.9 0 5.3 2.4 5.3 5.4 0 5.4-5.9 9.8-8.8 12.1-.2.2-.5.3-.8.3z"/></svg></span>
+      </div>
+      <h2>Herzeln</h2>
+      <p>Zwei Epochen – einmal ist jeder Stich Gift, einmal Gold. Zum Schluss wird das Herzmandl angesetzt. Mit geführtem Spielblock, Punkteverlauf und Hausregeln.</p>
+      <div class="tags"><span>3–4 Spieler</span><span>Spielblock</span><span>DE · Mostviertl · Südtirol · Liechtenstein · EN</span></div>
+      <span class="go">Spielen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
+
+    <a class="game" href="russisch_schnapsen.html">
+      <div class="fan" aria-hidden="true">
+        <span class="pc"><b>O</b><svg viewBox="0 0 24 24"><path fill="#3f8f41" d="M12 1.8c4.2 2.8 7.4 6.6 7.4 10.8 0 4-3.1 6.8-7.4 7.6-4.3-.8-7.4-3.6-7.4-7.6 0-4.2 3.2-8 7.4-10.8z"/><path d="M12 5v14.2" stroke="#25602a" stroke-width="1.1" fill="none"/></svg></span>
+        <span class="pc"><b>K</b><svg viewBox="0 0 24 24"><circle cx="12" cy="4.3" r="1.8" fill="#8a5a14"/><circle cx="12" cy="13.3" r="7.9" fill="#e7aa2f"/><path fill="#c42430" d="M4.8 10.2h14.4l.7 2.6H4.1z"/><path d="M8.7 17h6.6" stroke="#5b3a0c" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+        <span class="pc"><b>A</b><svg viewBox="0 0 24 24"><path fill="#d79c3d" d="M6.7 11.6h10.6c0 5.1-2.4 9.1-5.3 10.4-2.9-1.3-5.3-5.3-5.3-10.4z"/><path fill="#6b4423" d="M5.3 12c0-4.4 3-7.6 6.7-7.6s6.7 3.2 6.7 7.6c0 .6-.5 1-1.1 1H6.4c-.6 0-1.1-.4-1.1-1z"/></svg></span>
+      </div>
+      <h2>Russisch Schnapsen</h2>
+      <p>Regeln, Farben, Ansagen und ein kleiner Punktezähler für die ostösterreichische Variante.</p>
+      <div class="tags"><span>Ansagen</span><span>Punktezähler</span><span>DE · FR</span></div>
+      <span class="go">Öffnen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
+  </main>
+
+  <div class="foot">Alles läuft im Browser – Spielstände bleiben auf deinem Gerät.</div>
+</div>
+</body>
+</html>
