@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Herzeln</title>
-<meta name="description" content="Herzeln – Regeln und Spielblock: Minus-Epoche, Plus-Epoche und Herzmandl-Ansetzen. Auf Deutsch, Mostviertlerisch, Südtirolerisch, Liechtensteinerisch und Englisch.">
+<meta name="description" content="Herzeln – Regeln und Spielblock: Minusrunde, Plusrunde und Herzmandl-Ansetzen. Auf Deutsch, Mostviertlerisch, Südtirolerisch, Liechtensteinerisch und Englisch.">
 <meta name="theme-color" content="#5b1420">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23c42430' d='M12 21.3c-.3 0-.6-.1-.8-.3C8.3 18.7 2.4 14.3 2.4 8.9c0-3 2.4-5.4 5.3-5.4 1.8 0 3.3.9 4.3 2.4 1-1.5 2.5-2.4 4.3-2.4 2.9 0 5.3 2.4 5.3 5.4 0 5.4-5.9 9.8-8.8 12.1-.2.2-.5.3-.8.3z'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -529,14 +529,14 @@ const ordEn = n => n + (n===1?'st':n===2?'nd':n===3?'rd':'th');
 const S = {
   title:['Herzeln','Herzln','Herzln','Herzla','Herzeln'],
   herzmandl:['Herzmandl','Herzmandl','Herzmandl','Herzmandli','Herzmandl'],
-  eyebrow:['Kartenspiel aus Österreich','A Kartnspü aus Östareich','A Kortnspiel aus Öschterreich','Es Kartaspiel us Öschtrich','An Austrian card game'],
+  eyebrow:['Kartenspiel aus Österreich','A Kortnspü aus Östareich','A Kortnspiel aus Öschterreich','Es Kartaspiel us Öschtrich','An Austrian card game'],
   tagline:[
-    'Zwei Epochen – einmal ist jeder Stich Gift, einmal Gold. Und zum Schluss wird das Herzmandl angesetzt.',
-    'Zwoa Epochn – amoi is jeder Stich a Gift, amoi a Goid. Und zum Schluss wird ’s Herzmandl angsetzt.',
-    'Zwoa Epochn – amol isch jeder Stich a Gift, amol Gold. Und zun Schluss weard ’s Herzmandl ungsetzt.',
-    'Zwei Epocha – eimol isch jeda Stich Gift, eimol Gold. Und zum Schluss wird ’s Herzmandli agsetzt.',
-    'Two epochs — once every trick is poison, once it’s gold. And to finish, the Herzmandl gets laid out.'],
-  facts:['3–4 Spieler · 32 Karten · 2 Epochen + Finale','3–4 Leit · 32 Kartn · 2 Epochn + Finale','3–4 Leit · 32 Kortn · 2 Epochn + Finale','3–4 Lüt · 32 Karta · 2 Epocha + Finale','3–4 players · 32 cards · 2 epochs + finale'],
+    'Eine Minus- und eine Plusrunde – einmal ist jeder Stich Gift, einmal Gold. Und zum Schluss wird das Herzmandl angesetzt.',
+    'A Minus- und a Plusrundn – amoi is jeder Stich a Gift, amoi a Goid. Und zum Schluss wird ’s Herzmandl angsetzt.',
+    'A Minus- und a Plusrundn – amol isch jeder Stich a Gift, amol Gold. Und zun Schluss weard ’s Herzmandl ungsetzt.',
+    'E Minus- und e Plusrunda – eimol isch jeda Stich Gift, eimol Gold. Und zum Schluss wird ’s Herzmandli agsetzt.',
+    'A minus round and a plus round — once every trick is poison, once it’s gold. And to finish, the Herzmandl gets laid out.'],
+  facts:['3–4 Spieler · 32 Karten · Minus- & Plusrunde + Finale','3–4 Leit · 32 Kortn · Minus- & Plusrundn + Finale','3–4 Leit · 32 Kortn · Minus- & Plusrundn + Finale','3–4 Lüt · 32 Karta · Minus- & Plusrunda + Finale','3–4 players · 32 cards · minus & plus round + finale'],
   langLabel:['Sprache','Sproch','Sproch','Sprooch','Language'],
   dialects:['Dialekte','Dialekte','Dialekte','Dialekt','Dialects'],
   themeLabel:['Farbschema','Farbn','Farbm','Farba','Theme'],
@@ -551,7 +551,7 @@ const S = {
   namesLabel:['Wer spielt mit?','Wer spüt mit?','Wer spielt mit?','Wer spielt mit?','Who’s playing?'],
   playerN:['Spieler {n}','Spüla {n}','Spieler {n}','Spieler {n}','Player {n}'],
   firstDealer:['Wer gibt zuerst?','Wer gibt z’erst?','Wer gip zerscht?','Wer git zerscht?','Who deals first?'],
-  epochFirst:['Welche Epoche zuerst?','Wöche Epoch z’erst?','Welle Epoche zerscht?','Weli Epocha zerscht?','Which epoch first?'],
+  epochFirst:['Welche Runde zuerst?','Wöche Rundn z’erst?','Welle Rundn zerscht?','Weli Runda zerscht?','Which round first?'],
   minusFirst:['Minus zuerst','Minus z’erst','Minus zerscht','Minus zerscht','Minus first'],
   plusFirst:['Plus zuerst','Plus z’erst','Plus zerscht','Plus zerscht','Plus first'],
   repeatLabel:['Wie oft wird jede Tour gespielt?','Wia oft wird a Tour gspüt?','Wie oft weard a Tour gspielt?','Wia oft wird jedi Tour gspielt?','How often is each tour played?'],
@@ -589,9 +589,9 @@ const S = {
   tricksQ:['Wie viele Stiche hat jeder gemacht?','Wia vü Stich hot a jeder gmocht?','Wieviel Stich hot a jeder gmocht?','Wia vil Stich hät jeda gmacht?','How many tricks did each player take?'],
   tricksLeft:[pl('Noch 1 Stich offen','Noch {n} Stiche offen'),'No {n} Stich offn','No {n} Stich offn','No {n} Stich offa',pl('1 trick left','{n} tricks left')],
   tricksOk:['Passt – alle {n} Stiche verteilt','Passt – olle {n} Stich vateilt','Passt – olle {n} Stich verteilt','Passt – alli {n} Stich verteilt','All {n} tricks assigned'],
-  cardsQ:['Wer hat welche Karte heimgebracht?','Wer hot wöche Kartn hoambracht?','Wer hot welle Kortn hoambrocht?','Wer hät weli Karta heibrocht?','Who took which card?'],
-  cardsLeft:[pl('Noch 1 Karte ohne Besitzer','Noch {n} Karten ohne Besitzer'),'No {n} Kartn ohne Besitza','No {n} Kortn ohne Besitzer','No {n} Karta ohni Bsitzer',pl('1 card unassigned','{n} cards unassigned')],
-  cardsOk:['Passt – alle Karten zugeteilt','Passt – olle Kartn zuateilt','Passt – olle Kortn zuateilt','Passt – alli Karta zuateilt','All cards assigned'],
+  cardsQ:['Wer hat welche Karte heimgebracht?','Wer hot wöche Kortn hoambracht?','Wer hot welle Kortn hoambrocht?','Wer hät weli Karta heibrocht?','Who took which card?'],
+  cardsLeft:[pl('Noch 1 Karte ohne Besitzer','Noch {n} Karten ohne Besitzer'),'No {n} Kortn ohne Besitza','No {n} Kortn ohne Besitzer','No {n} Karta ohni Bsitzer',pl('1 card unassigned','{n} cards unassigned')],
+  cardsOk:['Passt – alle Karten zugeteilt','Passt – olle Kortn zuateilt','Passt – olle Kortn zuateilt','Passt – alli Karta zuateilt','All cards assigned'],
   lastQ:['Wer hat den letzten Stich gemacht?','Wer hot an letztn Stich gmocht?','Wer hot in letschtn Stich gmocht?','Wer hät da letscht Stich gmacht?','Who took the last trick?'],
   pickOne:['Bitte jemanden auswählen','Wer wor’s? Bitte auswöhln','Wer isch’s gwesn? Bitte auswähln','Wer isch’s gsi? Bitte uswähla','Pick a player'],
   picked:['Passt','Passt','Passt','Passt','Got it'],
@@ -599,11 +599,11 @@ const S = {
   orderLeft:['Noch {n} offen','No {n} offn','No {n} offn','No {n} offa','{n} to go'],
   orderOk:['Reihenfolge steht','D’ Reihnfoig steht','Di Reihenfolge steat','D’Reihafolg stoht','Order complete'],
   orderReset:['Von vorn','Vo vurn','Von vorne','Vo vorna','Start over'],
-  restQ:['Wie viele Karten hatte jeder noch, als der Erste draußen war?','Wia vü Kartn hot a jeder no ghobt, wia da Erste draußn wor?','Wieviel Kortn hot a jeder no ghobt, wia dr Erschte draußn gwesn isch?','Wia vil Karta hät jeda no gha, wo dr Erscht dussa gsi isch?','How many cards did each player hold when the first went out?'],
+  restQ:['Wie viele Karten hatte jeder noch, als der Erste draußen war?','Wia vü Kortn hot a jeder no ghobt, wia da Erste draußn wor?','Wieviel Kortn hot a jeder no ghobt, wia dr Erschte draußn gwesn isch?','Wia vil Karta hät jeda no gha, wo dr Erscht dussa gsi isch?','How many cards did each player hold when the first went out?'],
   restNeedZero:['Einer muss 0 haben – der war ja zuerst draußen.','Oana muass 0 hom – der wor jo z’erst draußn.','Oaner muass 0 hobm – der isch jo zerscht draußn gwesn.','Eina muass 0 ha – dä isch jo zerscht dussa gsi.','Someone must have 0 — they went out first.'],
   restOneZero:['Nur einer kann zuerst draußen sein.','Z’erst draußn ko nur oana sei.','Zerscht draußn konn lei oaner sein.','Zerscht dussa ka nu eina si.','Only one player can go out first.'],
   restOk:['Passt','Passt','Passt','Passt','Looks good'],
-  warnCards:['{name} hat Karten, aber keinen Stich?','{name} hot Kartn, oba koan Stich?','{name} hot Kortn, ober koan Stich?','{name} hät Karta, aber kai Stich?','{name} has cards but no tricks?'],
+  warnCards:['{name} hat Karten, aber keinen Stich?','{name} hot Kortn, oba koan Stich?','{name} hot Kortn, ober koan Stich?','{name} hät Karta, aber kai Stich?','{name} has cards but no tricks?'],
   warnLast:['{name} hat den letzten Stich, aber keinen Stich gezählt?','{name} hot an letztn Stich, oba koan Stich zöd?','{name} hot in letschtn Stich, ober koan Stich zählt?','{name} hät da letscht Stich, aber kai Stich zellt?','{name} took the last trick but has no tricks counted?'],
   standings:['Stand','Stand','Stond','Stand','Standings'],
   dealerTag:['gibt','gibt','gip','git','deals'],
@@ -629,8 +629,8 @@ const S = {
   history:['Frühere Partien','Vorige Partien','Friahere Partien','Früaneri Partia','Previous games'],
   clearHistory:['Liste leeren','Liste ausramma','Liste ausramen','Lischta leera','Clear list'],
   clearHistoryQ:['Alle früheren Partien löschen?','Olle vorign Partien löschn?','Olle friaheren Partien löschn?','Alli früanera Partia lösche?','Delete all previous games?'],
-  ep_minus:['Minus-Epoche','Minus-Epoch','Minus-Epoche','Minus-Epocha','Minus epoch'],
-  ep_plus:['Plus-Epoche','Plus-Epoch','Plus-Epoche','Plus-Epocha','Plus epoch'],
+  ep_minus:['Minusrunde','Minusrundn','Minusrundn','Minusrunda','Minus round'],
+  ep_plus:['Plusrunde','Plusrundn','Plusrundn','Plusrunda','Plus round'],
   ep_final:['Finale','Finale','Finale','Finale','Finale'],
   eps_minus:['Weniger ist mehr','Weniga is mehr','Weniger isch mehr','Weniger isch meh','Less is more'],
   eps_plus:['Mehr ist mehr','Je mehr, desto bessa','Je mehr, desto besser','Je meh, desto besser','More is more'],
@@ -656,28 +656,28 @@ const S = {
   g_plus_letzter:['Nur der letzte Stich zählt – er bringt {v}.','Nur da letzte Stich zöd – der bringt {v}.','Lei dr letschte Stich zählt – der bringt {v}.','Nu dr letscht Stich zellt – dä bringt {v}.','Only the last trick counts — it earns {v}.'],
   g_minus_alles:['Alles zählt auf einmal – Stiche, Herz, Ober, Herzkönig und der Letzte. Alles kostet.','Ois zöd auf amoi – Stich, Herz, Ober, Herzkini und da Letzte. Ois kost wos.','Olls zählt auf amol – Stich, Herz, Ober, Herzkini und dr Letschte. Olls koscht.','Alls zellt uf eimol – Stich, Herz, Ober, Herzküng und dr Letscht. Alls koschtet.','Everything counts at once — tricks, hearts, Obers, King of Hearts and the last trick. All of it costs.'],
   g_plus_alles:['Alles zählt auf einmal – Stiche, Herz, Ober, Herzkönig und der Letzte. Alles bringt Punkte.','Ois zöd auf amoi – Stich, Herz, Ober, Herzkini und da Letzte. Ois bringt Punkt.','Olls zählt auf amol – Stich, Herz, Ober, Herzkini und dr Letschte. Olls bringt Punkte.','Alls zellt uf eimol – Stich, Herz, Ober, Herzküng und dr Letscht. Alls bringt Pünkt.','Everything counts at once — tricks, hearts, Obers, King of Hearts and the last trick. All of it pays.'],
-  g_final_order:['Wer zuerst alle Karten angelegt hat, gewinnt. Wertung nach Platz: {v}.','Wer z’erst olle Kartn anglegt hot, gwinnt. Wertung noch Platz: {v}.','Wer zerscht olle Kortn ungleg hot, gwinnt. Wertung noch Plotz: {v}.','Wer zerscht alli Karta aglait hät, gwinnt. Wertig noch Platz: {v}.','First to lay out all cards wins. Scored by place: {v}.'],
-  g_final_rest:['Wer zuerst alle Karten angelegt hat, gewinnt. Alle anderen zahlen {v} pro Karte, die sie noch in der Hand haben.','Wer z’erst olle Kartn anglegt hot, gwinnt. De andern zoin {v} pro Kartn, de’s no in da Hand hom.','Wer zerscht olle Kortn ungleg hot, gwinnt. Di ondern zohln {v} pro Kortn, de sie no in dr Hond hobm.','Wer zerscht alli Karta aglait hät, gwinnt. Alli andera zahlend {v} pro Karta, wo sie no in dr Hand hend.','First to lay out all cards wins. Everyone else pays {v} per card still in hand.'],
+  g_final_order:['Wer zuerst alle Karten angelegt hat, gewinnt. Wertung nach Platz: {v}.','Wer z’erst olle Kortn anglegt hot, gwinnt. Wertung noch Platz: {v}.','Wer zerscht olle Kortn ungleg hot, gwinnt. Wertung noch Plotz: {v}.','Wer zerscht alli Karta aglait hät, gwinnt. Wertig noch Platz: {v}.','First to lay out all cards wins. Scored by place: {v}.'],
+  g_final_rest:['Wer zuerst alle Karten angelegt hat, gewinnt. Alle anderen zahlen {v} pro Karte, die sie noch in der Hand haben.','Wer z’erst olle Kortn anglegt hot, gwinnt. De andern zoin {v} pro Kortn, de’s no in da Hand hom.','Wer zerscht olle Kortn ungleg hot, gwinnt. Di ondern zohln {v} pro Kortn, de sie no in dr Hond hobm.','Wer zerscht alli Karta aglait hät, gwinnt. Alli andera zahlend {v} pro Karta, wo sie no in dr Hand hend.','First to lay out all cards wins. Everyone else pays {v} per card still in hand.'],
   w_stiche:['Jeder Stich zählt.','Jeder Stich zöd.','Jeder Stich zählt.','Jeda Stich zellt.','Every trick counts.'],
-  w_herz:['Jede Herz-Karte in deinen Stichen.','Jede Herz-Kartn in deine Stich.','Jede Herz-Kortn in deine Stich.','Jedi Herz-Karta in dina Stich.','Every heart in your tricks.'],
+  w_herz:['Jede Herz-Karte in deinen Stichen.','Jede Herz-Kortn in deine Stich.','Jede Herz-Kortn in deine Stich.','Jedi Herz-Karta in dina Stich.','Every heart in your tricks.'],
   w_ober:['Jeder Ober in deinen Stichen.','Jeder Ober in deine Stich.','Jeder Ober in deine Stich.','Jeda Ober in dina Stich.','Every Ober in your tricks.'],
   w_herzkoenig:['Nur der Herzkönig zählt.','Nur da Herzkini zöd.','Lei dr Herzkini zählt.','Nu dr Herzküng zellt.','Only the King of Hearts counts.'],
   w_letzter:['Nur der letzte Stich zählt.','Nur da letzte Stich zöd.','Lei dr letschte Stich zählt.','Nu dr letscht Stich zellt.','Only the last trick counts.'],
   w_alles:['Alles auf einmal: Stiche, Herz, Ober, Herzkönig und letzter Stich.','Ois auf amoi: Stich, Herz, Ober, Herzkini und da Letzte.','Olls auf amol: Stich, Herz, Ober, Herzkini und dr Letschte.','Alls uf eimol: Stich, Herz, Ober, Herzküng und dr Letscht.','All at once: tricks, hearts, Obers, King of Hearts and the last trick.'],
   tm_stiche:['Bist du in einer Farbe frei, schmier Sau und Zehner ab.','Bist in ana Farb frei, schmier dei Sau und an Zehna o.','Bisch in a Farb frei, schmier dei Sau und in Zehner o.','Bisch in ra Farb frei, schmier dis Ass und da Zähni ab.','Once you’re void in a suit, dump your Aces and Tens.'],
-  tp_stiche:['Lange Farben ausspielen – die letzten Karten einer Farbe holen oft die Stiche.','Lange Farbn ausspün – de letztn Kartn vo ana Farb hoin oft de Stich.','Longe Farbm ausspieln – di letschtn Kortn von a Farb holn oft di Stich.','Langi Farba usspiela – d’letschta Karta vo ra Farb holend oft d’Stich.','Lead your long suits — the last cards of a suit often win.'],
+  tp_stiche:['Lange Farben ausspielen – die letzten Karten einer Farbe holen oft die Stiche.','Lange Farbn ausspün – de letztn Kortn vo ana Farb hoin oft de Stich.','Longe Farbm ausspieln – di letschtn Kortn von a Farb holn oft di Stich.','Langi Farba usspiela – d’letschta Karta vo ra Farb holend oft d’Stich.','Lead your long suits — the last cards of a suit often win.'],
   tm_herz:['Herz nicht selber ausspielen, außer die kleinen. Bist du frei, schmier hohe Herz ab.','Herz ned söba ausspün, außer de kloan. Bist frei, schmier de hohn Herz o.','Herz nit sel ausspieln, außer di kloan. Bisch frei, schmier di hochn Herz o.','Herz nid sälber usspiela, ussert d’kleina. Bisch frei, schmier d’hocha Herz ab.','Don’t lead hearts unless they’re low. When void, dump your high hearts.'],
   tp_herz:['Mit hohen Herz stechen und Herz ausspielen, wenn die anderen keines mehr haben.','Mit de hohn Herz stechn, und Herz ausspün, wenn de andern koans mehr hom.','Mit di hochn Herz stechn, und Herz ausspieln, wenn di ondern koans mehr hobm.','Mit da hocha Herz steche, und Herz usspiela, wenn d’andera keis meh hend.','Win tricks with high hearts and lead them once the others run out.'],
   tm_ober:['Ein Ober ist in Gefahr, solange Sau und Zehner seiner Farbe draußen sind – schmier ihn früh ab.','A Ober is in Gfoahr, solang Sau und Zehna vo seina Farb no draußn san – schmier eam boid o.','A Ober isch in Gfohr, solong Sau und Zehner von seiner Farb no draußn sein – schmier ihn bold o.','En Ober isch in Gfohr, solang Ass und Zähni vo sinra Farb no dussa sind – schmier na bald ab.','An Ober is in danger while its suit’s Ace and Ten are still out — dump it early.'],
   tp_ober:['Spar dir Sau und Zehner für Stiche auf, in denen ein Ober liegt.','Hoit da Sau und Zehna für de Stich auf, wo a Ober drin liegt.','Spor dr Sau und Zehner fir di Stich au, wo a Ober drin liegt.','Spar dr Ass und Zähni für d’Stich uf, wo en Ober drin lit.','Save Aces and Tens for tricks with an Ober in them.'],
   tm_herzkoenig:['Herz-Sau oder Herz-Zehner? Dann spiel Herz an und jag den König raus.','Host d’ Herz-Sau oder an Herz-Zehna? Dann spü Herz o und jog an Kini aussa.','Hosch di Herz-Sau oder in Herz-Zehner? Nor spiel Herz un und jog in Kini ausser.','Häsch ’s Herz-Ass oder da Herz-Zähni? Denn spiel Herz a und jag da Küng usa.','Holding the Ace or Ten of hearts? Lead hearts and hunt the king down.'],
   tp_herzkoenig:['Herz-Sau und Herz-Zehner aufheben – damit fängst du den König.','Herz-Sau und Herz-Zehna aufhebn – mit de fangst an Kini.','Herz-Sau und Herz-Zehner aufhebm – mit de fongsch in Kini.','Herz-Ass und Herz-Zähni ufheba – dermit fangsch da Küng.','Keep the Ace and Ten of hearts — they’re how you catch the king.'],
-  tm_letzter:['Für den Schluss nur kleine Karten aufheben.','Fürn Schluss nur kloane Kartn aufhebn.','Fir’n Schluss lei kloane Kortn aufhebm.','Für da Schluss nu kleini Karta ufheba.','Save only small cards for the end.'],
+  tm_letzter:['Für den Schluss nur kleine Karten aufheben.','Fürn Schluss nur kloane Kortn aufhebn.','Fir’n Schluss lei kloane Kortn aufhebm.','Für da Schluss nu kleini Karta ufheba.','Save only small cards for the end.'],
   tp_letzter:['Eine Sau oder eine lange Farbe bis zum Schluss aufheben.','A Sau oder a lange Farb bis zum Schluss aufhebn.','A Sau oder a longe Farb bis zun Schluss aufhebm.','Es Ass oder e langi Farb bis zum Schluss ufheba.','Save an Ace or a long suit for the very end.'],
   tm_alles:['Zuerst den Herzkönig loswerden, dann die Ober, dann die Stiche.','Z’erst an Herzkini loswern, dann de Ober, dann de Stich.','Zerscht in Herzkini loswern, nor di Ober, nor di Stich.','Zerscht da Herzküng loswerda, denn d’Ober, denn d’Stich.','Ditch the King of Hearts first, then the Obers, then the tricks.'],
   tp_alles:['Stiche machen ist die halbe Miete – der Rest kommt mit.','Stich mochn is de hoibe Miete – da Rest kimmt mit.','Stich mochn isch di holbe Miete – dr Rescht kimp mit.','Stich macha isch di halb Miete – dr Rescht kunnt mit.','Win tricks and the rest tends to follow.'],
   r_about:['Worum geht’s?','Um wos geht’s?','Um wos geat’s?','Um was gohts?','What’s it about?'],
-  r_cards:['Karten & Rangfolge','Kartn & Rangfoig','Kortn & Rongfolge','Karta & Rangfolg','Cards & ranking'],
+  r_cards:['Karten & Rangfolge','Kortn & Rangfoig','Kortn & Rongfolge','Karta & Rangfolg','Cards & ranking'],
   r_play:['Geben & Stechen','Gebn & Stechn','Gebm & Stechn','Gee & Steche','Dealing & tricks'],
   r_tours:['Die Touren','De Touren','Di Touren','D’Toura','The tours'],
   r_final:['Finale: Herzmandl-Ansetzen','Finale: Herzmandl ansetzn','Finale: Herzmandl unsetzn','Finale: Herzmandli asetza','Finale: Herzmandl layout'],
@@ -688,7 +688,7 @@ const S = {
   rankLay:['Beim Ansetzen – der Reihe nach','Beim Ansetzn – da Reih noch','Beim Unsetzn – dr Reih noch','Bim Asetza – dr Reihe noch','In the layout — in sequence'],
   boardCaption:[
     'Mitten im Finale: Die Unter bilden die Mittelspalte. Nach rechts geht’s hinauf (O, K, A), nach links hinunter (10, 9, 8, 7). Die leuchtenden Plätze sind die Karten, die als Nächstes gelegt werden dürfen.',
-    'Mittn im Finale: De Unta san de Mittlspoitn. Noch rechts geht’s auffi (O, K, A), noch links obi (10, 9, 8, 7). De leichtadn Plätz san de Kartn, de ma ois Nächsts legn derf.',
+    'Mittn im Finale: De Unta san de Mittlspoitn. Noch rechts geht’s auffi (O, K, A), noch links obi (10, 9, 8, 7). De leichtadn Plätz san de Kortn, de ma ois Nächsts legn derf.',
     'Mittn in Finale: Di Unter sein di Mittlspolte. Noch rechts geat’s aui (O, K, A), noch links oi (10, 9, 8, 7). Di leichtendn Plätz sein di Kortn, de man als Nächschtes legn derf.',
     'Mitta im Finale: D’Under bildend d’Mittlspalta. Noch rechts gohts ufa (O, K, A), noch links aba (10, 9, 8, 7). D’lüüchtenda Plätz sind d’Karta, wo ma als Nögschts lega darf.',
     'Mid-finale: the Unters form the middle column. Rightwards goes up (O, K, A), leftwards goes down (10, 9, 8, 7). The glowing slots are the cards that may be played next.'],
@@ -700,9 +700,9 @@ const S = {
   off:['bei euch aus','bei eich aus','bei enk aus','bi eu us','off at your table'],
   inTotal:['zusammen {n} pro Spiel','z’samm {n} pro Spü','zomm {n} pro Spiel','zäma {n} pro Spiel','{n} per deal in total'],
   finalOrderTxt:['Weitergespielt wird, bis alle Plätze feststehen: {list}.','G’spüt wird weida, bis olle Plätz fest san: {list}.','Gspielt weard weiter, bis olle Plätz fescht sein: {list}.','Gspielt wird wiiter, bis alli Plätz fescht sind: {list}.','Play on until every place is decided: {list}.'],
-  finalRestTxt:['Schluss ist, sobald der Erste draußen ist. Jeder andere zahlt {v} pro Karte, die er noch hält.','Aus is, sobald da Erste draußn is. De andern zoin {v} pro Kartn, de’s no in da Hand hom.','Aus isch, sobald dr Erschte draußn isch. Di ondern zohln {v} pro Kortn, de sie no in dr Hond hobm.','Fertig isch, sobald dr Erscht dussa isch. Alli andera zahlend {v} pro Karta, wo sie no in dr Hand hend.','It ends as soon as the first player is out. Everyone else pays {v} per card still in hand.'],
+  finalRestTxt:['Schluss ist, sobald der Erste draußen ist. Jeder andere zahlt {v} pro Karte, die er noch hält.','Aus is, sobald da Erste draußn is. De andern zoin {v} pro Kortn, de’s no in da Hand hom.','Aus isch, sobald dr Erschte draußn isch. Di ondern zohln {v} pro Kortn, de sie no in dr Hond hobm.','Fertig isch, sobald dr Erscht dussa isch. Alli andera zahlend {v} pro Karta, wo sie no in dr Hand hend.','It ends as soon as the first player is out. Everyone else pays {v} per card still in hand.'],
   toPad:['Zum Spielblock','Zum Aufschreibn','Zun Aufschreibm','Zum Ufschriiba','Open the scorepad'],
-  footer:['Touren und Werte angelehnt an die Piatnik-Regeln, Epochen und Herzmandl-Finale nach Hausbrauch. Der Spielblock speichert alles nur auf diesem Gerät.','Touren und Wert ongelehnt an de Piatnik-Regln, Epochn und Herzmandl-Finale wia’s bei uns da Brauch is. Da Block speichat ois nur auf dem Gerät.','Touren und Werte ungelehnt an di Piatnik-Regln, Epochn und Herzmandl-Finale noch Hausbrauch. Dr Block speichert olls lei auf den Gerät.','Toura und Wert agleint a d’Piatnik-Regla, Epocha und Herzmandli-Finale noch Husbruuch. Dr Block speichert alls nu uf dem Grät.','Tours and values follow the Piatnik rules; the two epochs and the Herzmandl finale are house custom. The scorepad stores everything on this device only.']
+  footer:['Touren und Werte angelehnt an die Piatnik-Regeln, Minus-/Plusrunde und Herzmandl-Finale nach Hausbrauch. Der Spielblock speichert alles nur auf diesem Gerät.','Touren und Wert ongelehnt an de Piatnik-Regln, Minus-/Plusrundn und Herzmandl-Finale wia’s bei uns da Brauch is. Da Block speichat ois nur auf dem Gerät.','Touren und Werte ungelehnt an di Piatnik-Regln, Minus-/Plusrundn und Herzmandl-Finale noch Hausbrauch. Dr Block speichert olls lei auf den Gerät.','Toura und Wert agleint a d’Piatnik-Regla, Minus-/Plusrunda und Herzmandli-Finale noch Husbruuch. Dr Block speichert alls nu uf dem Grät.','Tours and values follow the Piatnik rules; the minus/plus rounds and the Herzmandl finale are house custom. The scorepad stores everything on this device only.']
 };
 const SUITN = {
   de:{herz:'Herz',schelle:'Schelle',laub:'Laub',eichel:'Eichel'},
@@ -722,7 +722,7 @@ const RANKN = {
 /* ---------- long-form rules per language ---------- */
 const RULES = {
 de:{
-  about:'Herzeln ist ein Stichspiel für drei oder vier Leute, bei dem jede Tour eine andere Aufgabe hat. Eine Partie besteht aus zwei Epochen mit denselben Touren – nur das Vorzeichen dreht sich um. Zum Schluss wird das Herzmandl angesetzt. Wer am Ende die meisten Punkte hat, gewinnt.',
+  about:'Herzeln ist ein Stichspiel für drei oder vier Leute, bei dem jede Tour eine andere Aufgabe hat. Eine Partie besteht aus einer Minus- und einer Plusrunde mit denselben Touren – nur das Vorzeichen dreht sich um. Zum Schluss wird das Herzmandl angesetzt. Wer am Ende die meisten Punkte hat, gewinnt.',
   step_minus:'Alles, was du in deinen Stichen heimbringst, kostet Punkte. Wer am wenigsten erwischt, lacht.',
   step_plus:'Dieselben Touren, nur umgedreht: Jetzt bringt genau das Punkte, was vorher weh getan hat.',
   step_final:'Grünmandl-Ansetzen, aber mit dem Herzmandl: Wer zuerst alle Karten angelegt hat, gewinnt das Finale.',
@@ -736,7 +736,7 @@ de:{
     'Es gibt <b>keinen Trumpf</b> und keinen Stichzwang: Du musst nicht überstechen.',
     'Den Stich macht die höchste Karte der ausgespielten Farbe. Wer sticht, kommt als Nächstes raus.',
     'Abgerechnet wird nach jedem Spiel – das erledigt der Spielblock hier für euch.'],
-  toursIntro:'In jeder Epoche kommt jede Tour dran. Die Werte sind eure aktuellen Hausregeln – in der Minus-Epoche zählen sie minus, in der Plus-Epoche plus.',
+  toursIntro:'In jeder Runde kommt jede Tour dran. Die Werte sind eure aktuellen Hausregeln – in der Minusrunde zählen sie minus, in der Plusrunde plus.',
   finalIntro:'Zum Schluss wird Grünmandl-Ansetzen gespielt – bei uns aber mit dem <b>Herzmandl</b>. Jetzt gibt’s keine Stiche mehr, es geht nur ums Loswerden.',
   finalSteps:[
     'Alle Karten werden ausgeteilt. Wer das <b>Herzmandl</b> (Herz-Unter) hat, legt es in die Mitte und fängt an.',
@@ -748,45 +748,45 @@ de:{
     'Im Finale: Halte Karten zurück, die den anderen den Weg versperren – etwa einen Zehner, wenn du selbst keine Neuner brauchst.',
     'Viele Karten einer Farbe? Dann willst du ihren Unter möglichst früh am Tisch.',
     'Merk dir, welche Herz schon gefallen sind – das entscheidet die Herzkönig-Tour.',
-    'In der Minus-Epoche ist eine kurze Farbe Gold wert: Bist du frei, darfst du abschmieren.',
+    'In der Minusrunde ist eine kurze Farbe Gold wert: Bist du frei, darfst du abschmieren.',
     'Und das Wichtigste: Wer jammert, gibt.'],
-  gloss:[['Mandl','Der Unter. Das Herzmandl ist der Herz-Unter.'],['Sau','Das Ass.'],['Tour','Ein Spiel mit einer bestimmten Aufgabe, z. B. „Herz“.'],['Epoche','Alle Touren einmal durch – einmal Minus, einmal Plus.'],['Partie','Beide Epochen plus Finale.'],['Rauskommen','Die erste Karte eines Stichs ausspielen.'],['Bedienen','Die ausgespielte Farbe zugeben.'],['Frei sein','Keine Karte mehr von einer Farbe haben.'],['Abschmieren','Eine teure Karte auf einen fremden Stich werfen.'],['Klopfen','Beim Ansetzen passen, weil man nicht legen kann.']],
-  house:'Herzeln wird in jedem Ort ein bissl anders gespielt. Werte, Touren, die Reihenfolge der Epochen und die Wertung im Finale stellt ihr beim Anlegen einer neuen Partie unter <b>„Hausregeln“</b> ein.'
+  gloss:[['Mandl','Der Unter. Das Herzmandl ist der Herz-Unter.'],['Sau','Das Ass.'],['Tour','Ein Spiel mit einer bestimmten Aufgabe, z. B. „Herz“.'],['Minus-/Plusrunde','Alle Touren einmal durch – einmal Minus, einmal Plus.'],['Partie','Minusrunde, Plusrunde und Finale.'],['Rauskommen','Die erste Karte eines Stichs ausspielen.'],['Bedienen','Die ausgespielte Farbe zugeben.'],['Frei sein','Keine Karte mehr von einer Farbe haben.'],['Abschmieren','Eine teure Karte auf einen fremden Stich werfen.'],['Klopfen','Beim Ansetzen passen, weil man nicht legen kann.']],
+  house:'Herzeln wird in jedem Ort ein bissl anders gespielt. Werte, Touren, die Reihenfolge von Minus- und Plusrunde und die Wertung im Finale stellt ihr beim Anlegen einer neuen Partie unter <b>„Hausregeln“</b> ein.'
 },
 mv:{
-  about:'Herzln is a Stichspü für drei oder vier Leit, und jede Tour hot a andere Aufgob. A Partie hot zwoa Epochn mit de gleichn Touren – nur ’s Vorzeichn draht si um. Zum Schluss wird ’s Herzmandl angsetzt. Wer am End de meistn Punkt hot, hot gwunna.',
+  about:'Herzln is a Stichspü für drei oder vier Leit, und jede Tour hot a andere Aufgob. A Partie hot a Minus- und a Plusrundn mit de gleichn Touren – nur ’s Vorzeichn draht si um. Zum Schluss wird ’s Herzmandl angsetzt. Wer am End de meistn Punkt hot, hot gwunna.',
   step_minus:'Ois, wos d’ in deine Stich hoambringst, kost Punkt. Wer am wenigstn dawischt, locht.',
   step_plus:'De gleichn Touren, nur umdraht: Iatz bringt genau des Punkt, wos vorher weh do hot.',
-  step_final:'Grünmandl ansetzn, oba mit’m Herzmandl: Wer z’erst olle Kartn anglegt hot, gwinnt ’s Finale.',
-  cards:'G’spüt wird mit 32 doppeldeitschn Kartn: via Farbn mit jeweils Ass (Sau), Kini, Ober, Unta, Zehna, Neina, Achta und Simma. A jeder kriagt 8 Kartn.',
+  step_final:'Grünmandl ansetzn, oba mit’m Herzmandl: Wer z’erst olle Kortn anglegt hot, gwinnt ’s Finale.',
+  cards:'G’spüt wird mit 32 doppeldeitschn Kortn: via Farbn mit jeweils Ass (Sau), Kini, Ober, Unta, Zehna, Neina, Achta und Simma. A jeder kriagt 8 Kortn.',
   suitAlt:{herz:'Rot',schelle:'Schelln',laub:'Grün',eichel:'Eichln'},
-  mandl:'Da Unta hoaßt a <b>„Mandl“</b>. ’s <b>Herzmandl</b> is da Herz-Unta – de wichtigste Kartn im Finale.',
-  three:'Z’dritt fliagn de Simma und Achta aussi: 24 Kartn, a jeder kriagt wieder 8.',
+  mandl:'Da Unta hoaßt a <b>„Mandl“</b>. ’s <b>Herzmandl</b> is da Herz-Unta – de wichtigste Kortn im Finale.',
+  three:'Z’dritt fliagn de Simma und Achta aussi: 24 Kortn, a jeder kriagt wieder 8.',
   play:[
     'Gebn wird im Uhrzeigersinn, jeds Spü gibt da Nächste. Wer links vom Geber sitzt, <b>kimmt aussa</b>.',
     '<b>Farb muass bedient wern.</b> Wer de Farb ned hot, derf irgendwos obwerfn – am liabstn wos Teirs („obschmiern“).',
     'Es gibt <b>koan Trumpf</b> und koan Stichzwang: Du muasst ned übastechn.',
-    'Den Stich mocht de höchste Kartn vo da ausgspütn Farb. Wer sticht, kimmt ois Nächsta aussa.',
+    'Den Stich mocht de höchste Kortn vo da ausgspütn Farb. Wer sticht, kimmt ois Nächsta aussa.',
     'Obgrechnet wird noch jedm Spü – des mocht da Block do für eich.'],
-  toursIntro:'In jeda Epoch kimmt a jede Tour dran. De Wert san eire Hausregln – in da Minus-Epoch zöd’s minus, in da Plus-Epoch plus.',
+  toursIntro:'In jeda Rundn kimmt a jede Tour dran. De Wert san eire Hausregln – in da Minusrundn zöd’s minus, in da Plusrundn plus.',
   finalIntro:'Zum Schluss wird Grünmandl ansetzn gspüt – bei uns oba mit’m <b>Herzmandl</b>. Iatz gibt’s koane Stich mehr, es geht nur ums Loswern.',
   finalSteps:[
-    'Olle Kartn wern ausgebn. Wer ’s <b>Herzmandl</b> (Herz-Unta) hot, legt’s in d’ Mittn und fangt o.',
-    'Dann reihum im Uhrzeigersinn: Leg <b>oa</b> Kartn o – de nächsthöhere oder nächstniedrigere vo da gleichn Farb. Vom Unta auffi: Ober, Kini, Ass. Obi: Zehna, Neina, Achta, Simma.',
+    'Olle Kortn wern ausgebn. Wer ’s <b>Herzmandl</b> (Herz-Unta) hot, legt’s in d’ Mittn und fangt o.',
+    'Dann reihum im Uhrzeigersinn: Leg <b>oa</b> Kortn o – de nächsthöhere oder nächstniedrigere vo da gleichn Farb. Vom Unta auffi: Ober, Kini, Ass. Obi: Zehna, Neina, Achta, Simma.',
     'Stott dass d’ olegst, derfst a an <b>andern Unta</b> zu de Unta dazualegn – domit is a neiche Farb offn.',
     '<b>Wer legn ko, muass legn.</b> Wer ned ko, klopft und setzt aus.',
-    'Wer z’erst olle Kartn los is, hot ’s Finale gwunna.'],
+    'Wer z’erst olle Kortn los is, hot ’s Finale gwunna.'],
   tips:[
-    'Im Finale: Hoit Kartn z’ruck, de de andern in Weg versperrn – z. B. an Zehna, wennst söba koane Neina brauchst.',
-    'Vü Kartn vo ana Farb? Dann wüst ihrn Unta so boid wia’s geht am Tisch hom.',
+    'Im Finale: Hoit Kortn z’ruck, de de andern in Weg versperrn – z. B. an Zehna, wennst söba koane Neina brauchst.',
+    'Vü Kortn vo ana Farb? Dann wüst ihrn Unta so boid wia’s geht am Tisch hom.',
     'Merk da, wöche Herz scho gfoin san – des entscheidt de Herzkini-Tour.',
-    'In da Minus-Epoch is a kurze Farb Goid wert: Bist frei, derfst obschmiern.',
+    'In da Minusrundn is a kurze Farb Goid wert: Bist frei, derfst obschmiern.',
     'Und ’s Wichtigste: Wer jammert, gibt.'],
-  gloss:[['Mandl','Da Unta. ’s Herzmandl is da Herz-Unta.'],['Sau','’s Ass.'],['Tour','A Spü mit ana bestimmtn Aufgob, z. B. „Herz“.'],['Epoch','Olle Touren amoi durch – amoi Minus, amoi Plus.'],['Partie','Beide Epochn und ’s Finale.'],['Aussakemma','De erste Kartn vo an Stich ausspün.'],['Bedienen','De ausgspüte Farb zuagebn.'],['Frei sei','Koa Kartn mehr vo ana Farb hom.'],['Obschmiern','A teire Kartn auf an fremdn Stich schmeißn.'],['Klopfn','Beim Ansetzn passn, weil’st ned legn konnst.']],
-  house:'Herzln spüt a jeds Dorf a bissl anders. Wert, Touren, de Reihnfoig vo de Epochn und de Wertung im Finale stöt’s bei ana neichn Partie unter <b>„Hausregln“</b> ei.'
+  gloss:[['Mandl','Da Unta. ’s Herzmandl is da Herz-Unta.'],['Sau','’s Ass.'],['Tour','A Spü mit ana bestimmtn Aufgob, z. B. „Herz“.'],['Minus-/Plusrundn','Olle Touren amoi durch – amoi Minus, amoi Plus.'],['Partie','Minusrundn, Plusrundn und ’s Finale.'],['Aussakemma','De erste Kortn vo an Stich ausspün.'],['Bedienen','De ausgspüte Farb zuagebn.'],['Frei sei','Koa Kortn mehr vo ana Farb hom.'],['Obschmiern','A teire Kortn auf an fremdn Stich schmeißn.'],['Klopfn','Beim Ansetzn passn, weil’st ned legn konnst.']],
+  house:'Herzln spüt a jeds Dorf a bissl anders. Wert, Touren, de Reihnfoig vo Minus- und Plusrundn und de Wertung im Finale stöt’s bei ana neichn Partie unter <b>„Hausregln“</b> ei.'
 },
 st:{
-  about:'Herzln isch a Stichspiel fir drei oder vier Leit, und a jede Tour hot an ondere Aufgob. A Partie hot zwoa Epochn mit di gleichn Touren – lei ’s Vorzeichn draht si um. Zun Schluss weard ’s Herzmandl ungsetzt. Wer am End di meischtn Punkte hot, hot gwunnen.',
+  about:'Herzln isch a Stichspiel fir drei oder vier Leit, und a jede Tour hot an ondere Aufgob. A Partie hot a Minus- und a Plusrundn mit di gleichn Touren – lei ’s Vorzeichn draht si um. Zun Schluss weard ’s Herzmandl ungsetzt. Wer am End di meischtn Punkte hot, hot gwunnen.',
   step_minus:'Olls, wos’d in deine Stich hoambringsch, koscht Punkte. Wer am wianigschtn dawischt, locht.',
   step_plus:'Di gleichn Touren, lei umgedraht: Iatz bringt genau des Punkte, wos vorher weh to hot.',
   step_final:'Grünmandl-Unsetzn, ober mit’n Herzmandl: Wer zerscht olle Kortn ungleg hot, gwinnt ’s Finale.',
@@ -800,7 +800,7 @@ st:{
     'Es gip <b>koan Trumpf</b> und koan Stichzwong: Du muasch nit überstechn.',
     'In Stich mocht di heachschte Kortn von dr ausgspieltn Farb. Wer sticht, kimp als Nächschter ausser.',
     'Ogrechnet weard noch an jedn Spiel – des mocht dr Block do fir enk.'],
-  toursIntro:'In a jeder Epoche kimp a jede Tour drun. Di Werte sein enkre Hausregln – in dr Minus-Epoche zähln sie minus, in dr Plus-Epoche plus.',
+  toursIntro:'In a jeder Rundn kimp a jede Tour drun. Di Werte sein enkre Hausregln – in dr Minusrundn zähln sie minus, in dr Plusrundn plus.',
   finalIntro:'Zun Schluss weard Grünmandl-Unsetzn gspielt – bei ins ober mit’n <b>Herzmandl</b>. Iatz gip’s koane Stich mehr, es geat lei ums Loswern.',
   finalSteps:[
     'Olle Kortn wern ausgebm. Wer ’s <b>Herzmandl</b> (Herz-Unter) hot, legt’s in di Mitt und fongt un.',
@@ -812,13 +812,13 @@ st:{
     'In Finale: Hold Kortn zrugg, de di ondern in Weg versperrn – z. B. an Zehner, wenn’d sel koane Neiner brauchsch.',
     'Viel Kortn von a Farb? Nor willsch ihrn Unter so bold wia meglich am Tisch hobm.',
     'Merk dr, welle Herz schun gfolln sein – des entscheidet di Herzkini-Tour.',
-    'In dr Minus-Epoche isch a kurze Farb Gold wert: Bisch frei, derfsch oschmiern.',
+    'In dr Minusrundn isch a kurze Farb Gold wert: Bisch frei, derfsch oschmiern.',
     'Und ’s Wichtigschte: Wer jammert, gip.'],
-  gloss:[['Mandl','Dr Unter. ’s Herzmandl isch dr Herz-Unter.'],['Sau','’s Ass.'],['Tour','A Spiel mit a bstimmtn Aufgob, z. B. „Herz“.'],['Epoche','Olle Touren amol durch – amol Minus, amol Plus.'],['Partie','Beide Epochn und ’s Finale.'],['Ausserkemmen','Di erschte Kortn von an Stich ausspieln.'],['Zuagebm','Di ausgspielte Farb dazualegn.'],['Frei sein','Koa Kortn mehr von a Farb hobm.'],['Oschmiern','A teire Kortn auf an fremdn Stich schmeißn.'],['Klopfn','Beim Unsetzn passn, weil’d nit legn konnsch.']],
-  house:'Herzln weard in jedn Dorf a bissl ondersch gspielt. Werte, Touren, di Reihenfolge von di Epochn und di Wertung in Finale stellt’s bei a neien Partie unter <b>„Hausregln“</b> ein.'
+  gloss:[['Mandl','Dr Unter. ’s Herzmandl isch dr Herz-Unter.'],['Sau','’s Ass.'],['Tour','A Spiel mit a bstimmtn Aufgob, z. B. „Herz“.'],['Minus-/Plusrundn','Olle Touren amol durch – amol Minus, amol Plus.'],['Partie','Minusrundn, Plusrundn und ’s Finale.'],['Ausserkemmen','Di erschte Kortn von an Stich ausspieln.'],['Zuagebm','Di ausgspielte Farb dazualegn.'],['Frei sein','Koa Kortn mehr von a Farb hobm.'],['Oschmiern','A teire Kortn auf an fremdn Stich schmeißn.'],['Klopfn','Beim Unsetzn passn, weil’d nit legn konnsch.']],
+  house:'Herzln weard in jedn Dorf a bissl ondersch gspielt. Werte, Touren, di Reihenfolge von Minus- und Plusrundn und di Wertung in Finale stellt’s bei a neien Partie unter <b>„Hausregln“</b> ein.'
 },
 li:{
-  about:'Herzla isch es Stichspiel für drei oder vier Lüt, und jedi Tour hät e anderi Ufgab. E Partie hät zwei Epocha mit da gliicha Toura – nu ’s Vorzeicha dreiht si um. Zum Schluss wird ’s Herzmandli agsetzt. Wer am End am meischta Pünkt hät, hät gwunna.',
+  about:'Herzla isch es Stichspiel für drei oder vier Lüt, und jedi Tour hät e anderi Ufgab. E Partie hät e Minus- und e Plusrunda mit da gliicha Toura – nu ’s Vorzeicha dreiht si um. Zum Schluss wird ’s Herzmandli agsetzt. Wer am End am meischta Pünkt hät, hät gwunna.',
   step_minus:'Alls, wo’d in dina Stich heibringsch, koschtet Pünkt. Wer am wenigschta verwütscht, lacht.',
   step_plus:'Di gliicha Toura, nu umdreiht: Jetz bringt grad das Pünkt, wo vorher weh to hät.',
   step_final:'Grünmandl-Asetza, aber mit em Herzmandli: Wer zerscht alli Karta aglait hät, gwinnt ’s Finale.',
@@ -832,7 +832,7 @@ li:{
     'Es git <b>kai Trumpf</b> und kai Stichzwang: Du muasch nid überstecha.',
     'Da Stich macht di höchscht Karta vo dr usgspielta Farb. Wer sticht, kunnt als Nögschta usa.',
     'Abgrechnet wird noch jedem Spiel – das macht dr Block do für eu.'],
-  toursIntro:'In jedera Epocha kunnt jedi Tour dra. D’Wert sind eura Husregla – in dr Minus-Epocha zellend sie minus, in dr Plus-Epocha plus.',
+  toursIntro:'In jedera Runda kunnt jedi Tour dra. D’Wert sind eura Husregla – in dr Minusrunda zellend sie minus, in dr Plusrunda plus.',
   finalIntro:'Zum Schluss wird Grünmandl-Asetza gspielt – bi üs aber mit em <b>Herzmandli</b>. Jetz gits kai Stich meh, es goht nu ums Loswerda.',
   finalSteps:[
     'Alli Karta werdend usteilt. Wer ’s <b>Herzmandli</b> (Herz-Under) hät, leit’s in d’Mitti und fangt a.',
@@ -844,13 +844,13 @@ li:{
     'Im Finale: Heb Karta zrugg, wo da andera da Weg versperrend – z. B. en Zähni, wenn’d sälber kai Nüni bruchsch.',
     'Vil Karta vo ra Farb? Denn wotsch ihra Under möglichscht bald uf em Tisch ha.',
     'Merk dr, weli Herz scho gfalla sind – das entscheidet d’Herzküng-Tour.',
-    'In dr Minus-Epocha isch e kurzi Farb Gold wert: Bisch frei, darfsch abschmiera.',
+    'In dr Minusrunda isch e kurzi Farb Gold wert: Bisch frei, darfsch abschmiera.',
     'Und ’s Wichtigscht: Wer jammeret, git.'],
-  gloss:[['Mandli','Dr Under. ’s Herzmandli isch dr Herz-Under.'],['Sau','’s Ass.'],['Tour','Es Spiel mit ra bstimmta Ufgab, z. B. „Herz“.'],['Epocha','Alli Toura eimol dura – eimol Minus, eimol Plus.'],['Partie','Beidi Epocha und ’s Finale.'],['Usspiela','Di erscht Karta vo ma Stich lega.'],['Bediena','D’usgspielti Farb zuegee.'],['Frei si','Kai Karta meh vo ra Farb ha.'],['Abschmiera','E tüüri Karta uf en frömda Stich schmeissa.'],['Klopfa','Bim Asetza passa, will’d nid lega kasch.']],
-  house:'Herzla wird in jedem Dorf a bitz anders gspielt. Wert, Toura, d’Reihafolg vo da Epocha und d’Wertig im Finale stellend’r bi ra nöia Partie under <b>„Husregla“</b> i.'
+  gloss:[['Mandli','Dr Under. ’s Herzmandli isch dr Herz-Under.'],['Sau','’s Ass.'],['Tour','Es Spiel mit ra bstimmta Ufgab, z. B. „Herz“.'],['Minus-/Plusrunda','Alli Toura eimol dura – eimol Minus, eimol Plus.'],['Partie','Minusrunda, Plusrunda und ’s Finale.'],['Usspiela','Di erscht Karta vo ma Stich lega.'],['Bediena','D’usgspielti Farb zuegee.'],['Frei si','Kai Karta meh vo ra Farb ha.'],['Abschmiera','E tüüri Karta uf en frömda Stich schmeissa.'],['Klopfa','Bim Asetza passa, will’d nid lega kasch.']],
+  house:'Herzla wird in jedem Dorf a bitz anders gspielt. Wert, Toura, d’Reihafolg vo Minus- und Plusrunda und d’Wertig im Finale stellend’r bi ra nöia Partie under <b>„Husregla“</b> i.'
 },
 en:{
-  about:'Herzeln is a trick-taking game for three or four where every tour has its own task. A game (Partie) has two epochs with the same tours — only the sign flips. To finish, the Herzmandl gets laid out. Most points at the end wins.',
+  about:'Herzeln is a trick-taking game for three or four where every tour has its own task. A game (Partie) has a minus round and a plus round with the same tours — only the sign flips. To finish, the Herzmandl gets laid out. Most points at the end wins.',
   step_minus:'Everything you take home in your tricks costs points. Whoever catches the least, laughs.',
   step_plus:'Same tours, flipped: now exactly what hurt before pays out.',
   step_final:'Grünmandl-Ansetzen, but with the Herzmandl: first to lay out all cards wins the finale.',
@@ -864,7 +864,7 @@ en:{
     '<b>No trumps</b>, and no obligation to win: you never have to beat the cards on the table.',
     'The highest card of the suit led wins the trick. The winner leads next.',
     'Score after every hand — this scorepad does the maths for you.'],
-  toursIntro:'Every tour is played in each epoch. Values shown are your current house rules — negative in the minus epoch, positive in the plus epoch.',
+  toursIntro:'Every tour is played in each round. Values shown are your current house rules — negative in the minus round, positive in the plus round.',
   finalIntro:'The finale is Grünmandl-Ansetzen — but played with the <b>Herzmandl</b>. No more tricks: it’s all about getting rid of your cards.',
   finalSteps:[
     'Deal out all cards. Whoever holds the <b>Herzmandl</b> (Unter of Hearts) puts it in the middle and starts.',
@@ -876,10 +876,10 @@ en:{
     'In the finale, hold back cards that block others — say a Ten when you don’t need the Nines yourself.',
     'Long in a suit? You want its Unter on the table early.',
     'Track which hearts have fallen — it decides the King of Hearts tour.',
-    'In the minus epoch a short suit is gold: once you’re void, you get to dump.',
+    'In the minus round a short suit is gold: once you’re void, you get to dump.',
     'And most importantly: whoever whinges, deals.'],
-  gloss:[['Mandl','The Unter (“little man”). Herzmandl = Unter of Hearts.'],['Sau','The Ace (literally “sow”).'],['Tour','One deal with a specific task, e.g. “Hearts”.'],['Epoch','All tours played once — once minus, once plus.'],['Partie','The whole game: both epochs plus the finale.'],['Rauskommen','To lead the first card of a trick.'],['Bedienen','To follow suit.'],['Frei','Void in a suit.'],['Abschmieren','Dumping a costly card on someone else’s trick.'],['Klopfen','Knocking: passing in the layout because you can’t play.']],
-  house:'Every village plays Herzeln a little differently. Values, tours, the order of the epochs and the finale scoring can all be set under <b>“House rules”</b> when starting a new game.'
+  gloss:[['Mandl','The Unter (“little man”). Herzmandl = Unter of Hearts.'],['Sau','The Ace (literally “sow”).'],['Tour','One deal with a specific task, e.g. “Hearts”.'],['Minus / plus round','All tours played once — once minus, once plus.'],['Partie','The whole game: minus round, plus round and the finale.'],['Rauskommen','To lead the first card of a trick.'],['Bedienen','To follow suit.'],['Frei','Void in a suit.'],['Abschmieren','Dumping a costly card on someone else’s trick.'],['Klopfen','Knocking: passing in the layout because you can’t play.']],
+  house:'Every village plays Herzeln a little differently. Values, tours, the order of the minus and plus rounds and the finale scoring can all be set under <b>“House rules”</b> when starting a new game.'
 }};
 
 /* ---------- suit art (German suits) ---------- */
