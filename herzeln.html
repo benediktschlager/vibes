@@ -20,7 +20,7 @@
   --final:#9a6b12;--final-ink:#7d560c;--final-soft:#f6ebcf;
   --on-accent:#fff;
   --p1:#2a78d6;--p2:#eb6834;--p3:#1baf7a;--p4:#eda100;
-  --paper:#fffdf6;--paper-line:#d6c8ae;
+  --paper:#fffdf6;--paper-line:#d6c8ae;--suit-k:#1f1b18;
   --hero-1:#7a1a27;--hero-2:#2a0b10;
   --shadow-sm:0 1px 2px rgba(45,28,12,.05),0 2px 10px rgba(45,28,12,.05);
   --shadow:0 2px 6px rgba(45,28,12,.06),0 14px 34px rgba(45,28,12,.10);
@@ -38,7 +38,7 @@
     --final:#e2b24f;--final-ink:#ecc674;--final-soft:#382d15;
     --on-accent:#16110d;
     --p1:#3987e5;--p2:#d95926;--p3:#199e70;--p4:#c98500;
-    --paper:#f6efe1;--paper-line:#c9bba1;
+    --paper:#f6efe1;--paper-line:#c9bba1;--suit-k:#e8e0d3;
     --hero-1:#5a1220;--hero-2:#18070b;
     --shadow-sm:0 1px 2px rgba(0,0,0,.3);
     --shadow:0 2px 6px rgba(0,0,0,.3),0 14px 34px rgba(0,0,0,.35);
@@ -53,7 +53,7 @@
   --final:#e2b24f;--final-ink:#ecc674;--final-soft:#382d15;
   --on-accent:#16110d;
   --p1:#3987e5;--p2:#d95926;--p3:#199e70;--p4:#c98500;
-  --paper:#f6efe1;--paper-line:#c9bba1;
+  --paper:#f6efe1;--paper-line:#c9bba1;--suit-k:#e8e0d3;
   --hero-1:#5a1220;--hero-2:#18070b;
   --shadow-sm:0 1px 2px rgba(0,0,0,.3);
   --shadow:0 2px 6px rgba(0,0,0,.3),0 14px 34px rgba(0,0,0,.35);
@@ -150,6 +150,11 @@ button:disabled{cursor:not-allowed}
 .pc b{position:absolute;top:calc(var(--cw)*.06);left:calc(var(--cw)*.1);font:800 calc(var(--cw)*.31)/1 var(--font-ui);letter-spacing:-.04em}
 .pc.red b{color:#a71d29}
 .pc svg{width:68%;height:auto;margin-top:30%}
+.pc,.bc{--suit-k:#1f1b18}
+.seg.deck{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:min(100%,400px)}
+.seg.deck button{flex-direction:column;justify-content:center;gap:6px;min-height:64px;padding:8px 10px}
+.deck-ic{display:inline-flex;gap:3px}.deck-ic svg{width:17px;height:17px;flex:none}
+.deck-row{margin:2px 0 14px}
 .pc.back{background:#7c1d29;border:2px solid var(--paper);box-shadow:0 1px 2px rgba(0,0,0,.2),inset 0 0 0 1px rgba(0,0,0,.25);
   background-image:repeating-linear-gradient(45deg,rgba(255,225,200,.17) 0 1.5px,transparent 1.5px 5px),repeating-linear-gradient(-45deg,rgba(255,225,200,.17) 0 1.5px,transparent 1.5px 5px)}
 .fan{display:inline-flex;align-items:flex-end;flex:none;padding:4px 8px 2px 4px}
@@ -416,6 +421,7 @@ button:disabled{cursor:not-allowed}
 .board .bh.u{color:#ffe08a}
 .board .bs{display:grid;place-items:center}
 .board .bs svg{width:20px;height:20px}
+.board .bs{--suit-k:#e9f2e6}
 .board .pc{--cw:var(--bw)}
 .slot{width:var(--bw);height:calc(var(--bw)*1.42);border-radius:5px;border:1px dashed rgba(255,255,255,.14)}
 .slot.next{border:1.5px dashed #ffe08a;background:rgba(255,224,138,.12);display:grid;place-items:center;font-size:11px;font-weight:800;color:#ffe08a;animation:glow 2.4s ease-in-out infinite}
@@ -701,8 +707,38 @@ const S = {
   inTotal:['zusammen {n} pro Spiel','z’samm {n} pro Spü','zomm {n} pro Spiel','zäma {n} pro Spiel','{n} per deal in total'],
   finalOrderTxt:['Weitergespielt wird, bis alle Plätze feststehen: {list}.','G’spüt wird weida, bis olle Plätz fest san: {list}.','Gspielt weard weiter, bis olle Plätz fescht sein: {list}.','Gspielt wird wiiter, bis alli Plätz fescht sind: {list}.','Play on until every place is decided: {list}.'],
   finalRestTxt:['Schluss ist, sobald der Erste draußen ist. Jeder andere zahlt {v} pro Karte, die er noch hält.','Aus is, sobald da Erste draußn is. De andern zoin {v} pro Kortn, de’s no in da Hand hom.','Aus isch, sobald dr Erschte draußn isch. Di ondern zohln {v} pro Kortn, de sie no in dr Hond hobm.','Fertig isch, sobald dr Erscht dussa isch. Alli andera zahlend {v} pro Karta, wo sie no in dr Hand hend.','It ends as soon as the first player is out. Everyone else pays {v} per card still in hand.'],
+  deckQ:['Mit welchen Karten?','Mit wöche Kortn?','Mit welle Kortn?','Mit wela Karta?','Which cards?'],
+  deck_dd:['Doppeldeutsch','Doppeldeitsch','Doppeldeitsch','Doppeldütsch','German suits'],
+  deck_fr:['Französisch','Französisch','Französisch','Französisch','French suits'],
   toPad:['Zum Spielblock','Zum Aufschreibn','Zun Aufschreibm','Zum Ufschriiba','Open the scorepad'],
   footer:['Touren und Werte angelehnt an die Piatnik-Regeln, Minus-/Plusrunde und Herzmandl-Finale nach Hausbrauch. Der Spielblock speichert alles nur auf diesem Gerät.','Touren und Wert ongelehnt an de Piatnik-Regln, Minus-/Plusrundn und Herzmandl-Finale wia’s bei uns da Brauch is. Da Block speichat ois nur auf dem Gerät.','Touren und Werte ungelehnt an di Piatnik-Regln, Minus-/Plusrundn und Herzmandl-Finale noch Hausbrauch. Dr Block speichert olls lei auf den Gerät.','Toura und Wert agleint a d’Piatnik-Regla, Minus-/Plusrunda und Herzmandli-Finale noch Husbruuch. Dr Block speichert alls nu uf dem Grät.','Tours and values follow the Piatnik rules; the minus/plus rounds and the Herzmandl finale are house custom. The scorepad stores everything on this device only.']
+};
+/* overrides when playing with French cards: Ober → Dame, Unter → Bube, Sau → Ass */
+const S_FR = {
+  t_ober:['Damen','Damen','Damen','Dama','Queens'],
+  perOber:['pro Dame','pro Dame','pro Dame','pro Dame','per Queen'],
+  augenList:['A 11 · 10 10 · K 4 · D 3 · B 2 · Rest 1','A 11 · 10 10 · K 4 · D 3 · B 2 · Rest 1','A 11 · 10 10 · K 4 · D 3 · B 2 · Rescht 1','A 11 · 10 10 · K 4 · D 3 · B 2 · Rescht 1','A 11 · 10 10 · K 4 · Q 3 · J 2 · rest 1'],
+  g_minus_herzA:['Herz kostet nach Augen: Ass 11, Zehner 10, König 4, Dame 3, Bube 2, der Rest je 1.','Herz kost noch Augn: Ass 11, Zehna 10, Kini 4, Dame 3, Bua 2, da Rest jeweils 1.','Herz koscht noch Augn: Ass 11, Zehner 10, Kini 4, Dame 3, Bua 2, dr Rescht je 1.','Herz koschtet noch Auga: Ass 11, Zähni 10, Küng 4, Dame 3, Bueb 2, dr Rescht je 1.','Hearts cost their card points: Ace 11, Ten 10, King 4, Queen 3, Jack 2, the rest 1 each.'],
+  g_plus_herzA:['Herz bringt nach Augen: Ass 11, Zehner 10, König 4, Dame 3, Bube 2, der Rest je 1.','Herz bringt noch Augn: Ass 11, Zehna 10, Kini 4, Dame 3, Bua 2, da Rest jeweils 1.','Herz bringt noch Augn: Ass 11, Zehner 10, Kini 4, Dame 3, Bua 2, dr Rescht je 1.','Herz bringt noch Auga: Ass 11, Zähni 10, Küng 4, Dame 3, Bueb 2, dr Rescht je 1.','Hearts earn their card points: Ace 11, Ten 10, King 4, Queen 3, Jack 2, the rest 1 each.'],
+  g_minus_ober:['Jede Dame in deinen Stichen kostet {v}.','A jede Dame in deine Stich kost {v}.','A jede Dame in deine Stich koscht {v}.','Jedi Dame in dina Stich koschtet {v}.','Every Queen in your tricks costs {v}.'],
+  g_plus_ober:['Jede Dame in deinen Stichen bringt {v}.','A jede Dame in deine Stich bringt {v}.','A jede Dame in deine Stich bringt {v}.','Jedi Dame in dina Stich bringt {v}.','Every Queen in your tricks earns {v}.'],
+  g_minus_alles:['Alles zählt auf einmal – Stiche, Herz, Damen, Herzkönig und der Letzte. Alles kostet.','Ois zöd auf amoi – Stich, Herz, Damen, Herzkini und da Letzte. Ois kost wos.','Olls zählt auf amol – Stich, Herz, Damen, Herzkini und dr Letschte. Olls koscht.','Alls zellt uf eimol – Stich, Herz, Dama, Herzküng und dr Letscht. Alls koschtet.','Everything counts at once — tricks, hearts, Queens, King of Hearts and the last trick. All of it costs.'],
+  g_plus_alles:['Alles zählt auf einmal – Stiche, Herz, Damen, Herzkönig und der Letzte. Alles bringt Punkte.','Ois zöd auf amoi – Stich, Herz, Damen, Herzkini und da Letzte. Ois bringt Punkt.','Olls zählt auf amol – Stich, Herz, Damen, Herzkini und dr Letschte. Olls bringt Punkte.','Alls zellt uf eimol – Stich, Herz, Dama, Herzküng und dr Letscht. Alls bringt Pünkt.','Everything counts at once — tricks, hearts, Queens, King of Hearts and the last trick. All of it pays.'],
+  w_ober:['Jede Dame in deinen Stichen.','A jede Dame in deine Stich.','A jede Dame in deine Stich.','Jedi Dame in dina Stich.','Every Queen in your tricks.'],
+  w_alles:['Alles auf einmal: Stiche, Herz, Damen, Herzkönig und letzter Stich.','Ois auf amoi: Stich, Herz, Damen, Herzkini und da Letzte.','Olls auf amol: Stich, Herz, Damen, Herzkini und dr Letschte.','Alls uf eimol: Stich, Herz, Dama, Herzküng und dr Letscht.','All at once: tricks, hearts, Queens, King of Hearts and the last trick.'],
+  tm_stiche:['Bist du in einer Farbe frei, schmier Asse und Zehner ab.','Bist in ana Farb frei, schmier deine Ass und Zehna o.','Bisch in a Farb frei, schmier deine Ass und Zehner o.','Bisch in ra Farb frei, schmier dis Ass und da Zähni ab.','Once you’re void in a suit, dump your Aces and Tens.'],
+  tm_ober:['Eine Dame ist in Gefahr, solange Ass und Zehner ihrer Farbe draußen sind – schmier sie früh ab.','A Dame is in Gfoahr, solang Ass und Zehna vo ihra Farb no draußn san – schmier’s boid o.','A Dame isch in Gfohr, solong Ass und Zehner von ihrer Farb no draußn sein – schmier sie bold o.','E Dame isch in Gfohr, solang Ass und Zähni vo ihrera Farb no dussa sind – schmier si bald ab.','A Queen is in danger while its suit’s Ace and Ten are still out — dump it early.'],
+  tp_ober:['Spar dir Asse und Zehner für Stiche auf, in denen eine Dame liegt.','Hoit da de Ass und Zehna für de Stich auf, wo a Dame drin liegt.','Spor dr di Ass und Zehner fir di Stich au, wo a Dame drin liegt.','Spar dr Ass und Zähni für d’Stich uf, wo e Dame drin lit.','Save Aces and Tens for tricks with a Queen in them.'],
+  tm_herzkoenig:['Herz-Ass oder Herz-Zehner? Dann spiel Herz an und jag den König raus.','Host ’s Herz-Ass oder an Herz-Zehna? Dann spü Herz o und jog an Kini aussa.','Hosch ’s Herz-Ass oder in Herz-Zehner? Nor spiel Herz un und jog in Kini ausser.','Häsch ’s Herz-Ass oder da Herz-Zähni? Denn spiel Herz a und jag da Küng usa.','Holding the Ace or Ten of hearts? Lead hearts and hunt the king down.'],
+  tp_herzkoenig:['Herz-Ass und Herz-Zehner aufheben – damit fängst du den König.','Herz-Ass und Herz-Zehna aufhebn – mit de fangst an Kini.','Herz-Ass und Herz-Zehner aufhebm – mit de fongsch in Kini.','Herz-Ass und Herz-Zähni ufheba – dermit fangsch da Küng.','Keep the Ace and Ten of hearts — they’re how you catch the king.'],
+  tp_letzter:['Ein Ass oder eine lange Farbe bis zum Schluss aufheben.','A Ass oder a lange Farb bis zum Schluss aufhebn.','A Ass oder a longe Farb bis zun Schluss aufhebm.','Es Ass oder e langi Farb bis zum Schluss ufheba.','Save an Ace or a long suit for the very end.'],
+  tm_alles:['Zuerst den Herzkönig loswerden, dann die Damen, dann die Stiche.','Z’erst an Herzkini loswern, dann de Damen, dann de Stich.','Zerscht in Herzkini loswern, nor di Damen, nor di Stich.','Zerscht da Herzküng loswerda, denn d’Dama, denn d’Stich.','Ditch the King of Hearts first, then the Queens, then the tricks.'],
+  boardCaption:[
+    'Mitten im Finale: Die Buben bilden die Mittelspalte. Nach rechts geht’s hinauf (D, K, A), nach links hinunter (10, 9, 8, 7). Die leuchtenden Plätze sind die Karten, die als Nächstes gelegt werden dürfen.',
+    'Mittn im Finale: De Buam san de Mittlspoitn. Noch rechts geht’s auffi (D, K, A), noch links obi (10, 9, 8, 7). De leichtadn Plätz san de Kortn, de ma ois Nächsts legn derf.',
+    'Mittn in Finale: Di Buabm sein di Mittlspolte. Noch rechts geat’s aui (D, K, A), noch links oi (10, 9, 8, 7). Di leichtendn Plätz sein di Kortn, de man als Nächschtes legn derf.',
+    'Mitta im Finale: D’Buaba bildend d’Mittlspalta. Noch rechts gohts ufa (D, K, A), noch links aba (10, 9, 8, 7). D’lüüchtenda Plätz sind d’Karta, wo ma als Nögschts lega darf.',
+    'Mid-finale: the Jacks form the middle column. Rightwards goes up (Q, K, A), leftwards goes down (10, 9, 8, 7). The glowing slots are the cards that may be played next.']
 };
 const SUITN = {
   de:{herz:'Herz',schelle:'Schelle',laub:'Laub',eichel:'Eichel'},
@@ -717,6 +753,21 @@ const RANKN = {
   st:{A:'Sau',K:'Kini',O:'Ober',U:'Unter','10':'Zehner','9':'Neiner','8':'Achter','7':'Siebner'},
   li:{A:'Ass',K:'Küng',O:'Ober',U:'Under','10':'Zähni','9':'Nüni','8':'Achti','7':'Sibni'},
   en:{A:'Ace',K:'King',O:'Ober',U:'Unter','10':'Ten','9':'Nine','8':'Eight','7':'Seven'}
+};
+/* French cards keep the internal ids: schelle → Karo, laub → Pik, eichel → Kreuz, O → Dame, U → Bube */
+const SUITN_FR = {
+  de:{herz:'Herz',schelle:'Karo',laub:'Pik',eichel:'Kreuz'},
+  mv:{herz:'Herz',schelle:'Karo',laub:'Pik',eichel:'Kreiz'},
+  st:{herz:'Herz',schelle:'Karo',laub:'Pik',eichel:'Kreiz'},
+  li:{herz:'Herz',schelle:'Karo',laub:'Pik',eichel:'Krüz'},
+  en:{herz:'Hearts',schelle:'Diamonds',laub:'Spades',eichel:'Clubs'}
+};
+const RANKN_FR = {
+  de:{A:'Ass',K:'König',O:'Dame',U:'Bube','10':'Zehner','9':'Neuner','8':'Achter','7':'Siebener'},
+  mv:{A:'Ass',K:'Kini',O:'Dame',U:'Bua','10':'Zehna','9':'Neina','8':'Achta','7':'Simma'},
+  st:{A:'Ass',K:'Kini',O:'Dame',U:'Bua','10':'Zehner','9':'Neiner','8':'Achter','7':'Siebner'},
+  li:{A:'Ass',K:'Küng',O:'Dame',U:'Bueb','10':'Zähni','9':'Nüni','8':'Achti','7':'Sibni'},
+  en:{A:'Ace',K:'King',O:'Queen',U:'Jack','10':'Ten','9':'Nine','8':'Eight','7':'Seven'}
 };
 
 /* ---------- long-form rules per language ---------- */
@@ -881,6 +932,62 @@ en:{
   gloss:[['Mandl','The Unter (“little man”). Herzmandl = Unter of Hearts.'],['Sau','The Ace (literally “sow”).'],['Tour','One deal with a specific task, e.g. “Hearts”.'],['Minus / plus round','All tours played once — once minus, once plus.'],['Partie','The whole game: minus round, plus round and the finale.'],['Rauskommen','To lead the first card of a trick.'],['Bedienen','To follow suit.'],['Frei','Void in a suit.'],['Abschmieren','Dumping a costly card on someone else’s trick.'],['Klopfen','Knocking: passing in the layout because you can’t play.']],
   house:'Every village plays Herzeln a little differently. Values, tours, the order of the minus and plus rounds and the finale scoring can all be set under <b>“House rules”</b> when starting a new game.'
 }};
+const RULES_FR = {
+de:{
+  cards:'Gespielt wird mit 32 französischen Karten (Piquet-Blatt): vier Farben mit je Ass, König, Dame, Bube, Zehner, Neuner, Achter und Siebener. Jeder bekommt 8 Karten.',
+  suitAlt:{herz:'Cœur',schelle:'Carreau',laub:'Schaufel',eichel:'Treff'},
+  mandl:'Bei französischen Karten ist die Dame der Ober und der Bube der Unter. Das <b>Herzmandl</b> ist also der Herz-Bube – die wichtigste Karte im Finale.',
+  finalSteps:[
+    'Alle Karten werden ausgeteilt. Wer das <b>Herzmandl</b> (Herz-Bube) hat, legt es in die Mitte und fängt an.',
+    'Dann reihum im Uhrzeigersinn: Leg <b>eine</b> Karte an – die nächsthöhere oder nächstniedrigere derselben Farbe. Vom Buben aufwärts: Dame, König, Ass. Abwärts: Zehner, Neuner, Achter, Siebener.',
+    'Statt anzulegen darfst du auch einen <b>anderen Buben</b> zur Buben-Spalte legen – damit ist eine neue Farbe eröffnet.'],
+  tip1:'Viele Karten einer Farbe? Dann willst du ihren Buben möglichst früh am Tisch.',
+  glossMandl:['Mandl','Hier der Bube. Das Herzmandl ist der Herz-Bube.']
+},
+mv:{
+  cards:'G’spüt wird mit 32 französischn Kortn: via Farbn mit jeweils Ass, Kini, Dame, Bua, Zehna, Neina, Achta und Simma. A jeder kriagt 8 Kortn.',
+  suitAlt:{herz:'Cœur',schelle:'Carreau',laub:'Schaufl',eichel:'Treff'},
+  mandl:'Bei de französischn Kortn is de Dame da Ober und da Bua da Unta. ’s <b>Herzmandl</b> is oiso da Herz-Bua – de wichtigste Kortn im Finale.',
+  finalSteps:[
+    'Olle Kortn wern ausgebn. Wer ’s <b>Herzmandl</b> (Herz-Bua) hot, legt’s in d’ Mittn und fangt o.',
+    'Dann reihum im Uhrzeigersinn: Leg <b>oa</b> Kortn o – de nächsthöhere oder nächstniedrigere vo da gleichn Farb. Vom Buam auffi: Dame, Kini, Ass. Obi: Zehna, Neina, Achta, Simma.',
+    'Stott dass d’ olegst, derfst a an <b>andern Buam</b> zu de Buam dazualegn – domit is a neiche Farb offn.'],
+  tip1:'Vü Kortn vo ana Farb? Dann wüst ihrn Buam so boid wia’s geht am Tisch hom.',
+  glossMandl:['Mandl','Do da Bua. ’s Herzmandl is da Herz-Bua.']
+},
+st:{
+  cards:'Gspielt weard mit 32 französischn Kortn: vier Farbm mit jeweils Ass, Kini, Dame, Bua, Zehner, Neiner, Achter und Siebner. A jeder kriagt 8 Kortn.',
+  suitAlt:{herz:'Cœur',schelle:'Carreau',laub:'Schaufl',eichel:'Treff'},
+  mandl:'Bei di französischn Kortn isch di Dame dr Ober und dr Bua dr Unter. ’s <b>Herzmandl</b> isch also dr Herz-Bua – di wichtigschte Kortn in Finale.',
+  finalSteps:[
+    'Olle Kortn wern ausgebm. Wer ’s <b>Herzmandl</b> (Herz-Bua) hot, legt’s in di Mitt und fongt un.',
+    'Nor reihum in Uhrzeigersinn: Leg <b>oa</b> Kortn un – di nächschthechere oder nächschtniedrigere von dr gleichn Farb. Von Buabm aui: Dame, Kini, Ass. Oi: Zehner, Neiner, Achter, Siebner.',
+    'Statt unlegn derfsch a an <b>ondern Buabm</b> zu di Buabm dazualegn – domit isch a neie Farb offn.'],
+  tip1:'Viel Kortn von a Farb? Nor willsch ihrn Buabm so bold wia meglich am Tisch hobm.',
+  glossMandl:['Mandl','Do dr Bua. ’s Herzmandl isch dr Herz-Bua.']
+},
+li:{
+  cards:'Gspielt wird mit 32 französischa Karta: vier Farba mit jewils Ass, Küng, Dame, Bueb, Zähni, Nüni, Achti und Sibni. Jeda überkunnt 8 Karta.',
+  suitAlt:{herz:'Cœur',schelle:'Carreau',laub:'Schufla',eichel:'Treff'},
+  mandl:'Bi da französischa Karta isch d’Dame dr Ober und dr Bueb dr Under. ’s <b>Herzmandli</b> isch also dr Herz-Bueb – di wichtigscht Karta im Finale.',
+  finalSteps:[
+    'Alli Karta werdend usteilt. Wer ’s <b>Herzmandli</b> (Herz-Bueb) hät, leit’s in d’Mitti und fangt a.',
+    'Denn reihum im Uhrzeigersinn: Leg <b>ei</b> Karta a – di nögschthöcher oder nögschtnieder vo dr gliicha Farb. Vom Bueb ufa: Dame, Küng, Ass. Aba: Zähni, Nüni, Achti, Sibni.',
+    'Statt aleega darfsch au en <b>andera Bueb</b> zu da Buaba dazuelega – dermit isch e nöii Farb offa.'],
+  tip1:'Vil Karta vo ra Farb? Denn wotsch ihra Bueb möglichscht bald uf em Tisch ha.',
+  glossMandl:['Mandli','Do dr Bueb. ’s Herzmandli isch dr Herz-Bueb.']
+},
+en:{
+  cards:'Played with 32 French-suited cards (piquet deck): four suits, each with Ace, King, Queen, Jack, Ten, Nine, Eight and Seven. Everyone gets 8 cards.',
+  suitAlt:{herz:'Herz',schelle:'Karo',laub:'Pik',eichel:'Kreuz'},
+  mandl:'With French cards the Queen takes the Ober’s role and the Jack the Unter’s. So the <b>Herzmandl</b> is the Jack of Hearts — the key card of the finale.',
+  finalSteps:[
+    'Deal out all cards. Whoever holds the <b>Herzmandl</b> (Jack of Hearts) puts it in the middle and starts.',
+    'Then clockwise: attach <b>one</b> card — the next higher or next lower card of the same suit. Up from the Jack: Queen, King, Ace. Down: Ten, Nine, Eight, Seven.',
+    'Instead you may place <b>another Jack</b> in the Jack column — that opens a new suit.'],
+  tip1:'Long in a suit? You want its Jack on the table early.',
+  glossMandl:['Mandl','Here: the Jack. Herzmandl = Jack of Hearts.']
+}};
 
 /* ---------- suit art (German suits) ---------- */
 const SUIT = {
@@ -888,6 +995,13 @@ const SUIT = {
   schelle:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.3" r="1.8" fill="#8a5a14"/><circle cx="12" cy="13.3" r="7.9" fill="#e7aa2f"/><path fill="#c42430" d="M4.8 10.2h14.4l.7 2.6H4.1z"/><ellipse cx="8.8" cy="8.4" rx="2" ry="1.1" fill="#fff" opacity=".5" transform="rotate(-28 8.8 8.4)"/><path d="M8.7 17h6.6" stroke="#5b3a0c" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="15.3" r="1.1" fill="#5b3a0c"/></svg>',
   laub:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19.4V23" stroke="#2c6a2f" stroke-width="1.7" stroke-linecap="round"/><path fill="#3f8f41" d="M12 1.8c4.2 2.8 7.4 6.6 7.4 10.8 0 4-3.1 6.8-7.4 7.6-4.3-.8-7.4-3.6-7.4-7.6 0-4.2 3.2-8 7.4-10.8z"/><path d="M12 5v14.2M12 9.6 9 7.4m3 2.2 3-2.2M12 13.6 8.3 11m3.7 2.6 3.7-2.6" stroke="#25602a" stroke-width="1.1" stroke-linecap="round" fill="none"/></svg>',
   eichel:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.2 4.6c.1-1.5.9-2.5 2.5-2.9" stroke="#5a3a1a" stroke-width="1.5" fill="none" stroke-linecap="round"/><path fill="#d79c3d" d="M6.7 11.6h10.6c0 5.1-2.4 9.1-5.3 10.4-2.9-1.3-5.3-5.3-5.3-10.4z"/><ellipse cx="9.8" cy="15.2" rx="1" ry="2.2" fill="#fff" opacity=".35"/><path fill="#6b4423" d="M5.3 12c0-4.4 3-7.6 6.7-7.6s6.7 3.2 6.7 7.6c0 .6-.5 1-1.1 1H6.4c-.6 0-1.1-.4-1.1-1z"/><path d="M6.4 10.3h11.2M7.6 7.6h8.8M9.3 5.6 8 12.9M12 4.5v8.4M14.7 5.6l1.3 7.3" stroke="#8d6038" stroke-width=".7" fill="none"/></svg>'
+};
+/* French suits; black pips follow --suit-k so they stay visible off the card in dark mode */
+const SUIT_FR = {
+  herz:SUIT.herz,
+  schelle:'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#c42430" d="M12 1.8Q15 7.4 19.6 12 15 16.6 12 22.2 9 16.6 4.4 12 9 7.4 12 1.8z"/><path fill="#fff" opacity=".28" d="M12 4.6Q10.2 8.2 7.4 11.4 9.6 9.4 12 8.6z"/></svg>',
+  laub:'<svg viewBox="0 0 24 24" aria-hidden="true"><path style="fill:var(--suit-k)" d="M12 2.2c-1.4 2.6-4 4.7-6.2 6.7-1.6 1.5-2.6 3-2.6 4.9 0 2.6 2 4.5 4.5 4.5 1.4 0 2.6-.6 3.4-1.6-.2 2.1-1 3.7-2.6 5.1h7c-1.6-1.4-2.4-3-2.6-5.1.8 1 2 1.6 3.4 1.6 2.5 0 4.5-1.9 4.5-4.5 0-1.9-1-3.4-2.6-4.9C16 6.9 13.4 4.8 12 2.2z"/></svg>',
+  eichel:'<svg viewBox="0 0 24 24" aria-hidden="true"><g style="fill:var(--suit-k)"><circle cx="12" cy="6.9" r="4.4"/><circle cx="6.8" cy="13.8" r="4.4"/><circle cx="17.2" cy="13.8" r="4.4"/><path d="M10.2 10h3.6v4.4h-3.6z"/><path d="M11 14.2h2c.2 3.3 1 5.5 2.9 7.6H8.1c1.9-2.1 2.7-4.3 2.9-7.6z"/></g></svg>'
 };
 const IC = {
   check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
@@ -934,6 +1048,7 @@ function load(){
     if(!raw) return null;
     const s = JSON.parse(raw);
     if(!LANGS.includes(s.lang)) s.lang = detectLang();
+    if(s.deck !== 'fr') s.deck = 'dd';
     s.setup = merge(DEFAULT_SETUP(), s.setup || {});
     if(!Array.isArray(s.history)) s.history = [];
     if(s.game && (!Array.isArray(s.game.schedule) || !Array.isArray(s.game.results))) s.game = null;
@@ -941,7 +1056,7 @@ function load(){
     return s;
   }catch(e){ return null; }
 }
-let state = load() || {lang:detectLang(), tab:'play', theme:'auto', setup:DEFAULT_SETUP(), game:null, history:[]};
+let state = load() || {lang:detectLang(), deck:'dd', tab:'play', theme:'auto', setup:DEFAULT_SETUP(), game:null, history:[]};
 const ui = {editIdx:null, houseOpen:false, celebrate:null, scrollNow:false};
 function save(){ try{ localStorage.setItem(STORE, JSON.stringify(state)); }catch(e){} }
 
@@ -955,7 +1070,7 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>'
 const fmt = v => v > 0 ? '+' + v : v < 0 ? MINUS + Math.abs(v) : '0';
 const langIdx = () => Math.max(0, LANGS.indexOf(state.lang));
 function t(k, v = {}){
-  const e = S[k];
+  const e = (state.deck === 'fr' && S_FR[k]) || S[k];
   if(!e) return k;
   let s = e[langIdx()];
   if(s == null) s = e[0];
@@ -967,8 +1082,31 @@ function pn(i, g = state.game){
   const nm = g ? g.names[i] : state.setup.names[i];
   return nm && nm.trim() ? nm.trim() : t('playerN', {n:i + 1});
 }
+const isFr = () => state.deck === 'fr';
+const suitSvg = s => (isFr() ? SUIT_FR : SUIT)[s];
+const suitName = s => (isFr() ? SUITN_FR : SUITN)[state.lang][s];
+const rankName = r => (isFr() ? RANKN_FR : RANKN)[state.lang][r];
+const isRed = s => s === 'herz' || (isFr() && s === 'schelle');
+/* rank index on the card: O/U on German cards, D/B (Q/J in English) on French ones */
+function rl(r){
+  if(!isFr() || (r !== 'O' && r !== 'U')) return r;
+  return state.lang === 'en' ? (r === 'O' ? 'Q' : 'J') : (r === 'O' ? 'D' : 'B');
+}
+function rules(){
+  const R = RULES[state.lang];
+  if(!isFr()) return R;
+  const F = RULES_FR[state.lang], tips = R.tips.slice();
+  tips[1] = F.tip1;
+  return {...R, cards:F.cards, suitAlt:F.suitAlt, mandl:F.mandl, tips,
+    finalSteps:[...F.finalSteps, ...R.finalSteps.slice(F.finalSteps.length)],
+    gloss:[F.glossMandl, ...R.gloss.slice(2)]};
+}
+function deckSeg(){
+  const opt = d => `<button type="button" id="setDeck-${d}" data-act="setDeck" data-v="${d}" aria-pressed="${state.deck === d}"><span class="deck-ic" aria-hidden="true">${SUITS.map(s => (d === 'fr' ? SUIT_FR : SUIT)[s]).join('')}</span>${t('deck_' + d)}</button>`;
+  return `<div class="seg deck" role="group" aria-label="${esc(t('deckQ'))}">${opt('dd')}${opt('fr')}</div>`;
+}
 function cardName(c){
-  const s = SUITN[state.lang][c.s], r = RANKN[state.lang][c.r];
+  const s = suitName(c.s), r = rankName(c.r);
   return state.lang === 'en' ? `${r} of ${s}` : `${s}-${r}`;
 }
 const cid = c => c.s + c.r;
@@ -1081,7 +1219,7 @@ function check(g, idx, d){
 }
 
 /* ---------- small renderers ---------- */
-function miniCard(c, cls = ''){ return `<span class="pc ${c.s === 'herz' ? 'red' : ''} ${cls}" aria-hidden="true"><b>${c.r}</b>${SUIT[c.s]}</span>`; }
+function miniCard(c, cls = ''){ return `<span class="pc ${isRed(c.s) ? 'red' : ''} ${cls}" aria-hidden="true"><b>${rl(c.r)}</b>${suitSvg(c.s)}</span>`; }
 const back = () => '<span class="pc back" aria-hidden="true"></span>';
 function tourIcon(id, size = ''){
   const F = (...cs) => `<span class="fan ${size}" aria-hidden="true">${cs.join('')}</span>`;
@@ -1119,7 +1257,7 @@ function goalText(cfg, it){
 
 /* ---------- hero, tabs ---------- */
 function bigCard(r, pos, cap = ''){
-  return `<div class="bc ${pos}"><span class="cr tl">${r}</span>${SUIT.herz}${cap ? `<span class="cap">${cap}</span>` : ''}<span class="cr br">${r}</span></div>`;
+  return `<div class="bc ${pos}"><span class="cr tl">${rl(r)}</span>${suitSvg('herz')}${cap ? `<span class="cap">${cap}</span>` : ''}<span class="cr br">${rl(r)}</span></div>`;
 }
 function heroHTML(){
   const compact = state.tab === 'play' && !!state.game;
@@ -1185,6 +1323,7 @@ function setupHTML(){
   <section class="panel">
     <h2 class="ph">${t('newGame')}</h2>
     <div class="field"><div class="lbl">${t('howMany')}</div>${seg('setN', [3, 4].map(k => ({v:k, label:t('nPlayers', {n:k}), on:n === k})))}</div>
+    <div class="field"><div class="lbl">${t('deckQ')}</div>${deckSeg()}</div>
     <div class="field"><div class="lbl">${t('namesLabel')}</div>
       <div class="names">${range(n).map(i => `<label class="name-in" style="${pc(i)}"><span class="dot"></span><span class="vh">${esc(t('playerN', {n:i + 1}))}</span><input id="name-${i}" data-bind="names.${i}" value="${esc(st.names[i] || '')}" placeholder="${esc(t('playerN', {n:i + 1}))}" maxlength="18" autocomplete="off" autocapitalize="words" enterkeyhint="${i < n - 1 ? 'next' : 'done'}"></label>`).join('')}</div></div>
     <div class="field"><div class="lbl">${t('firstDealer')}</div>${seg('setDealer', range(n).map(i => ({v:i, label:`<span data-nl="${i}">${esc(pn(i, null))}</span>`, on:st.startDealer === i, dot:i})))}</div>
@@ -1415,16 +1554,16 @@ function finalScoringText(cfg){
 }
 function boardHTML(){
   const rows = [['eichel', [], ['U']], ['laub', ['10','U','O'], ['9','K']], ['herz', ['9','10','U','O','K'], ['8','A']], ['schelle', ['U'], ['10','O']]];
-  let h = `<span></span>${LAY.map(r => `<span class="bh${r === 'U' ? ' u' : ''}">${r}</span>`).join('')}`;
+  let h = `<span></span>${LAY.map(r => `<span class="bh${r === 'U' ? ' u' : ''}">${rl(r)}</span>`).join('')}`;
   for(const [s, placed, next] of rows){
-    h += `<span class="bs" title="${SUITN[state.lang][s]}">${SUIT[s]}</span>`;
-    h += LAY.map(r => placed.includes(r) ? miniCard({s, r}) : next.includes(r) ? `<span class="slot next">${r}</span>` : '<span class="slot"></span>').join('');
+    h += `<span class="bs" title="${suitName(s)}">${suitSvg(s)}</span>`;
+    h += LAY.map(r => placed.includes(r) ? miniCard({s, r}) : next.includes(r) ? `<span class="slot next">${rl(r)}</span>` : '<span class="slot"></span>').join('');
   }
   return `<div class="board" role="img" aria-label="${esc(t('boardCaption'))}">${h}</div>
     <div class="board-dir"><span>← ${t('down')}</span><span>${t('up')} →</span></div>`;
 }
 function rulesHTML(){
-  const R = RULES[state.lang], cfg = cfgView();
+  const R = rules(), cfg = cfgView();
   const order = cfg.epochFirst === 'plus' ? ['plus','minus','final'] : ['minus','plus','final'];
   const tcard = id => {
     const on = cfg.tours[id].on;
@@ -1437,8 +1576,8 @@ function rulesHTML(){
     <section class="panel"><h2 class="ph">${t('r_about')}</h2><p class="lead">${R.about}</p>
       <div class="steps3">${order.map((ep, k) => `<div class="step ep-${ep}"><div class="sn">${k + 1}</div><div class="st">${t('ep_' + ep)}</div><div class="ss">${t('eps_' + ep)}</div><p>${R['step_' + ep]}</p></div>`).join('')}</div>
     </section>
-    <section class="panel"><h2 class="ph">${t('r_cards')}</h2><p>${R.cards}</p>
-      <div class="suits">${SUITS.map(s => `<div class="suit">${SUIT[s]}<b>${SUITN[state.lang][s]}</b><span>${R.suitAlt[s]}</span></div>`).join('')}</div>
+    <section class="panel"><h2 class="ph">${t('r_cards')}</h2><div class="deck-row">${deckSeg()}</div><p>${R.cards}</p>
+      <div class="suits">${SUITS.map(s => `<div class="suit">${suitSvg(s)}<b>${suitName(s)}</b><span>${R.suitAlt[s]}</span></div>`).join('')}</div>
       <div class="strips">
         <div class="strip-box"><div class="lbl">${t('rankTrick')}</div><div class="strip">${RANKS[4].map(r => miniCard({s:'herz', r})).join('<span class="gt">›</span>')}</div></div>
         <div class="strip-box"><div class="lbl">${t('rankLay')}</div><div class="strip">${LAY.map(r => miniCard({s:'laub', r})).join('<span class="gt">–</span>')}</div></div>
@@ -1637,6 +1776,7 @@ const ACT = {
   setDealer(el){ state.setup.startDealer = +el.dataset.v; },
   setEpoch(el){ state.setup.epochFirst = el.dataset.v; },
   setRepeat(el){ state.setup.repeat = el.dataset.v; },
+  setDeck(el){ state.deck = el.dataset.v === 'fr' ? 'fr' : 'dd'; },
   setHerzMode(el){ state.setup.tours.herz.mode = el.dataset.v; },
   setFinalMode(el){ state.setup.final.mode = el.dataset.v; },
   resetRules(){ const d = DEFAULT_SETUP(); Object.assign(state.setup, {tours:d.tours, final:d.final, epochFirst:d.epochFirst, repeat:d.repeat}); },
