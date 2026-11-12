@@ -77,11 +77,12 @@ button:disabled{cursor:not-allowed}
   background:radial-gradient(circle,rgba(255,190,150,.18),transparent 65%)}
 .hero-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .eyebrow{font-size:12px;letter-spacing:.15em;text-transform:uppercase;font-weight:650;color:#f1cdbf}
-.hero-ctl{display:flex;gap:8px;align-items:center}
-.lang{position:relative;display:inline-flex;align-items:center}
+.hero-ctl{display:flex;gap:8px;align-items:center;min-width:0;max-width:100%}
+.hero-ctl .icon-btn{flex:none}
+.lang{position:relative;display:inline-flex;align-items:center;min-width:0}
 .lang svg{position:absolute;left:11px;width:16px;height:16px;pointer-events:none;opacity:.85}
 .lang select{appearance:none;-webkit-appearance:none;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.1);color:#fff;
-  border-radius:12px;padding:8px 32px 8px 34px;font-weight:650;font-size:14px;cursor:pointer;max-width:62vw;
+  border-radius:12px;padding:8px 32px 8px 34px;font-weight:650;font-size:14px;cursor:pointer;max-width:62vw;min-width:0;width:100%;text-overflow:ellipsis;
   background-image:linear-gradient(45deg,transparent 50%,#fff 50%),linear-gradient(135deg,#fff 50%,transparent 50%);
   background-position:calc(100% - 17px) 55%,calc(100% - 12px) 55%;background-size:5px 5px;background-repeat:no-repeat}
 .lang select:hover{background-color:rgba(255,255,255,.16)}
@@ -90,6 +91,9 @@ button:disabled{cursor:not-allowed}
 .icon-btn svg{width:18px;height:18px}
 .hero .icon-btn{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.1);color:#fff}
 .hero .icon-btn:hover{background:rgba(255,255,255,.16)}
+.hero .deck-btn{grid-template-columns:repeat(2,13px);grid-template-rows:repeat(2,13px);gap:2px;place-content:center;background:var(--paper);border-color:var(--paper-line);--suit-k:#1f1b18;box-shadow:inset 0 0 0 2px var(--paper),inset 0 0 0 3px #e7dbc4}
+.hero .deck-btn:hover{background:#fff}
+.deck-btn svg{width:13px;height:13px}
 .hero-body{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center;margin-top:14px}
 .hero h1{font-family:var(--font-display);font-weight:800;font-size:clamp(48px,9vw,84px);line-height:.92;margin:4px 0 12px;letter-spacing:-.025em;font-variation-settings:"opsz" 144}
 .hero h1 .h{color:#ff8a8f}
@@ -709,6 +713,7 @@ const S = {
   finalRestTxt:['Schluss ist, sobald der Erste draußen ist. Jeder andere zahlt {v} pro Karte, die er noch hält.','Aus is, sobald da Erste draußn is. De andern zoin {v} pro Kortn, de’s no in da Hand hom.','Aus isch, sobald dr Erschte draußn isch. Di ondern zohln {v} pro Kortn, de sie no in dr Hond hobm.','Fertig isch, sobald dr Erscht dussa isch. Alli andera zahlend {v} pro Karta, wo sie no in dr Hand hend.','It ends as soon as the first player is out. Everyone else pays {v} per card still in hand.'],
   deckQ:['Mit welchen Karten?','Mit wöche Kortn?','Mit welle Kortn?','Mit wela Karta?','Which cards?'],
   deck_dd:['Doppeldeutsch','Doppeldeitsch','Doppeldeitsch','Doppeldütsch','German suits'],
+  deckToast:['Karten: {d}','Kortn: {d}','Kortn: {d}','Karta: {d}','Cards: {d}'],
   deck_fr:['Französisch','Französisch','Französisch','Französisch','French suits'],
   toPad:['Zum Spielblock','Zum Aufschreibn','Zun Aufschreibm','Zum Ufschriiba','Open the scorepad'],
   footer:['Touren und Werte angelehnt an die Piatnik-Regeln, Minus-/Plusrunde und Herzmandl-Finale nach Hausbrauch. Der Spielblock speichert alles nur auf diesem Gerät.','Touren und Wert ongelehnt an de Piatnik-Regln, Minus-/Plusrundn und Herzmandl-Finale wia’s bei uns da Brauch is. Da Block speichat ois nur auf dem Gerät.','Touren und Werte ungelehnt an di Piatnik-Regln, Minus-/Plusrundn und Herzmandl-Finale noch Hausbrauch. Dr Block speichert olls lei auf den Gerät.','Toura und Wert agleint a d’Piatnik-Regla, Minus-/Plusrunda und Herzmandli-Finale noch Husbruuch. Dr Block speichert alls nu uf dem Grät.','Tours and values follow the Piatnik rules; the minus/plus rounds and the Herzmandl finale are house custom. The scorepad stores everything on this device only.']
@@ -1271,6 +1276,7 @@ function heroHTML(){
         <label class="lang">${IC.globe}<span class="vh">${t('langLabel')}</span>
           <select id="lang-select" data-change="lang">${opt('de')}<optgroup label="${t('dialects')}">${opt('mv')}${opt('st')}${opt('li')}</optgroup>${opt('en')}</select>
         </label>
+        <button class="icon-btn deck-btn" id="deck-btn" data-act="deck" title="${esc(t('deckToast', {d:t('deck_' + state.deck)}))}" aria-label="${esc(t('deckToast', {d:t('deck_' + state.deck)}))}">${SUITS.map(suitSvg).join('')}</button>
         <button class="icon-btn" id="theme-btn" data-act="theme" title="${t('themeLabel')}: ${t('theme_' + state.theme)}" aria-label="${t('themeLabel')}: ${t('theme_' + state.theme)}">${themeIc}</button>
       </div>
     </div>
@@ -1777,6 +1783,7 @@ const ACT = {
   setEpoch(el){ state.setup.epochFirst = el.dataset.v; },
   setRepeat(el){ state.setup.repeat = el.dataset.v; },
   setDeck(el){ state.deck = el.dataset.v === 'fr' ? 'fr' : 'dd'; },
+  deck(){ state.deck = isFr() ? 'dd' : 'fr'; toast(t('deckToast', {d:t('deck_' + state.deck)})); },
   setHerzMode(el){ state.setup.tours.herz.mode = el.dataset.v; },
   setFinalMode(el){ state.setup.final.mode = el.dataset.v; },
   resetRules(){ const d = DEFAULT_SETUP(); Object.assign(state.setup, {tours:d.tours, final:d.final, epochFirst:d.epochFirst, repeat:d.repeat}); },
